@@ -1,0 +1,26 @@
+---
+import GalleryLayout from "../layouts/GalleryLayout.astro";
+
+const robots = [
+  { name: "Tangerine", year: "2026", slug: "tangerine" },
+  { name: "C²", year: "2025", slug: "c2" },
+  { name: "Clementune", year: "2024", slug: "clementune" },
+  { name: "S.S. Squeeze", year: "2023", slug: "ss-squeeze" },
+  { name: "SLICEasaurus Rex", year: "2022", slug: "sliceasaurus-rex" },
+];
+---
+
+<GalleryLayout
+  title="Robot Gallery"
+  description="Explore the robots SLICE has designed, built, programmed, and competed with."
+>
+  <section class="card-grid">
+    {robots.map((robot) => (
+      <a class="card" href={`/robots/${robot.slug}`}>
+        <p class="eyebrow">{robot.year}</p>
+        <h2>{robot.name}</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </a>
+    ))}
+  </section>
+</GalleryLayout>

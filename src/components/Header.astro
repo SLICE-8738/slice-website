@@ -1,0 +1,88 @@
+---
+import '../styles/global.css'
+---
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h2, p {
+  margin: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-2);
+  display: flex;
+  align-items: center;
+}
+
+ul li a {
+  display: block;
+  color: var(--text);
+  padding: 14px 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+ul li a:hover:not(.active) {
+  background-color: rgba(240, 113, 28, 0.1);
+  color: #fff;
+  transform: translateY(-2px);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+ul li a.active {
+  background-color: var(--accent);
+}
+
+.custom-image {
+  width: 16%;
+  height: auto;
+  margin: 0px;
+}
+
+</style>
+<!DOCTYPE html>
+<!-- Header Menu of the Page -->
+<header>
+    <!-- Top header menu containing
+        logo and Navigation bar -->
+    <div id="top-header">
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li>
+                    <img src="/images/logo.webp" alt="SLICE Robotics Logo" class="custom-image">
+                </li>
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">About Us</a>
+                </li>
+                <li>
+                    <a href="#">Our Team</a>
+                </li>
+                <li>
+                    <a href="#">Calendar</a>
+                </li>
+                <li>
+                    <a href="#">Robots</a>
+                </li>
+                <li>
+                    <a href="#">Sponsors</a>
+                </li>
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,409 @@
+---
+import "../styles/global.css";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SLICE Design Playground</title>
+</head>
+
+<body>
+
+  <header class="nav">
+    <a class="logo" href="#">SLICE</a>
+    <nav class="nav-links">
+      <a href="#typography">Typography</a>
+      <a href="#cards">Cards</a>
+      <a href="#content">Content</a>
+      <a href="#forms">Forms</a>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+    <section class="hero">
+      <div>
+        <p class="eyebrow">FRC TEAM 8738</p>
+        <h1>BUILDING <span>THE FUTURE.</span></h1>
+        <p class="hero-copy">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Integer posuere, sapien at malesuada tincidunt, justo ipsum
+          ullamcorper neque, vitae feugiat augue lectus vel erat.
+        </p>
+        <div class="button-row">
+          <a class="button primary" href="#">Primary Action</a>
+          <a class="button" href="#">Secondary Action</a>
+          <a class="button ghost" href="#">Ghost Action</a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        HERO IMAGE / ROBOT RENDER
+      </div>
+    </section>
+
+    <!-- =====================================================
+         TYPOGRAPHY
+         ===================================================== -->
+    <section id="typography">
+      <p class="eyebrow">01 / Typography</p>
+      <h2 class="section-title">Typography</h2>
+      <p class="section-intro">
+        Test the hierarchy, scale, weight, spacing, and readability of
+        the type system here.
+      </p>
+
+      <div class="type-stack">
+        <p class="eyebrow">Eyebrow / Label</p>
+        <div class="display-xl">Display XL</div>
+        <div class="display-lg">Display Large</div>
+        <h2>Heading Two</h2>
+        <h3>Heading Three</h3>
+        <h4>Heading Four</h4>
+        <p class="lead">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Suspendisse potenti. Praesent tincidunt sapien vel justo
+          ullamcorper, sed volutpat lacus tristique.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Quisque vitae massa vel justo consequat volutpat. Donec
+          tristique, arcu at pretium consequat, mauris justo aliquet
+          augue, vitae dignissim lorem ipsum sed nisl.
+        </p>
+        <p class="small">
+          Small text · Metadata · Captions · Secondary information
+        </p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         BUTTONS
+         ===================================================== -->
+    <section>
+      <p class="eyebrow">02 / Controls</p>
+      <h2 class="section-title">Buttons & Actions</h2>
+      <p class="section-intro">
+        Try different weights and treatments for important and secondary actions.
+      </p>
+
+      <div class="button-row">
+        <a class="button primary" href="#">Primary</a>
+        <a class="button" href="#">Secondary</a>
+        <a class="button ghost" href="#">Ghost</a>
+        <a class="button" href="#">Learn More →</a>
+        <a class="button" href="#">View Robot</a>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         CARDS
+         ===================================================== -->
+    <section id="cards">
+      <p class="eyebrow">03 / Components</p>
+      <h2 class="section-title">Cards</h2>
+      <p class="section-intro">
+        Cards can be used for robots, programs, sponsors, news, events,
+        team members, and other content.
+      </p>
+
+      <div class="grid grid-3">
+        <article class="card card-link">
+          <p class="eyebrow">2026 Season</p>
+          <h3>Robot Name</h3>
+          <p class="muted">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vestibulum at purus vitae libero feugiat.
+          </p>
+          <a class="button" href="#">Explore →</a>
+        </article>
+
+        <article class="card glass card-link">
+          <p class="eyebrow">Outreach</p>
+          <h3>Program Name</h3>
+          <p class="muted">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vestibulum at purus vitae libero feugiat.
+          </p>
+          <a class="button" href="#">Learn More →</a>
+        </article>
+
+        <article class="card card-link">
+          <p class="eyebrow">About SLICE</p>
+          <h3>Our Team</h3>
+          <p class="muted">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vestibulum at purus vitae libero feugiat.
+          </p>
+          <a class="button" href="#">Meet the Team →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         IMAGE CARDS
+         ===================================================== -->
+    <section>
+      <p class="eyebrow">04 / Imagery</p>
+      <h2 class="section-title">Image Cards</h2>
+      <p class="section-intro">
+        Replace the placeholders with real robot photography, CAD renders,
+        competition photos, and outreach imagery.
+      </p>
+
+      <div class="grid grid-3">
+        <article class="card card-link">
+          <div class="image card-image">ROBOT PHOTO</div>
+          <p class="eyebrow">2026</p>
+          <h3>Robot Name</h3>
+          <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </article>
+
+        <article class="card card-link">
+          <div class="image card-image">COMPETITION PHOTO</div>
+          <p class="eyebrow">COMPETITION</p>
+          <h3>Event Name</h3>
+          <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </article>
+
+        <article class="card card-link">
+          <div class="image card-image">OUTREACH PHOTO</div>
+          <p class="eyebrow">OUTREACH</p>
+          <h3>Program Name</h3>
+          <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         STATS
+         ===================================================== -->
+    <section>
+      <p class="eyebrow">05 / Data</p>
+      <h2 class="section-title">Stats</h2>
+
+      <div class="grid grid-4">
+        <div class="stat">
+          <div class="stat-number">8738</div>
+          <div class="stat-label">FRC Team Number</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">24</div>
+          <div class="stat-label">Students</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Years of Competition</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Ideas</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         TAGS
+         ===================================================== -->
+    <section>
+      <p class="eyebrow">06 / Metadata</p>
+      <h2 class="section-title">Tags & Badges</h2>
+
+      <div class="tag-row">
+        <span class="tag accent">FRC</span>
+        <span class="tag">2026</span>
+        <span class="tag">Engineering</span>
+        <span class="tag">Programming</span>
+        <span class="tag">CAD</span>
+        <span class="tag">Outreach</span>
+        <span class="tag">Competition</span>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         CONTENT CONTEXT
+         ===================================================== -->
+    <section id="content">
+      <p class="eyebrow">07 / Content</p>
+      <h2 class="section-title">Content Contexts</h2>
+
+      <div class="grid grid-2">
+
+        <article>
+          <p class="eyebrow">Long-form</p>
+          <h3>Engineering With Purpose</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Curabitur vulputate, erat sit amet elementum tincidunt,
+            sapien lacus feugiat justo, non tempor lorem velit vel justo.
+          </p>
+          <p>
+            Donec at augue ac justo facilisis interdum. Morbi vitae
+            tincidunt arcu. Pellentesque habitant morbi tristique
+            senectus et netus et malesuada fames ac turpis egestas.
+          </p>
+          <ul class="list">
+            <li>Lorem ipsum dolor sit amet.</li>
+            <li>Praesent vitae augue at lorem.</li>
+            <li>Integer tincidunt sem sed erat.</li>
+          </ul>
+        </article>
+
+        <aside class="callout">
+          <p class="eyebrow">Callout</p>
+          <h3>Important Information</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            This could be used for a sponsor CTA, competition announcement,
+            season highlight, or important team information.
+          </p>
+        </aside>
+
+      </div>
+
+      <div style="height: 32px"></div>
+
+      <blockquote class="quote">
+        “Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Engineering is more than building machines; it is building
+        possibilities.”
+      </blockquote>
+    </section>
+
+    <!-- =====================================================
+         TABLE
+         ===================================================== -->
+    <section>
+      <p class="eyebrow">08 / Technical</p>
+      <h2 class="section-title">Technical Table</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Subsystem</th>
+              <th>Technology</th>
+              <th>Status</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Drivebase</td>
+              <td>Swerve</td>
+              <td>Complete</td>
+              <td>Lorem ipsum dolor sit amet.</td>
+            </tr>
+            <tr>
+              <td>Arm</td>
+              <td>Custom</td>
+              <td>Testing</td>
+              <td>Lorem ipsum dolor sit amet.</td>
+            </tr>
+            <tr>
+              <td>Vision</td>
+              <td>Camera</td>
+              <td>Active</td>
+              <td>Lorem ipsum dolor sit amet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         FORM
+         ===================================================== -->
+    <section id="forms">
+      <p class="eyebrow">09 / Forms</p>
+      <h2 class="section-title">Contact Form</h2>
+
+      <div class="grid grid-2">
+        <div>
+          <p class="lead">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer posuere erat a ante.
+          </p>
+        </div>
+
+        <form class="form">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Lorem Ipsum">
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="hello@example.com">
+          </div>
+
+          <div class="field">
+            <label for="topic">Topic</label>
+            <select id="topic">
+              <option>General Question</option>
+              <option>Sponsorship</option>
+              <option>Outreach</option>
+              <option>Media</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Lorem ipsum dolor sit amet..."></textarea>
+          </div>
+
+          <button class="button primary" type="submit">Send Message →</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="logo">SLICE</div>
+          <p class="muted">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent vitae sapien nec ipsum tincidunt.
+          </p>
+        </div>
+
+        <div>
+          <p class="eyebrow">Team</p>
+          <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Students</a>
+            <a href="#">Mentors</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow">Explore</p>
+          <div class="footer-links">
+            <a href="#">Robots</a>
+            <a href="#">Outreach</a>
+            <a href="#">Sponsors</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow">Connect</p>
+          <div class="footer-links">
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</body>
+</html>

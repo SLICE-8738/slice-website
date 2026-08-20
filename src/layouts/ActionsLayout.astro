@@ -1,0 +1,22 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={`${title} | SLICE Robotics`} description={description}>
+  <main class="page">
+    <header class="page-header">
+      <p class="eyebrow">ACTIONS</p>
+      <h1>{title}</h1>
+      {description && <p class="lead">{description}</p>}
+    </header>
+
+    <slot />
+  </main>
+</Layout>
