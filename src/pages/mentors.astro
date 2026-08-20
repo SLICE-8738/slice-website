@@ -1,10 +1,35 @@
 ---
+// mentors.astro
+// Old site scrape only surfaced one mentor mention ("Programming,
+// Relay Inc. Mentor -- Former Co-President of the SLICE team") plus
+// "We love our mentors! Thank you for all you do!!" -- everything
+// else here is a PLACEHOLDER roster to fill in.
 import MeetUsLayout from "../layouts/MeetUsLayout.astro";
+import "../styles/global.css";
+// PLACEHOLDER roster -- replace with real mentors. Kept one row
+// seeded from the old site as an example of the shape.
+const mentors = [
+  { name: "PLACEHOLDER Name", role: "Programming Mentor, Relay Inc." },
+  { name: "PLACEHOLDER Name", role: "Lead Mentor" },
+  { name: "PLACEHOLDER Name", role: "Mechanical Mentor" },
+];
 ---
 
 <MeetUsLayout
   title="Mentors"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="The mentors who volunteer their time and expertise to support SLICE."
 >
-  <!-- Mentor profiles -->
+  <section>
+    <p class="lead">We love our mentors! Thank you for all you do!!</p>
+  </section>
+
+  <section class="grid grid-3">
+    {mentors.map((mentor) => (
+      <div class="card">
+        <div class="image square">PHOTO</div>
+        <h3>{mentor.name}</h3>
+        <p class="muted">{mentor.role}</p>
+      </div>
+    ))}
+  </section>
 </MeetUsLayout>

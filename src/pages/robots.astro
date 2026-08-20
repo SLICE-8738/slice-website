@@ -1,6 +1,6 @@
 ---
 import GalleryLayout from "../layouts/GalleryLayout.astro";
-
+import "../styles/global.css";
 const robots = [
   { name: "Tangerine", year: "2026", slug: "tangerine" },
   { name: "C²", year: "2025", slug: "c2" },
@@ -14,12 +14,17 @@ const robots = [
   title="Robot Gallery"
   description="Explore the robots SLICE has designed, built, programmed, and competed with."
 >
-  <section class="card-grid">
+  <!-- "card-grid" isn't a real class in global.css (leftover from the
+       original scaffold) -- "grid grid-3" is what actually lays these
+       out, so it's added alongside it here. -->
+  <section class="card-grid grid grid-3">
     {robots.map((robot) => (
-      <a class="card" href={`/robots/${robot.slug}`}>
+      <a class="card card-link" href={`/robots/${robot.slug}`}>
+        <div class="image">ROBOT PHOTO</div>
         <p class="eyebrow">{robot.year}</p>
         <h2>{robot.name}</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        {/* PLACEHOLDER: one-line description of each robot */}
+        <p class="muted">PLACEHOLDER description of {robot.name}.</p>
       </a>
     ))}
   </section>

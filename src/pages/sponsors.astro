@@ -1,10 +1,50 @@
 ---
+// sponsors.astro
+// No real sponsor list was available from the old site scrape --
+// this is a placeholder logo grid to swap real sponsors into.
 import MeetUsLayout from "../layouts/MeetUsLayout.astro";
+import "../styles/global.css";
+// PLACEHOLDER sponsors -- replace with real names/tiers/logos.
+const sponsors = [
+  { tier: "Title Sponsor", name: "PLACEHOLDER Sponsor" },
+  { tier: "Gold Sponsor", name: "PLACEHOLDER Sponsor" },
+  { tier: "Gold Sponsor", name: "PLACEHOLDER Sponsor" },
+  { tier: "Silver Sponsor", name: "PLACEHOLDER Sponsor" },
+  { tier: "Silver Sponsor", name: "PLACEHOLDER Sponsor" },
+  { tier: "Silver Sponsor", name: "PLACEHOLDER Sponsor" },
+];
 ---
 
 <MeetUsLayout
   title="Current Sponsors"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="The sponsors who make SLICE's season possible."
 >
-  <!-- Current sponsor logos and information -->
+  <section>
+    <p class="lead">
+      Every dollar donated is critical to our team's success --
+      thank you to our current sponsors for making our season
+      possible.
+    </p>
+  </section>
+
+  <section class="grid grid-3">
+    {sponsors.map((sponsor) => (
+      <div class="card">
+        <div class="image">LOGO</div>
+        <p class="eyebrow">{sponsor.tier}</p>
+        <h3>{sponsor.name}</h3>
+      </div>
+    ))}
+  </section>
+
+  <section>
+    <aside class="callout">
+      <p class="eyebrow">Become a Sponsor</p>
+      <h3>Support SLICE</h3>
+      <p>
+        Interested in sponsoring our team?
+        <a href="/sponsor-us">See how to sponsor us</a>.
+      </p>
+    </aside>
+  </section>
 </MeetUsLayout>

@@ -1,10 +1,57 @@
 ---
+// awards.astro
+// Award details beyond team-level mentions weren't available from
+// the old site scrape, so specific years/events below are
+// PLACEHOLDERs -- the award names and record summary come from the
+// old "Who Are We?" page.
 import GalleryLayout from "../layouts/GalleryLayout.astro";
+import "../styles/global.css";
+const awards = [
+  { year: "PLACEHOLDER", name: "Rookie All-Star" },
+  { year: "PLACEHOLDER", name: "Industrial Design Award" },
+  { year: "PLACEHOLDER", name: "Imagery Award" },
+  { year: "2024-25", name: "Blue Banner (Competition Win)" },
+];
 ---
 
 <GalleryLayout
   title="Awards"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="Competition history and awards earned by SLICE."
 >
-  <!-- Awards and competition history -->
+  <section>
+    <p class="lead">
+      We've earned a spot at the State Championship 4 times in 4
+      years, and made it to the World Championship 3 of those years.
+      Our record is decorated with several awards, topped off with
+      our first blue banner (competition win), won in the 24-25 FRC
+      season.
+    </p>
+  </section>
+
+  <section>
+    <p class="eyebrow">Award History</p>
+    <h2 class="section-title">Our Awards</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Season</th>
+            <th>Award</th>
+          </tr>
+        </thead>
+        <tbody>
+          {awards.map((award) => (
+            <tr>
+              <td>{award.year}</td>
+              <td>{award.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="small">
+      PLACEHOLDER -- fill in the season/year for each award above.
+    </p>
+  </section>
 </GalleryLayout>

@@ -1,0 +1,71 @@
+---
+// Footer.astro
+// Reuses the .footer-grid / .footer-links classes from global.css.
+// Link groups mirror the sitemap's dropdown groups (About Us /
+// Our Team / Robots / Sponsors) rather than the old ad-hoc grouping.
+//
+// NOTE: like Header.astro, this intentionally does NOT link to
+// /outreach or /awards -- those page files exist but aren't part of
+// the sitemap the team provided.
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="page footer-grid">
+    <!-- Team blurb + logo -->
+    <div>
+      <div class="logo">SLICE</div>
+      <p class="muted">
+        FRC Team 8738 -- a student-led robotics team based in
+        Fuquay-Varina, North Carolina, competing in the FIRST
+        Robotics Competition.
+      </p>
+      <p class="small">
+        <!-- PLACEHOLDER: confirm this is the correct legal/parent org name -->
+        Fuquay Varina Robotics Boosters, Inc. -- a 501(c)(3) nonprofit organization.
+      </p>
+    </div>
+
+    <!-- Mirrors the "About Us" sitemap dropdown -->
+    <div>
+      <p class="eyebrow">About Us</p>
+      <div class="footer-links">
+        <a href="/about">About Us</a>
+        <a href="/first">What is FIRST</a>
+        <a href="/join">Join Our Team</a>
+      </div>
+    </div>
+
+    <!-- Mirrors the "Our Team" + "Robots" sitemap dropdowns -->
+    <div>
+      <p class="eyebrow">Our Team</p>
+      <div class="footer-links">
+        <a href="/leadership">Leadership</a>
+        <a href="/mentors">Mentors</a>
+        <a href="/robots">Robots</a>
+        <a href="/calendar">Calendar</a>
+      </div>
+    </div>
+
+    <!-- Mirrors the "Sponsors" sitemap dropdown + Contact -->
+    <div>
+      <p class="eyebrow">Sponsors</p>
+      <div class="footer-links">
+        <a href="/sponsors">Current Sponsors</a>
+        <a href="/sponsor-us">Sponsor Us</a>
+        <a href="/contact">Contact Us</a>
+        <!-- PLACEHOLDER: swap for real social links -->
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+</style>

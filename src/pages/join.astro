@@ -1,10 +1,66 @@
 ---
+// join.astro
+// Recruitment page. Meeting-time details are real (from the old
+// "Who Are We?" page); the interest-area list and steps are
+// PLACEHOLDER structure common to FRC team recruiting pages -- fill
+// in with SLICE's actual process.
 import InfoLayout from "../layouts/InfoLayout.astro";
+import "../styles/global.css";
+// PLACEHOLDER -- confirm these match SLICE's real subteams/interests.
+const interestAreas = [
+  "Mechanical Design & Build",
+  "Electrical & Wiring",
+  "Programming",
+  "CAD",
+  "Business & Fundraising",
+  "Outreach & Marketing",
+  "Robot Driving",
+];
 ---
 
 <InfoLayout
   title="Join Our Team"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="New members are always welcome -- no experience required."
 >
-  <!-- Recruitment information -->
+  <section>
+    <p class="lead">
+      New members are always welcome! Our season officially kicks
+      off in January, but we're active year-round. We recommend
+      joining before the start of the season so you can be trained
+      on the subteam of your choosing.
+    </p>
+  </section>
+
+  <section>
+    <p class="eyebrow">Interest Areas</p>
+    <h2 class="section-title">Where You Could Fit In</h2>
+    <div class="tag-row">
+      {interestAreas.map((area) => <span class="tag">{area}</span>)}
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Meetings</p>
+    <h2 class="section-title">When We Meet</h2>
+    <p>
+      We meet in Fuquay-Varina, North Carolina --
+      <a href="/contact">contact us</a> for schedule and location.
+      Meetings run from 2:30-3:30 in the offseason and 2:30-4:30
+      during build season, though meeting days are subject to
+      change.
+    </p>
+  </section>
+
+  <section>
+    <aside class="callout">
+      <p class="eyebrow">Ready to Join?</p>
+      <h3>Get Started</h3>
+      <p>
+        <!-- PLACEHOLDER: link a real sign-up form here -->
+        Reach out through our <a href="/contact">contact page</a> to
+        ask about joining, or to schedule a visit to a meeting.
+      </p>
+      <a class="button primary" href="/contact">Contact Us -></a>
+    </aside>
+  </section>
 </InfoLayout>

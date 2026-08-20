@@ -1,10 +1,64 @@
 ---
+// first.astro -- "What is FIRST?"
+// Content pulled directly from the old site's /first page.
 import InfoLayout from "../layouts/InfoLayout.astro";
+import "../styles/global.css";
 ---
 
 <InfoLayout
   title="What is FIRST?"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="FIRST is a global organization dedicated to the advancement of STEM and business education."
 >
-  <!-- Explain FIRST and FRC here. -->
+  <section>
+    <p class="lead">
+      FIRST&reg; is a global organization dedicated to the
+      advancement of STEM and business education. It is their
+      mission to help build today's youth into the science and
+      technology leaders of the future through hands-on experience
+      and competitive learning.
+    </p>
+    <p>
+      We compete in the FIRST&reg; Robotics Competition, which is
+      for high school students across the world. In January each
+      year, we are tasked with rules for a competitive robotics
+      game. From there, we have two months to design, build, wire,
+      and program a robot for this game, using subteams to divide
+      the work and do it as a team. Then we compete! We have two
+      district competitions, and if we perform well, we can move on
+      to compete at the state competition.
+    </p>
+  </section>
+
+  <!-- =====================================================
+       SEASON TIMELINE
+       Simple visual summary of the FIRST season structure
+       described above -- not on the old site, added for clarity.
+       ===================================================== -->
+  <section>
+    <p class="eyebrow">The Season</p>
+    <h2 class="section-title">How a Season Works</h2>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <p class="eyebrow">January</p>
+        <h3>Kickoff</h3>
+        <p class="muted">The game rules for the season are revealed.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Jan -- Mar</p>
+        <h3>Build Season</h3>
+        <p class="muted">
+          Six weeks to design, build, wire, and program a robot as a team.
+        </p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Spring</p>
+        <h3>Competition</h3>
+        <p class="muted">
+          District competitions, and -- if we perform well -- state
+          and world championships.
+        </p>
+      </div>
+    </div>
+  </section>
 </InfoLayout>

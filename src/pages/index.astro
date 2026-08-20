@@ -1,9 +1,99 @@
 ---
+// index.astro -- Homepage
+// Uses the base Layout (not one of the section layouts) since the
+// homepage has its own hero instead of the shared page-header block.
 import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+// Quick-links shown below the hero. Update hrefs/labels as the real
+// site structure firms up.
+const quickLinks = [
+  { href: "/robots", eyebrow: "2026 Season", title: "Meet the Robot", copy: "See what we're building this season and how it works.", cta: "Explore Robots ->" },
+  { href: "/outreach", eyebrow: "Outreach", title: "Community Impact", copy: "STEM outreach, demos, and events we run around Fuquay-Varina.", cta: "See Outreach ->" },
+  { href: "/join", eyebrow: "Get Involved", title: "Join SLICE", copy: "New members are always welcome -- no experience required.", cta: "Join the Team ->" },
+];
 ---
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+  }
+  .hero {
+  /* 1. Pulls the element out of the container bounds */
+  width: 110vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 
-<Layout>
-  <main>
-    <!-- Homepage content goes here. -->
+  /* 2. Keeps padding internal to prevent a horizontal scrollbar */
+  box-sizing: border-box;
+
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/hero.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 30% 10%;
+    color: #ffffff; 
+  }
+</style>
+<Layout
+  title="SLICE Robotics"
+  description="SLICE is FRC Team 8738, a student-led robotics team based in Fuquay-Varina, North Carolina."
+>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">FRC TEAM 8738</p>
+        <h1>SLICE <span>ROBOTICS</span></h1>
+        <p class="hero-copy"; style="color: var(--text);">
+          SLICE is a student-led robotics team based in
+          Fuquay-Varina, North Carolina, competing in the FIRST
+          Robotics Competition. We build STEM, business, and
+          leadership in our community through innovation,
+          competition, and service.
+        </p>
+        <div class="button-row">
+          <a class="button" href="/about">Who We Are</a>
+          <a class="button" href="/robots">See Our Robots</a>
+          <a class="button" href="/join">Join the Team</a>
+        </div>
+      </div>
+    </section>
+    <!-- =====================================================
+         MISSION STATEMENT
+         ===================================================== -->
+    <section>
+      <p class="eyebrow">What Does SLICE Mean?</p>
+      <h2 class="section-title">Our Mission</h2>
+      <blockquote class="quote">
+        <strong>Serve</strong> Our Community<br>Become the <strong>Leaders</strong> of Our Future<br><strong>Innovate</strong> Our Future<br>Foster a great sense of <strong>Community</strong><br>Show <strong>Excellence</strong> in Everything We Do<br>It’s all in our name—<strong>SLICE</strong>. 
+      </blockquote>
+    </section>
+    <!-- =====================================================
+         QUICK LINKS
+         ===================================================== -->
+    <section>
+      <p class="eyebrow">Explore</p>
+      <h2 class="section-title">Get to Know SLICE</h2>
+      <p class="section-intro">
+        A few places to start -- see what we build, what we do for
+        our community, and how to get involved.
+      </p>
+
+      <div class="grid grid-3">
+        {quickLinks.map((link) => (
+          <a class="card card-link" href={link.href}>
+            <p class="eyebrow">{link.eyebrow}</p>
+            <h3>{link.title}</h3>
+            <p class="muted">{link.copy}</p>
+            <span class="button">{link.cta}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
   </main>
 </Layout>

@@ -1,10 +1,56 @@
 ---
+// outreach.astro
+// Content adapted from the old site's "Building the Future" and
+// "MANifest" pages, presented as a card grid of outreach programs.
 import GalleryLayout from "../layouts/GalleryLayout.astro";
+import "../styles/global.css";
+// Each entry is one outreach program/event. Text is condensed from
+// the old site -- expand or trim as needed.
+const programs = [
+  {
+    eyebrow: "FLL Mentoring",
+    title: "Ballentine Elementary FLL",
+    copy: "We mentor FIRST LEGO League teams at Ballentine Elementary School, guiding youth through STEM learning and an early introduction to competitive robotics.",
+  },
+  {
+    eyebrow: "STEM Day",
+    title: "Lincoln Heights Magnet Elementary",
+    copy: "Members built LEGO EV3 robots for a STEM Day at Lincoln Heights, with the goal of helping start a new FLL program at the school.",
+  },
+  {
+    eyebrow: "Tech Challenge",
+    title: "Fuquay-Varina Middle School",
+    copy: "We helped Fuquay-Varina Middle School establish a Tech Challenge team, teaching FRC rules, programming, and engineering basics.",
+  },
+  {
+    eyebrow: "Virtual Demo",
+    title: "White Oak Elementary School",
+    copy: "SLICE members ran a virtual demo covering robot driving and the electrical, mechanical, coding, and business subteams for a class at White Oak Elementary.",
+  },
+  {
+    eyebrow: "Community Service",
+    title: "Miracle League",
+    copy: "SLICE members volunteered as buddies at Miracle League games -- a baseball league for children and adults with special needs -- assisting with hitting and running the bases.",
+  },
+  {
+    eyebrow: "Annual Event",
+    title: "MANifest SteamFest",
+    copy: "An annual event hosted with MANifest Fuquay-Varina, celebrating Juneteenth and inspiring youth -- especially in the African-American community -- to pursue STEAM education and careers.",
+  },
+];
 ---
 
 <GalleryLayout
   title="Outreach"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="STEM outreach, community service, and events SLICE runs around Fuquay-Varina."
 >
-  <!-- Outreach programs, events, photos, and impact -->
+  <section class="card-grid grid grid-3">
+    {programs.map((program) => (
+      <article class="card">
+        <p class="eyebrow">{program.eyebrow}</p>
+        <h3>{program.title}</h3>
+        <p class="muted">{program.copy}</p>
+      </article>
+    ))}
+  </section>
 </GalleryLayout>

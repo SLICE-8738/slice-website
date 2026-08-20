@@ -1,88 +1,175 @@
 ---
-import '../styles/global.css'
+// Header.astro
+// Site-wide navigation bar, structured to match the real sitemap
+// (see the Gloomaps export the team provided). Uses the .nav /
+// .nav-links classes from global.css for the outer bar, plus new
+// dropdown styles below for the submenus.
+//
+// NOTE: "Outreach" and "Awards" pages exist in src/pages/ (they were
+// already scaffolded before the sitemap was provided) but are NOT in
+// the sitemap, so they're intentionally left out of this nav. If
+// those pages are still wanted, add them to a group below and link
+// them somewhere -- otherwise consider deleting the unused files.
+
+const currentPath = Astro.url.pathname;
+
+// Nav structure: each top-level item is either a plain link (href +
+// label) or a dropdown (label + children[]). This mirrors the
+// sitemap: Home / About Us (dropdown) / Our Team (dropdown) /
+// Calendar / Robots (dropdown) / Sponsors (dropdown) / Contact Us.
+const robots = [
+  { href: "/robots/tangerine", label: "Tangerine" },
+  { href: "/robots/c2", label: "C²" },
+  { href: "/robots/clementune", label: "Clementune" },
+  { href: "/robots/ss-squeeze", label: "S.S. Squeeze" },
+  { href: "/robots/sliceasaurus-rex", label: "SLICEasaurus Rex" },
+];
+
+const navItems = [
+  { href: "/", label: "Home" },
+  {
+    label: "About Us",
+    href: "/about", // clicking the parent label itself goes here
+    children: [
+      { href: "/about", label: "About Us" },
+      { href: "/first", label: "What is FIRST" },
+      { href: "/join", label: "Join Our Team" },
+      { href: "/outreach", label: "Outreach" },
+      { href: "/awards", label: "Awards" },
+    ],
+  },
+  {
+    label: "Our Team",
+    href: "/leadership", // no single "Our Team" page exists -- parent
+    // link points at Leadership as a reasonable landing spot. Swap
+    // this if a dedicated "Our Team" overview page gets built.
+    children: [
+      { href: "/leadership", label: "Leadership" },
+      { href: "/mentors", label: "Mentors" },
+    ],
+  },
+  {
+    label: "Robots",
+    href: "/robots",
+    children: robots,
+  },
+  {
+    label: "Sponsors",
+    href: "/sponsors",
+    children: [
+      { href: "/sponsors", label: "Current Sponsors" },
+      { href: "/sponsor-us", label: "Sponsor Us" },
+    ],
+  },
+  { href: "/calendar", label: "Calendar" },
+  { href: "/contact", label: "Contact Us" },
+];
+
+// A link (or its dropdown parent) is "active" if the current path
+// matches it exactly, or is nested under it.
+function isActive(href: string) {
+  if (href === "/") return currentPath === "/";
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
+
+// A dropdown parent is active if the current path matches any child.
+function isGroupActive(item: typeof navItems[number]) {
+  if (!("children" in item) || !item.children) return isActive(item.href!);
+  return item.children.some((child) => isActive(child.href));
+}
 ---
-<style>
-body {
-  margin: 0;
-  padding: 0;
-}
 
-h2, p {
-  margin: 10px;
-}
+<header class="nav">
+  <a class="logo-link" href="/">
+    <img src="/images/logo.webp" alt="SLICE Robotics Logo" class="nav-logo" />
+  </a>
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-2);
-  display: flex;
-  align-items: center;
-}
-
-ul li a {
-  display: block;
-  color: var(--text);
-  padding: 14px 16px;
-  text-decoration: none;
-  white-space: nowrap;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-ul li a:hover:not(.active) {
-  background-color: rgba(240, 113, 28, 0.1);
-  color: #fff;
-  transform: translateY(-2px);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-ul li a.active {
-  background-color: var(--accent);
-}
-
-.custom-image {
-  width: 16%;
-  height: auto;
-  margin: 0px;
-}
-
-</style>
-<!DOCTYPE html>
-<!-- Header Menu of the Page -->
-<header>
-    <!-- Top header menu containing
-        logo and Navigation bar -->
-    <div id="top-header">
-        <!-- Navigation Menu -->
-        <nav>
-            <ul>
-                <li>
-                    <img src="/images/logo.webp" alt="SLICE Robotics Logo" class="custom-image">
-                </li>
-                <li class="active">
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">About Us</a>
-                </li>
-                <li>
-                    <a href="#">Our Team</a>
-                </li>
-                <li>
-                    <a href="#">Calendar</a>
-                </li>
-                <li>
-                    <a href="#">Robots</a>
-                </li>
-                <li>
-                    <a href="#">Sponsors</a>
-                </li>
-                <li>
-                    <a href="#">Contact Us</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+  <!-- On small screens this is hidden by the existing
+       .nav-links { display: none } rule in global.css -- there's no
+       mobile menu/hamburger yet, so add one before shipping if you
+       want navigation on phones. -->
+  <nav class="nav-links" aria-label="Main navigation">
+    {navItems.map((item) => (
+      "children" in item && item.children ? (
+        <div class="nav-group">
+          <a href={item.href} class={isGroupActive(item) ? "active" : ""}>
+            {item.label}
+            <span class="nav-caret" aria-hidden="true">&#9662;</span>
+          </a>
+          <div class="nav-dropdown">
+            {item.children.map((child) => (
+              <a href={child.href} class={isActive(child.href) ? "active" : ""}>
+                {child.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <a href={item.href} class={isActive(item.href!) ? "active" : ""}>
+          {item.label}
+        </a>
+      )
+    ))}
+  </nav>
 </header>
+
+<style>
+  .logo-link {
+    display: flex;
+    align-items: center;
+  }
+  .nav-logo {
+    height: 44px;
+    width: auto;
+    margin: 0;
+  }
+  .nav-links a.active {
+    color: var(--accent);
+  }
+
+  /* ---------- DROPDOWNS ----------
+     Simple hover-to-reveal dropdowns. Desktop-only (matches the
+     existing desktop-only nav -- .nav-links is hidden entirely under
+     800px already), so no click/tap handling is needed here. */
+  .nav-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .nav-caret {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: .6rem;
+    transform: translateY(-1px);
+  }
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    min-width: 200px;
+    padding: 8px;
+    padding-top: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    z-index: 20;
+  }
+  .nav-group:hover .nav-dropdown,
+  .nav-group:focus-within .nav-dropdown {
+    display: flex;
+  }
+  .nav-dropdown a {
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    font-size: .9rem;
+  }
+  .nav-dropdown a:hover,
+  .nav-dropdown a.active {
+    background: rgba(249, 153, 10, 0.1);
+    color: var(--accent);
+  }
+</style>

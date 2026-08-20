@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=League Gothic');
 :root {
   --bg: #070505;
+  --bg-2: #141414;
   --surface: #1b1612;
   --surface-2: #231e18;
   --surface-glass: rgba(255, 255, 255, 0.06);
@@ -63,7 +64,7 @@ section {
 .section-intro {
   max-width: 680px;
   margin: 18px 0 40px;
-  color: var(--muted);
+  color: var(--text);
   font-size: 1.05rem;
 }
 /* ---------- NAVIGATION ---------- */
@@ -181,10 +182,12 @@ section {
 h2 { font-family: var(--display-font); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.2; letter-spacing: 0.05em;font-weight: 100}
 h3 { font-family: var(--display-font); font-size: 2rem; line-height: 1; font-weight: 100;}
 h4 { font-family: var(--display-font); font-size: 1.5rem; font-weight: 100}
-p { max-width: 70ch; }
-.lead { font-size: 1.25rem; color: var(--muted); }
-.small { font-size: .8rem; color: var(--muted); }
+p { max-width: 70ch; color: var(--text);}
+.lead { font-size: 1.25rem; color: var(--text); }
+.small { font-size: .8rem; color: var(--text); }
 .muted { color: var(--muted); }
+.section-intro p span { color: var(--accent); }
+strong { font-weight: 700; color: var(--accent); }
 /* ---------- CARDS ---------- */
 .grid {
   display: grid;
@@ -271,7 +274,6 @@ p { max-width: 70ch; }
 }
 /* ---------- QUOTE / CALLOUT ---------- */
 .quote {
-  font-family: 'Times New Roman', Times, serif;
   padding: 36px;
   border-left: 3px solid var(--accent-2);
   background: linear-gradient(90deg, rgba(125,211,252,.08), transparent);
@@ -384,28 +386,5 @@ footer {
   }
   section {
     padding: 56px 0;
-  }
-}
-/*---------- HEADER ----------*/
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 72px;
-  padding: 0 24px;
-  background: rgba(11,13,16,.72);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(18px);
-  #header-image-menu{
-    top: 10px;
-    position: relative;
-  }
-  #header-image-menu img{
-    width: 100%;
-    margin: none;
-    padding: none;
   }
 }

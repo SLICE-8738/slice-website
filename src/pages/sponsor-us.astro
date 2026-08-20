@@ -1,10 +1,66 @@
 ---
+// sponsor-us.astro
+// Sponsorship pitch page. No real sponsorship-tier copy was
+// available from the old site -- content below is PLACEHOLDER
+// structure to fill in with real tiers/benefits/prospectus.
 import ActionsLayout from "../layouts/ActionsLayout.astro";
+import "../styles/global.css";
+// PLACEHOLDER tiers -- replace with the team's real sponsorship
+// levels and benefits.
+const tiers = [
+  {
+    name: "Title Sponsor",
+    amount: "PLACEHOLDER $",
+    benefits: ["Logo on robot", "Logo on team shirts", "Website + social recognition"],
+  },
+  {
+    name: "Gold Sponsor",
+    amount: "PLACEHOLDER $",
+    benefits: ["Logo on team shirts", "Website recognition"],
+  },
+  {
+    name: "Silver Sponsor",
+    amount: "PLACEHOLDER $",
+    benefits: ["Website recognition"],
+  },
+];
 ---
 
 <ActionsLayout
   title="Sponsor Us"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="Support SLICE Robotics and help fund our season."
 >
-  <!-- Sponsorship information and CTA -->
+  <section>
+    <p class="lead">
+      SLICE is run by Fuquay Varina Robotics Boosters, Inc., a
+      501(c)(3) nonprofit organization. Every dollar donated is
+      critical to our team achieving success and making our robot as
+      competitive as possible.
+    </p>
+  </section>
+
+  <section class="grid grid-3">
+    {tiers.map((tier) => (
+      <div class="card">
+        <p class="eyebrow">{tier.name}</p>
+        <h3>{tier.amount}</h3>
+        <ul class="list">
+          {tier.benefits.map((benefit) => <li>{benefit}</li>)}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <section>
+    <aside class="callout">
+      <p class="eyebrow">Ready to Sponsor?</p>
+      <h3>Get In Touch</h3>
+      <p>
+        <!-- PLACEHOLDER: link a real sponsorship packet/PDF here -->
+        Reach out via our <a href="/contact">contact page</a> to
+        discuss sponsorship, or to request our sponsorship packet.
+      </p>
+      <a class="button primary" href="/contact">Contact Us -></a>
+    </aside>
+  </section>
 </ActionsLayout>

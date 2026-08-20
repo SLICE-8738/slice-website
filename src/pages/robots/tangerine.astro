@@ -1,22 +1,91 @@
 ---
+// tangerine.astro -- individual robot page
+// Filled in with a consistent placeholder structure (hero, game
+// overview, engineering breakdown, photos, results) matching the
+// section comments that were already here. Swap PLACEHOLDER copy
+// and images for the real thing.
 import GalleryLayout from "../../layouts/GalleryLayout.astro";
+import "../../styles/global.css";
 ---
 
 <GalleryLayout
   title="Tangerine"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="PLACEHOLDER one-line description of Tangerine, SLICE's 2026 competition robot."
 >
   <article class="robot-page">
     <p class="eyebrow">2026 ROBOT</p>
 
     <!-- Hero robot image -->
+    <div class="image" style="aspect-ratio: 16 / 9;">
+      PLACEHOLDER -- HERO PHOTO OF Tangerine
+    </div>
 
     <!-- Game overview -->
+    <section>
+      <p class="eyebrow">Game Overview</p>
+      <h2 class="section-title">The 2026 Game</h2>
+      <p>
+        PLACEHOLDER -- summarize the 2026 FRC game and what
+        Tangerine was designed to do within it.
+      </p>
+    </section>
 
     <!-- Engineering sections -->
+    <section>
+      <p class="eyebrow">Engineering</p>
+      <h2 class="section-title">How It Works</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <p class="eyebrow">Drivetrain</p>
+          <h3>PLACEHOLDER</h3>
+          <p class="muted">PLACEHOLDER -- describe the drivetrain.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Mechanisms</p>
+          <h3>PLACEHOLDER</h3>
+          <p class="muted">PLACEHOLDER -- describe the scoring mechanism(s).</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Software</p>
+          <h3>PLACEHOLDER</h3>
+          <p class="muted">PLACEHOLDER -- describe autonomous/vision/controls.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- Photos / CAD / specifications -->
+    <section>
+      <p class="eyebrow">Gallery</p>
+      <h2 class="section-title">Photos &amp; CAD</h2>
+      <div class="grid grid-3">
+        <div class="image">PHOTO</div>
+        <div class="image">PHOTO</div>
+        <div class="image">CAD RENDER</div>
+      </div>
+    </section>
 
     <!-- Competition results -->
+    <section>
+      <p class="eyebrow">Results</p>
+      <h2 class="section-title">Competition Results</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Rank</th>
+              <th>Awards</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PLACEHOLDER</td>
+              <td>PLACEHOLDER</td>
+              <td>PLACEHOLDER</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </article>
 </GalleryLayout>

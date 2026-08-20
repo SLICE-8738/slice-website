@@ -1,10 +1,68 @@
 ---
+// contact.astro
+// The old site's contact page had very little scraped text beyond
+// the nonprofit boilerplate, so this page is mostly a placeholder
+// form + info card built on the existing .form styles from
+// global.css (see design.astro for the same pattern).
 import ActionsLayout from "../layouts/ActionsLayout.astro";
+import "../styles/global.css";
 ---
 
 <ActionsLayout
   title="Contact"
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  description="Have a question for SLICE Robotics? Reach out below."
 >
-  <!-- Contact information / form -->
+  <section>
+    <div class="grid grid-2">
+      <div>
+        <p class="lead">
+          Questions about joining, sponsoring, or booking us for an
+          outreach event? Send us a message and we'll get back to
+          you.
+        </p>
+        <aside class="callout">
+          <p class="eyebrow">Organization</p>
+          <h3>Fuquay Varina Robotics Boosters, Inc.</h3>
+          <p class="muted">A 501(c)(3) nonprofit organization.</p>
+          <!-- PLACEHOLDER: add real address, email, phone here -->
+          <p class="muted">
+            PLACEHOLDER -- Fuquay-Varina, North Carolina
+          </p>
+        </aside>
+      </div>
+
+      <!-- PLACEHOLDER FORM: not wired up to anything yet -- needs a
+           real form handler (email service, Formspree, etc.) before
+           this can actually send messages. -->
+      <form class="form">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name" />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" />
+        </div>
+
+        <div class="field">
+          <label for="topic">Topic</label>
+          <select id="topic">
+            <option>General Question</option>
+            <option>Joining the Team</option>
+            <option>Sponsorship</option>
+            <option>Outreach Request</option>
+            <option>Media</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="How can we help?"></textarea>
+        </div>
+
+        <button class="button primary" type="submit">Send Message -></button>
+      </form>
+    </div>
+  </section>
 </ActionsLayout>

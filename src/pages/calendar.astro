@@ -1,10 +1,24 @@
 ---
+// calendar.astro
+// No real calendar embed/source was available -- this is a
+// PLACEHOLDER slot ready for a Google Calendar embed, or a simple
+// hand-maintained list of upcoming dates.
 import SingleElementLayout from "../layouts/SingleElementLayout.astro";
+import "../styles/global.css";
 ---
 
 <SingleElementLayout
   title="Calendar"
   description="Upcoming SLICE events, competitions, meetings, and outreach."
 >
-  <!-- Calendar embed/component goes here. -->
+  <section>
+    <!--
+      PLACEHOLDER: replace this box with a real calendar embed, e.g.
+      an <iframe> pointing at a public Google Calendar, or a
+      hand-written list of upcoming dates.
+    -->
+    <div class="image" style="aspect-ratio: 16 / 9;">
+      CALENDAR EMBED GOES HERE
+    </div>
+  </section>
 </SingleElementLayout>
