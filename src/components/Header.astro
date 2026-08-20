@@ -11,7 +11,9 @@
 // those pages are still wanted, add them to a group below and link
 // them somewhere -- otherwise consider deleting the unused files.
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 const currentPath = Astro.url.pathname;
 const sitePath = (path: string) => {
   const cleanPath = path.replace(/^\/+|\/+$/g, "");

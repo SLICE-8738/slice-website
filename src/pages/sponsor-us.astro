@@ -5,6 +5,9 @@
 // structure to fill in with real tiers/benefits/prospectus.
 import ActionsLayout from "../layouts/ActionsLayout.astro";
 import "../styles/global.css";
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 // PLACEHOLDER tiers -- replace with the team's real sponsorship
 // levels and benefits.
 const tiers = [
@@ -57,10 +60,10 @@ const tiers = [
       <h3>Get In Touch</h3>
       <p>
         <!-- PLACEHOLDER: link a real sponsorship packet/PDF here -->
-        Reach out via our <a href={`${import.meta.env.BASE_URL}contact/`}>contact page</a> to
+        Reach out via our <a href={`${base}contact/`}>contact page</a> to
         discuss sponsorship, or to request our sponsorship packet.
       </p>
-      <a class="button primary" href={`${import.meta.env.BASE_URL}contact/`}>Contact Us -></a>
+      <a class="button primary" href={`${base}contact/`}>Contact Us -></a>
     </aside>
   </section>
 </ActionsLayout>

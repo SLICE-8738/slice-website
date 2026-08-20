@@ -9,7 +9,9 @@
 // the sitemap the team provided.
 
 const year = new Date().getFullYear();
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 const sitePath = (path: string) => {
   const cleanPath = path.replace(/^\/+|\/+$/g, "");
   return cleanPath ? `${base}${cleanPath}/` : base;

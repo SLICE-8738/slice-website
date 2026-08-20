@@ -5,6 +5,9 @@
 // grid of member cards -- swap in real names/roles/photos.
 import MeetUsLayout from "../layouts/MeetUsLayout.astro";
 import "../styles/global.css";
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 // PLACEHOLDER roster -- replace with real student leadership.
 const leaders = [
   { role: "Team President", name: "PLACEHOLDER Name" },
@@ -42,7 +45,7 @@ const leaders = [
       <h3>This Could Be You</h3>
       <p>
         Student leadership positions open up as members grow with
-        the team. <a href={`${import.meta.env.BASE_URL}join/`}>Join SLICE</a> to get started.
+        the team. <a href={`${base}join/`}>Join SLICE</a> to get started.
       </p>
     </aside>
   </section>
