@@ -7,4 +7,5 @@ export default defineConfig({
   site: 'https://slice-8738.github.io', 
   // Your exact repository name, prefixed with a leading slash
   base: '/slice-website/',
+  trailingSlash: 'always',
 });

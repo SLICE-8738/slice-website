@@ -10,7 +10,10 @@
 
 const year = new Date().getFullYear();
 const base = import.meta.env.BASE_URL;
-const sitePath = (path: string) => `${base}${path.replace(/^\/+/, "")}`;
+const sitePath = (path: string) => {
+  const cleanPath = path.replace(/^\/+|\/+$/g, "");
+  return cleanPath ? `${base}${cleanPath}/` : base;
+};
 ---
 
 <footer>
