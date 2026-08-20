@@ -44,7 +44,7 @@ const interestAreas = [
     <h2 class="section-title">When We Meet</h2>
     <p>
       We meet in Fuquay-Varina, North Carolina --
-      <a href="/slice-website/contact">contact us</a> for schedule and location.
+      <a href={`${import.meta.env.BASE_URL}contact`}>contact us</a> for schedule and location.
       Meetings run from 2:30-3:30 in the offseason and 2:30-4:30
       during build season, though meeting days are subject to
       change.
@@ -57,10 +57,10 @@ const interestAreas = [
       <h3>Get Started</h3>
       <p>
         <!-- PLACEHOLDER: link a real sign-up form here -->
-        Reach out through our <a href="/slice-website/contact">contact page</a> to
+        Reach out through our <a href={`${import.meta.env.BASE_URL}contact`}>contact page</a> to
         ask about joining, or to schedule a visit to a meeting.
       </p>
-      <a class="button primary" href="/contact">Contact Us -></a>
+      <a class="button primary" href={`${import.meta.env.BASE_URL}contact`}>Contact Us -></a>
     </aside>
   </section>
 </InfoLayout>

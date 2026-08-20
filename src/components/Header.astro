@@ -11,7 +11,9 @@
 // those pages are still wanted, add them to a group below and link
 // them somewhere -- otherwise consider deleting the unused files.
 
+const base = import.meta.env.BASE_URL;
 const currentPath = Astro.url.pathname;
+const sitePath = (path: string) => `${base}${path.replace(/^\/+/, "")}`;
 
 // Nav structure: each top-level item is either a plain link (href +
 // label) or a dropdown (label + children[]). This mirrors the
@@ -68,8 +70,9 @@ const navItems = [
 // A link (or its dropdown parent) is "active" if the current path
 // matches it exactly, or is nested under it.
 function isActive(href: string) {
-  if (href === "/") return currentPath === "/";
-  return currentPath === href || currentPath.startsWith(`${href}/`);
+  const targetPath = sitePath(href);
+  if (href === "/") return currentPath === targetPath;
+  return currentPath === targetPath || currentPath.startsWith(`${targetPath}/`);
 }
 
 // A dropdown parent is active if the current path matches any child.
@@ -80,8 +83,8 @@ function isGroupActive(item: typeof navItems[number]) {
 ---
 
 <header class="nav">
-  <a class="logo-link" href="/">
-    <img src="/images/logo.webp" alt="SLICE Robotics Logo" class="nav-logo" />
+  <a class="logo-link" href={sitePath("/")}>
+    <img src={`${base}images/logo.webp`} alt="SLICE Robotics Logo" class="nav-logo" />
   </a>
 
   <!-- On small screens this is hidden by the existing
@@ -92,20 +95,20 @@ function isGroupActive(item: typeof navItems[number]) {
     {navItems.map((item) => (
       "children" in item && item.children ? (
         <div class="nav-group">
-          <a href={item.href} class={isGroupActive(item) ? "active" : ""}>
+          <a href={sitePath(item.href!)} class={isGroupActive(item) ? "active" : ""}>
             {item.label}
             <span class="nav-caret" aria-hidden="true">&#9662;</span>
           </a>
           <div class="nav-dropdown">
             {item.children.map((child) => (
-              <a href={child.href} class={isActive(child.href) ? "active" : ""}>
+              <a href={sitePath(child.href)} class={isActive(child.href) ? "active" : ""}>
                 {child.label}
               </a>
             ))}
           </div>
         </div>
       ) : (
-        <a href={item.href} class={isActive(item.href!) ? "active" : ""}>
+        <a href={sitePath(item.href!)} class={isActive(item.href!) ? "active" : ""}>
           {item.label}
         </a>
       )

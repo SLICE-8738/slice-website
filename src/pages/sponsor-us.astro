@@ -57,10 +57,10 @@ const tiers = [
       <h3>Get In Touch</h3>
       <p>
         <!-- PLACEHOLDER: link a real sponsorship packet/PDF here -->
-        Reach out via our <a href="/slice-website/contact">contact page</a> to
+        Reach out via our <a href={`${import.meta.env.BASE_URL}contact`}>contact page</a> to
         discuss sponsorship, or to request our sponsorship packet.
       </p>
-      <a class="button primary" href="/contact">Contact Us -></a>
+      <a class="button primary" href={`${import.meta.env.BASE_URL}contact`}>Contact Us -></a>
     </aside>
   </section>
 </ActionsLayout>

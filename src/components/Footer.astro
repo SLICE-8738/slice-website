@@ -9,6 +9,8 @@
 // the sitemap the team provided.
 
 const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL;
+const sitePath = (path: string) => `${base}${path.replace(/^\/+/, "")}`;
 ---
 
 <footer>
@@ -31,9 +33,9 @@ const year = new Date().getFullYear();
     <div>
       <p class="eyebrow">About Us</p>
       <div class="footer-links">
-        <a href="/slice-website/about">About Us</a>
-        <a href="/slice-website/first">What is FIRST</a>
-        <a href="/slice-website/join">Join Our Team</a>
+        <a href={sitePath("/about")}>About Us</a>
+        <a href={sitePath("/first")}>What is FIRST</a>
+        <a href={sitePath("/join")}>Join Our Team</a>
       </div>
     </div>
 
@@ -41,10 +43,10 @@ const year = new Date().getFullYear();
     <div>
       <p class="eyebrow">Our Team</p>
       <div class="footer-links">
-        <a href="/slice-website/leadership">Leadership</a>
-        <a href="/slice-website/mentors">Mentors</a>
-        <a href="/slice-website/robots">Robots</a>
-        <a href="/slice-website/calendar">Calendar</a>
+        <a href={sitePath("/leadership")}>Leadership</a>
+        <a href={sitePath("/mentors")}>Mentors</a>
+        <a href={sitePath("/robots")}>Robots</a>
+        <a href={sitePath("/calendar")}>Calendar</a>
       </div>
     </div>
 
@@ -52,9 +54,9 @@ const year = new Date().getFullYear();
     <div>
       <p class="eyebrow">Sponsors</p>
       <div class="footer-links">
-        <a href="/slice-website/sponsors">Current Sponsors</a>
-        <a href="/slice-website/sponsor-us">Sponsor Us</a>
-        <a href="/slice-website/contact">Contact Us</a>
+        <a href={sitePath("/sponsors")}>Current Sponsors</a>
+        <a href={sitePath("/sponsor-us")}>Sponsor Us</a>
+        <a href={sitePath("/contact")}>Contact Us</a>
         <!-- PLACEHOLDER: swap for real social links -->
         <a href="#">Instagram</a>
       </div>
