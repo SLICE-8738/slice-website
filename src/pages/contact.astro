@@ -4,6 +4,20 @@
 // the nonprofit boilerplate, so this page is mostly a placeholder
 // form + info card built on the existing .form styles from
 // global.css (see design.astro for the same pattern).
+//
+// BACKEND: this site deploys to GitHub Pages (see
+// .github/workflows/astro.yml), which is static-hosting-only --
+// there's no server to run a real POST handler on. The standard fix
+// for a static site is a client-side form backend service; this
+// wires the form up to Formspree (https://formspree.io) via fetch(),
+// which is free for low volume and needs zero server code.
+//
+// TO ACTUALLY MAKE THIS WORK, see PATCH_NOTES.md for setup steps.
+// Short version: create a free Formspree account, verify an inbox
+// (start with benpark20@icloud.com for testing), create a form, and
+// paste its endpoint into FORM_ENDPOINT below. When ready for the
+// real site, create a second Formspree form verified against the
+// team's business email and swap the endpoint again.
 import ActionsLayout from "../layouts/ActionsLayout.astro";
 import "../styles/global.css";
 ---
@@ -31,37 +45,12 @@ import "../styles/global.css";
         </aside>
       </div>
 
-      <!-- PLACEHOLDER FORM: not wired up to anything yet -- needs a
-           real form handler (email service, Formspree, etc.) before
-           this can actually send messages. -->
-      <form class="form">
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" type="text" placeholder="Your name" />
-        </div>
-
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" type="email" placeholder="you@example.com" />
-        </div>
-
-        <div class="field">
-          <label for="topic">Topic</label>
-          <select id="topic">
-            <option>General Question</option>
-            <option>Joining the Team</option>
-            <option>Sponsorship</option>
-            <option>Outreach Request</option>
-            <option>Media</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="How can we help?"></textarea>
-        </div>
-
-        <button class="button primary" type="submit">Send Message -></button>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="26aebce2-0fc0-483d-afa3-4523b373ed20">
+        <input type="text" name="name" required>
+        <input type="email" name="email" required>
+        <textarea name="message" required></textarea>
+        <button type="submit">Submit</button>
       </form>
     </div>
   </section>

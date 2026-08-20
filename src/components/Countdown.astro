@@ -1,0 +1,99 @@
+---
+// Countdown.astro
+// Small "fun" countdown widget for the homepage. Ticks client-side
+// via plain JS (no framework needed) toward `targetDate`.
+//
+// PLACEHOLDER-ish by design: this defaults to the next FRC season
+// Kickoff (confirmed Jan 9, 2027, 12:00 PM ET -- see
+// firstinspires.org), since that's a real, verifiable date every
+// FRC team cares about. Once SLICE's next competition date is
+// locked in, swap `targetDate` on the homepage to that instead --
+// see the comment in index.astro where <Countdown /> is used.
+interface Props {
+  label: string;
+  targetDate: string; // ISO 8601, e.g. "2027-01-09T12:00:00-05:00"
+  doneMessage?: string;
+}
+
+const {
+  label,
+  targetDate,
+  doneMessage = "It's here! 🎉",
+} = Astro.props;
+
+const id = `countdown-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="countdown-wrap">
+  <div class="countdown-copy">
+    <p class="eyebrow">Countdown</p>
+    <h3>{label}</h3>
+  </div>
+  <div class="countdown" id={id} data-target={targetDate} data-done-message={doneMessage}>
+    <div class="countdown-unit">
+      <span class="countdown-value" data-unit="days">--</span>
+      <span class="countdown-label">Days</span>
+    </div>
+    <div class="countdown-unit">
+      <span class="countdown-value" data-unit="hours">--</span>
+      <span class="countdown-label">Hours</span>
+    </div>
+    <div class="countdown-unit">
+      <span class="countdown-value" data-unit="minutes">--</span>
+      <span class="countdown-label">Minutes</span>
+    </div>
+    <div class="countdown-unit">
+      <span class="countdown-value" data-unit="seconds">--</span>
+      <span class="countdown-label">Seconds</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCountdowns() {
+    const widgets = document.querySelectorAll<HTMLElement>(".countdown[data-target]");
+
+    widgets.forEach((widget) => {
+      const target = new Date(widget.dataset.target || "").getTime();
+      const doneMessage = widget.dataset.doneMessage || "It's here!";
+      if (Number.isNaN(target)) return;
+
+      const daysEl = widget.querySelector<HTMLElement>('[data-unit="days"]');
+      const hoursEl = widget.querySelector<HTMLElement>('[data-unit="hours"]');
+      const minutesEl = widget.querySelector<HTMLElement>('[data-unit="minutes"]');
+      const secondsEl = widget.querySelector<HTMLElement>('[data-unit="seconds"]');
+
+      // Declared before first use -- tick() can fire synchronously
+      // (below) before setInterval's return value is assigned, so
+      // `interval` must already exist in scope by then.
+      let interval: ReturnType<typeof setInterval> | undefined;
+
+      const tick = () => {
+        const diff = target - Date.now();
+
+        if (diff <= 0) {
+          widget.classList.add("is-done");
+          widget.innerHTML = `<div class="countdown-unit"><span class="countdown-value">🎉</span><span class="countdown-label">${doneMessage}</span></div>`;
+          if (interval) clearInterval(interval);
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        if (daysEl) daysEl.textContent = String(days);
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
+        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, "0");
+        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, "0");
+      };
+
+      tick();
+      interval = setInterval(tick, 1000);
+    });
+  }
+
+  initCountdowns();
+  document.addEventListener("astro:page-load", initCountdowns);
+</script>

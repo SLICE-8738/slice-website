@@ -1,29 +1,42 @@
 ---
 // sponsor-us.astro
-// Sponsorship pitch page. No real sponsorship-tier copy was
-// available from the old site -- content below is PLACEHOLDER
-// structure to fill in with real tiers/benefits/prospectus.
+// Sponsorship pitch page. No real sponsorship-tier dollar amounts
+// were available from the old site (there's a "Tiers.png" graphic
+// on the live site but its numbers can't be read from a text
+// scrape) -- $ amounts below are PLACEHOLDER, but the tier
+// structure (Title/Gold/Silver) matches slicerobotics.org.
+//
+// Cards are visually tiered (not just labeled) per feedback: the
+// Title card is enlarged/highlighted with a badge, Gold sits in the
+// middle, Silver is more understated -- see .tier-card styles in
+// global.css.
 import ActionsLayout from "../layouts/ActionsLayout.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
-// PLACEHOLDER tiers -- replace with the team's real sponsorship
-// levels and benefits.
+// PLACEHOLDER $ amounts -- replace with the team's real sponsorship
+// levels once the sponsorship packet numbers are available.
 const tiers = [
   {
     name: "Title Sponsor",
     amount: "PLACEHOLDER $",
-    benefits: ["Logo on robot", "Logo on team shirts", "Website + social recognition"],
+    tierClass: "tier-title",
+    badge: "Top Tier",
+    benefits: ["Logo on robot", "Logo on team shirts", "Website + social recognition", "Priority event invites"],
   },
   {
     name: "Gold Sponsor",
     amount: "PLACEHOLDER $",
+    tierClass: "tier-gold",
+    badge: null,
     benefits: ["Logo on team shirts", "Website recognition"],
   },
   {
     name: "Silver Sponsor",
     amount: "PLACEHOLDER $",
+    tierClass: "tier-silver",
+    badge: null,
     benefits: ["Website recognition"],
   },
 ];
@@ -44,7 +57,8 @@ const tiers = [
 
   <section class="grid grid-3">
     {tiers.map((tier) => (
-      <div class="card">
+      <div class={`card tier-card ${tier.tierClass}`}>
+        {tier.badge && <span class="tier-badge">{tier.badge}</span>}
         <p class="eyebrow">{tier.name}</p>
         <h3>{tier.amount}</h3>
         <ul class="list">

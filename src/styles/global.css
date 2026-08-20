@@ -47,8 +47,11 @@ section {
   padding: 72px 0;
   border-bottom: 1px solid var(--border);
 }
+section > *:last-child {
+  margin-bottom: 0;
+}
 .eyebrow {
-  margin: 0 0 10px;
+  margin: 20px 0 20px;
   color: var(--accent);
   font-size: .75rem;
   font-weight: 700;
@@ -88,7 +91,9 @@ section {
 }
 .nav-links {
   display: flex;
-  gap: 26px;
+  align-self: stretch;
+  align-items: center;
+  gap: 0;
   color: var(--muted);
   font-size: .9rem;
 }
@@ -179,9 +184,9 @@ section {
   font-size: clamp(3rem, 7vw, 6rem);
   line-height: 1;
 }
-h2 { font-family: var(--display-font); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.2; letter-spacing: 0.05em;font-weight: 100}
-h3 { font-family: var(--display-font); font-size: 2rem; line-height: 1; font-weight: 100;}
-h4 { font-family: var(--display-font); font-size: 1.5rem; font-weight: 100}
+h2 { font-family: var(--display-font); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.2; letter-spacing: 0.05em;font-weight: 100; margin: 10px 0 15px}
+h3 { font-family: var(--display-font); font-size: 2rem; line-height: 1; font-weight: 100;margin: 15px 0 15px}
+h4 { font-family: var(--display-font); font-size: 1.5rem; font-weight: 100;margin: 15px 0 15px}
 p { max-width: 70ch; color: var(--text);}
 .lead { font-size: 1.25rem; color: var(--text); }
 .small { font-size: .8rem; color: var(--text); }
@@ -197,6 +202,10 @@ strong { font-weight: 700; color: var(--accent); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
 .card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
   padding: 26px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -210,6 +219,20 @@ strong { font-weight: 700; color: var(--accent); }
 .card h3,
 .card h4 {
   margin-top: 0;
+  margin-bottom: 0;
+}
+.card p {
+  margin: 0;
+}
+.card .list {
+  margin-top: 4px;
+}
+/* Pushes a trailing CTA/button to the same baseline across a row of
+   cards, regardless of how much blurb text sits above it. */
+.card > .button:last-child,
+.card > a.button:last-child {
+  margin-top: auto;
+  align-self: flex-start;
 }
 .card-link {
   transition: transform .2s ease, border-color .2s ease;
@@ -287,6 +310,17 @@ strong { font-weight: 700; color: var(--accent); }
   border-radius: var(--radius-md);
   background: rgba(125,211,252,.06);
 }
+/* Evenly-spaced stacked lines, used for the homepage mission
+   statement instead of a wall of manual <br> line breaks. */
+.mission-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mission-lines p {
+  margin: 0;
+  max-width: none;
+}
 /* ---------- LISTS ---------- */
 .list {
   margin: 0;
@@ -354,6 +388,207 @@ select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(125,211,252,.1);
 }
+/* Honeypot field -- kept in the DOM/tab order out of sight for bots,
+   hidden for real visitors. */
+.field.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.button[disabled] {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+.form-status {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  font-size: .9rem;
+  font-weight: 600;
+  display: none;
+}
+.form-status.visible {
+  display: block;
+}
+.form-status.success {
+  color: #7ef7c1;
+  background: rgba(126,247,193,.08);
+  border: 1px solid rgba(126,247,193,.3);
+}
+.form-status.error {
+  color: #ff9a9a;
+  background: rgba(255,154,154,.08);
+  border: 1px solid rgba(255,154,154,.3);
+}
+/* ---------- SOCIAL LINKS ---------- */
+.social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  transition: .2s ease;
+}
+.social-links a:hover {
+  color: var(--accent);
+  border-color: rgba(249,153,10,.4);
+  transform: translateY(-2px);
+}
+.social-links svg {
+  width: 18px;
+  height: 18px;
+}
+/* ---------- CALENDAR EMBED ---------- */
+.calendar-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+.calendar-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+@media (max-width: 700px) {
+  .calendar-embed {
+    aspect-ratio: 4 / 5;
+  }
+}
+/* ---------- COUNTDOWN ---------- */
+.countdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  padding: 18px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(160deg, rgba(249,153,10,.12), rgba(73,219,231,.08)),
+    var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.countdown-value {
+  font-family: var(--display-font);
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  line-height: 1;
+  color: var(--accent);
+}
+.countdown-label {
+  margin-top: 6px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.countdown-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+}
+.countdown-copy {
+  max-width: 420px;
+}
+.countdown.is-done .countdown-value {
+  color: var(--accent-3);
+}
+/* ---------- SPONSOR TIERS ---------- */
+.tier-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: var(--radius-md);
+}
+.tier-card .list {
+  margin-top: 4px;
+}
+.tier-card.tier-title {
+  order: -1;
+  padding: 38px 30px;
+  border: 1px solid rgba(249,153,10,.45);
+  background:
+    linear-gradient(160deg, rgba(249,153,10,.14), transparent 60%),
+    var(--surface);
+  box-shadow: 0 0 0 1px rgba(249,153,10,.15), var(--shadow-lg);
+  transform: scale(1.02);
+}
+.tier-card.tier-title h3 {
+  font-size: 2.3rem;
+}
+.tier-card.tier-gold {
+  padding: 30px 26px;
+  border: 1px solid rgba(249,178,72,.35);
+  background: var(--surface);
+}
+.tier-card.tier-silver {
+  padding: 24px 26px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  opacity: .96;
+}
+.tier-badge {
+  position: absolute;
+  top: -13px;
+  right: 24px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #061018;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+@media (max-width: 800px) {
+  .tier-card.tier-title {
+    order: 0;
+    transform: none;
+  }
+}
+/* ---------- LEADERSHIP ---------- */
+.leader-card {
+  text-align: center;
+}
+.leader-card .image.square {
+  margin: 0 auto 14px;
+  width: 96px;
+}
+.leadership-tier + .leadership-tier {
+  margin-top: 40px;
+}
+.leadership-top {
+  display: flex;
+  justify-content: center;
+}
+.leadership-top .leader-card {
+  max-width: 220px;
+}
 /* ---------- FOOTER ---------- */
 footer {
   padding: 60px 0 90px;
@@ -386,5 +621,21 @@ footer {
   }
   section {
     padding: 56px 0;
+  }
+}
+/* Thinner, more vertical (tall/portrait phone) viewports feel
+   cramped at the default 20px side inset -- give the page content
+   more breathing room, weighted toward the left edge where text
+   and headings start. */
+@media (max-width: 600px) {
+  .page {
+    width: calc(100% - 44px);
+    padding-left: 12px;
+  }
+}
+@media (max-width: 420px) {
+  .page {
+    width: calc(100% - 52px);
+    padding-left: 18px;
   }
 }

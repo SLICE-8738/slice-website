@@ -1,20 +1,24 @@
 ---
 // sponsors.astro
-// No real sponsor list was available from the old site scrape --
-// this is a placeholder logo grid to swap real sponsors into.
+// Real sponsor logos exist on the live site's "Our Sponsors" page
+// (2025-2026 season) but it's a flat logo row with no visible tier
+// labels in the page text/markup, and 3 of the 6 logo files have no
+// identifying filename -- so tiers below are PLACEHOLDER guesses
+// and 3 names are PLACEHOLDER too. The 3 confirmed real sponsors
+// (from image filenames) are Caterpillar, the Gene Haas Foundation,
+// and TE Connectivity.
 import MeetUsLayout from "../layouts/MeetUsLayout.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
-// PLACEHOLDER sponsors -- replace with real names/tiers/logos.
 const sponsors = [
-  { tier: "Title Sponsor", name: "PLACEHOLDER Sponsor" },
-  { tier: "Gold Sponsor", name: "PLACEHOLDER Sponsor" },
-  { tier: "Gold Sponsor", name: "PLACEHOLDER Sponsor" },
-  { tier: "Silver Sponsor", name: "PLACEHOLDER Sponsor" },
-  { tier: "Silver Sponsor", name: "PLACEHOLDER Sponsor" },
-  { tier: "Silver Sponsor", name: "PLACEHOLDER Sponsor" },
+  { tier: "PLACEHOLDER Tier", name: "Caterpillar" },
+  { tier: "PLACEHOLDER Tier", name: "Gene Haas Foundation" },
+  { tier: "PLACEHOLDER Tier", name: "TE Connectivity" },
+  { tier: "PLACEHOLDER Tier", name: "PLACEHOLDER Sponsor" },
+  { tier: "PLACEHOLDER Tier", name: "PLACEHOLDER Sponsor" },
+  { tier: "PLACEHOLDER Tier", name: "PLACEHOLDER Sponsor" },
 ];
 ---
 

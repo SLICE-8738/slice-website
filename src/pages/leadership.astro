@@ -1,19 +1,42 @@
 ---
 // leadership.astro
-// The old site's leadership page had no real member data scraped
-// (just "Interested? This could be you"), so this is a placeholder
-// grid of member cards -- swap in real names/roles/photos.
+// Real roster pulled from the live site's Team Leadership page
+// (slicerobotics.org/new-page-1), organized into the team's actual
+// reporting structure: President -> Captains -> Engineering / Business
+// / Operations Leads. Vacant roles are shown as open positions
+// (matching the live site's "Interested? This could be you!" copy)
+// rather than left off the org chart -- swap in a name once filled.
 import MeetUsLayout from "../layouts/MeetUsLayout.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
-// PLACEHOLDER roster -- replace with real student leadership.
-const leaders = [
-  { role: "Team President", name: "PLACEHOLDER Name" },
-  { role: "Engineering Lead", name: "PLACEHOLDER Name" },
-  { role: "Business Lead", name: "PLACEHOLDER Name" },
-  { role: "Programming Lead", name: "PLACEHOLDER Name" },
+
+const president = { role: "President", name: "Logan Baker" };
+
+const captains = [
+  { role: "Engineering Captain", name: "Ben Park" },
+  { role: "Business Captain", name: "Caraline Kruger" },
+  { role: "Operations Captain", name: "Zach Mugnone" },
+];
+
+const engineeringLeads = [
+  { role: "Mechanical Lead", name: "Emma Smith" },
+  { role: "Electrical Lead", name: "Preston Kruse" },
+  { role: "Software Lead", name: "Layakara Sai Kambhampalli" },
+];
+
+const businessLeads = [
+  { role: "Revenue Lead", name: "Ishika Harish" },
+  { role: "Marketing Lead", name: null },
+  { role: "Impact Lead", name: null },
+  { role: "Finance Lead", name: null },
+];
+
+const operationsLeads = [
+  { role: "Build Space Lead", name: "Luke Baker" },
+  { role: "Design Lead", name: "Jake Mendler" },
+  { role: "Strategy Lead", name: "Jacob Martin" },
 ];
 ---
 
@@ -29,14 +52,85 @@ const leaders = [
     </p>
   </section>
 
-  <section class="grid grid-3">
-    {leaders.map((leader) => (
-      <div class="card">
+  <!-- President -->
+  <section>
+    <p class="eyebrow">President</p>
+    <h2 class="section-title">Team President</h2>
+    <div class="leadership-top">
+      <div class="card leader-card">
         <div class="image square">PHOTO</div>
-        <p class="eyebrow">{leader.role}</p>
-        <h3>{leader.name}</h3>
+        <h3>{president.name}</h3>
+        <p class="muted">{president.role}</p>
       </div>
-    ))}
+    </div>
+  </section>
+
+  <!-- Captains -->
+  <section>
+    <p class="eyebrow">Captains</p>
+    <h2 class="section-title">Team Captains</h2>
+    <div class="grid grid-3">
+      {captains.map((leader) => (
+        <div class="card leader-card">
+          <div class="image square">PHOTO</div>
+          <h3>{leader.name}</h3>
+          <p class="muted">{leader.role}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Engineering / Business / Operations Leads -->
+  <section>
+    <p class="eyebrow">Subteam Leads</p>
+    <h2 class="section-title">Engineering, Business &amp; Operations</h2>
+
+    <div class="leadership-tier">
+      <h3>Engineering Leads</h3>
+      <div class="grid grid-3">
+        {engineeringLeads.map((leader) => (
+          <div class="card leader-card">
+            <div class="image square">PHOTO</div>
+            <h4>{leader.name}</h4>
+            <p class="muted">{leader.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="leadership-tier">
+      <h3>Business Leads</h3>
+      <div class="grid grid-3">
+        {businessLeads.map((leader) => (
+          leader.name ? (
+            <div class="card leader-card">
+              <div class="image square">PHOTO</div>
+              <h4>{leader.name}</h4>
+              <p class="muted">{leader.role}</p>
+            </div>
+          ) : (
+            <div class="card leader-card">
+              <div class="image square">OPEN</div>
+              <h4>Interested? This could be you!</h4>
+              <p class="muted">{leader.role} -- Vacant</p>
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+
+    <div class="leadership-tier">
+      <h3>Operations Leads</h3>
+      <div class="grid grid-3">
+        {operationsLeads.map((leader) => (
+          <div class="card leader-card">
+            <div class="image square">PHOTO</div>
+            <h4>{leader.name}</h4>
+            <p class="muted">{leader.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 
   <section>

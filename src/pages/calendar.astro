@@ -1,10 +1,12 @@
 ---
 // calendar.astro
-// No real calendar embed/source was available -- this is a
-// PLACEHOLDER slot ready for a Google Calendar embed, or a simple
-// hand-maintained list of upcoming dates.
+// Real Google Calendar embed, pulled from the live site's
+// /calendar page (public calendar: business@slicerobotics.org).
 import SingleElementLayout from "../layouts/SingleElementLayout.astro";
 import "../styles/global.css";
+
+const CALENDAR_SRC =
+  "https://calendar.google.com/calendar/embed?src=business%40slicerobotics.org&ctz=America%2FNew_York";
 ---
 
 <SingleElementLayout
@@ -12,13 +14,12 @@ import "../styles/global.css";
   description="Upcoming SLICE events, competitions, meetings, and outreach."
 >
   <section>
-    <!--
-      PLACEHOLDER: replace this box with a real calendar embed, e.g.
-      an <iframe> pointing at a public Google Calendar, or a
-      hand-written list of upcoming dates.
-    -->
-    <div class="image" style="aspect-ratio: 16 / 9;">
-      CALENDAR EMBED GOES HERE
+    <div class="calendar-embed">
+      <iframe
+        src={CALENDAR_SRC}
+        title="SLICE Robotics Calendar"
+        loading="lazy"
+      ></iframe>
     </div>
   </section>
 </SingleElementLayout>
