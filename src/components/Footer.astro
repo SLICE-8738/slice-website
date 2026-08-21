@@ -22,21 +22,11 @@ const sitePath = (path: string) => {
   return cleanPath ? `${base}${cleanPath}/` : base;
 };
 ---
-
 <footer>
   <div class="page footer-grid">
     <!-- Team blurb + logo -->
     <div>
-      <div class="logo">SLICE</div>
-      <p class="muted">
-        FRC Team 8738 -- a student-led robotics team based in
-        Fuquay-Varina, North Carolina, competing in the FIRST
-        Robotics Competition.
-      </p>
-      <p class="small">
-        <!-- PLACEHOLDER: confirm this is the correct legal/parent org name -->
-        Fuquay Varina Robotics Boosters, Inc. -- a 501(c)(3) nonprofit organization.
-      </p>
+      <div class="logo"><img src="../images/logo.webp" alt="SLICE Robotics Logo" style="width: 67px; height: auto;" /></div>
       <div class="social-links">
         <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="SLICE Robotics on Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -52,6 +42,15 @@ const sitePath = (path: string) => {
           </svg>
         </a>
       </div>
+      <p class="muted">
+        FRC Team 8738 -- a student-led robotics team based in
+        Fuquay-Varina, North Carolina, competing in the FIRST
+        Robotics Competition.
+      </p>
+      <p class="small">
+        <!-- PLACEHOLDER: confirm this is the correct legal/parent org name -->
+        Fuquay Varina Robotics Boosters, Inc. -- a 501(c)(3) nonprofit organization.
+      </p>
     </div>
 
     <!-- Mirrors the "About Us" sitemap dropdown -->
@@ -82,8 +81,6 @@ const sitePath = (path: string) => {
         <a href={sitePath("/sponsors")}>Current Sponsors</a>
         <a href={sitePath("/sponsor-us")}>Sponsor Us</a>
         <a href={sitePath("/contact")}>Contact Us</a>
-        <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">YouTube</a>
       </div>
     </div>
   </div>
@@ -94,5 +91,11 @@ const sitePath = (path: string) => {
     margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid var(--border);
+  }
+  a {
+    color: var(--muted);
+  }
+  a:hover {
+    color: white;
   }
 </style>

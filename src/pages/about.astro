@@ -10,15 +10,15 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 // Subteams" and "Business Subteams" but the actual subteam names
 // weren't pulled in -- fill these in with the real subteam names.
 const engineeringSubteams = [
-  "Mechanical -- PLACEHOLDER subteam name",
-  "Electrical -- PLACEHOLDER subteam name",
-  "Programming -- PLACEHOLDER subteam name",
-  "CAD -- PLACEHOLDER subteam name",
+  "Mechanical",
+  "Electrical",
+  "Programming",
+  "CAD",
 ];
 const businessSubteams = [
-  "Fundraising -- PLACEHOLDER subteam name",
-  "Marketing/Branding -- PLACEHOLDER subteam name",
-  "Outreach -- PLACEHOLDER subteam name",
+  "Fundraising",
+  "Marketing",
+  "Outreach",
 ];
 ---
 
@@ -90,12 +90,15 @@ const businessSubteams = [
     </p>
     <p>
       Our flexibility has served us well. We've earned a spot at the
-      State Championship 4 times in 4 years, and made it to the
+      State Championship 5 times in 5 years, and made it to the
       World Championship 3 of those years. Our record is decorated
       with awards including Rookie All-Star, Industrial Design, and
       Imagery, topped off with our first blue banner (competition
       win), won in the 24-25 FRC season.
     </p>
+    <blockquote class="quote"; style="font-size: 1.5rem; margin:5px 0 5px 0; padding: 10px 20px;">
+        "Absolutely no experience is necessary to join"
+    </blockquote>
     <p>
       Most importantly, we are dedicated to creating the best
       atmosphere possible for our team members. That begins with our
@@ -115,7 +118,7 @@ const businessSubteams = [
       <h3>When &amp; Where We Meet</h3>
       <p>
         We meet in Fuquay-Varina, North Carolina --
-        <a href={`${base}contact/`}>contact us</a> for schedule and location.
+        <a href={`${base}contact/`}> contact us</a> for schedule and location.
         New members are always welcome! Our season officially kicks
         off in January, but we're active year-round. We recommend
         joining before the start of the season so you can be trained
@@ -126,3 +129,8 @@ const businessSubteams = [
     </aside>
   </section>
 </InfoLayout>
+<style>
+  a {
+    color: var(--accent);
+  }
+</style>

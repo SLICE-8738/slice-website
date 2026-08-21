@@ -13,10 +13,8 @@ const { title, description } = Astro.props;
   <main class="page">
     <header class="page-header">
       <p class="eyebrow">INFO</p>
-      <h1>{title}</h1>
-      {description && <p class="lead">{description}</p>}
+      <h1 style="font-family: var(--display-font); font-size: clamp(2rem, 5vw, 4rem); font-weight: 100; margin: -20px 0;">{title}</h1>
     </header>
-
     <slot />
   </main>
 </Layout>

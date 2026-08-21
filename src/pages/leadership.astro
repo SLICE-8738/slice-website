@@ -58,7 +58,7 @@ const operationsLeads = [
     <h2 class="section-title">Team President</h2>
     <div class="leadership-top">
       <div class="card leader-card">
-        <div class="image square">PHOTO</div>
+        <div class="image tall"><img src={`../images/people/${president.name.toLowerCase().split(' ')[0]}.webp`} alt={president.name} /></div>
         <h3>{president.name}</h3>
         <p class="muted">{president.role}</p>
       </div>
@@ -72,7 +72,7 @@ const operationsLeads = [
     <div class="grid grid-3">
       {captains.map((leader) => (
         <div class="card leader-card">
-          <div class="image square">PHOTO</div>
+          <div class="image tall"><img src={`../images/people/${leader.name.toLowerCase().split(' ')[0]}.webp`} alt={leader.name} /></div>
           <h3>{leader.name}</h3>
           <p class="muted">{leader.role}</p>
         </div>
@@ -90,7 +90,7 @@ const operationsLeads = [
       <div class="grid grid-3">
         {engineeringLeads.map((leader) => (
           <div class="card leader-card">
-            <div class="image square">PHOTO</div>
+            <div class="image tall"><img src={`../images/people/${leader.name.toLowerCase().split(' ')[0]}.webp`} alt={leader.name} /></div>
             <h4>{leader.name}</h4>
             <p class="muted">{leader.role}</p>
           </div>
@@ -104,7 +104,7 @@ const operationsLeads = [
         {businessLeads.map((leader) => (
           leader.name ? (
             <div class="card leader-card">
-              <div class="image square">PHOTO</div>
+              <div class="image tall"><img src={`../images/people/${leader.name.toLowerCase().split(' ')[0]}.webp`} alt={leader.name} /></div>
               <h4>{leader.name}</h4>
               <p class="muted">{leader.role}</p>
             </div>
@@ -124,7 +124,7 @@ const operationsLeads = [
       <div class="grid grid-3">
         {operationsLeads.map((leader) => (
           <div class="card leader-card">
-            <div class="image square">PHOTO</div>
+            <div class="image tall"><img src={`../images/people/${leader.name.toLowerCase().split(' ')[0]}.webp`} alt={leader.name} /></div>
             <h4>{leader.name}</h4>
             <p class="muted">{leader.role}</p>
           </div>
