@@ -7,10 +7,102 @@
 import GalleryLayout from "../layouts/GalleryLayout.astro";
 import "../styles/global.css";
 const awards = [
-  { year: "PLACEHOLDER", name: "Rookie All-Star" },
-  { year: "PLACEHOLDER", name: "Industrial Design Award" },
-  { year: "PLACEHOLDER", name: "Imagery Award" },
-  { year: "2024-25", name: "Blue Banner (Competition Win)" },
+  {
+    "year": "2022",
+    "event": "FNC District ECU Event",
+    "name": "Rookie All Star",
+    "description": "This award recognizes an outstanding rookie team that demonstrates strong technical achievement, effective teamwork, and a commitment to the ideals of FIRST. Slice stood out in its first season through its robot performance, organization, student leadership, and enthusiasm for sharing the FIRST experience with its community."
+  },
+  {
+    "year": "2022",
+    "event": "FNC District Guilford County Event",
+    "name": "Rookie Inspiration Award",
+    "description": "This award recognizes a rookie team that best demonstrates the inspiration and spirit at the heart of FIRST. Slice was recognized for combining its engineering work with teamwork, enthusiasm, gracious professionalism, and efforts to inspire students and others through STEM and robotics."
+  },
+  {
+    "year": "2022",
+    "event": "FIRST North Carolina District State Championship",
+    "name": "District Championship Rookie All Star Award",
+    "description": "This award recognizes an exceptional rookie team at the district championship that represents the future of FIRST through its technical accomplishments, team organization, outreach, and embodiment of FIRST values. Slice earned the recognition after an impressive inaugural season and was selected as North Carolina's district-level rookie all-star team."
+  },
+  {
+    "year": "2023",
+    "event": "FNC District Johnston County Event",
+    "name": "Autonomous Award",
+    "description": "This award recognizes a team whose autonomous system demonstrates outstanding performance, reliability, and technical accomplishment. Slice was recognized for the effectiveness of its autonomous routines and the engineering behind its ability to consistently perform during autonomous play."
+  },
+  {
+    "year": "2023",
+    "event": "FNC District UNC Pembroke Event",
+    "name": "District Event Finalist",
+    "description": "This recognition is awarded to the teams that reach the final round of the district event playoffs. Slice advanced through the playoff tournament as part of the finalist alliance, demonstrating strong robot performance and the ability to work effectively with its alliance partners under competitive conditions."
+  },
+  {
+    "year": "2024",
+    "event": "FNC District UNC Pembroke Event",
+    "name": "Industrial Design Award",
+    "description": "This award recognizes excellence in the industrial design of a FIRST robot, considering how effectively the team's design balances form, function, practicality, and aesthetics. Slice's C Squared robot was recognized for its thoughtful mechanical design and the way its physical architecture supported the team's competitive goals."
+  },
+  {
+    "year": "2024",
+    "event": "FNC District Wake County Event",
+    "name": "Creativity Award",
+    "description": "This award celebrates an innovative and creative approach to robot design, recognizing teams that find original solutions to the challenges presented by the game. Slice was recognized for the creative engineering and unique mechanisms incorporated into C Squared, demonstrating that the team could approach game challenges in ways that were both effective and inventive."
+  },
+  {
+    "year": "2024",
+    "event": "FNC District Wake County Event",
+    "name": "District Event Finalist",
+    "description": "This recognition is given to the teams that advance to the final round of the district event playoffs. Slice reached the event finals as part of its alliance, demonstrating strong competitive performance, reliable robot operation, and effective collaboration with its alliance partners throughout the elimination tournament."
+  },
+  {
+    "year": "2024",
+    "event": "FIRST North Carolina District State Championship",
+    "name": "District Championship Finalist",
+    "description": "This recognition is given to the teams that reach the final round of the FIRST North Carolina District Championship playoffs. Slice advanced to the championship finals, demonstrating strong performance against the state's top teams and the ability to contribute effectively as an alliance partner at the highest level of district competition."
+  },
+  {
+    "year": "2025",
+    "event": "FNC District Wake County Event",
+    "name": "Industrial Design Award",
+    "description": "This award recognizes outstanding industrial design through the effective combination of appearance, functionality, manufacturability, and engineering purpose. Slice's S.S. Squeeze was recognized for its cohesive mechanical architecture and the deliberate design decisions that allowed the robot's mechanisms to work together effectively within the constraints of REEFSCAPE."
+  },
+  {
+    "year": "2025",
+    "event": "FNC District Mecklenburg County Event",
+    "name": "District Event Winner",
+    "description": "This recognition is awarded to the alliance that wins the district event playoff tournament. Slice was selected onto the winning alliance and helped defeat the opposing alliances in the elimination rounds, demonstrating strong robot performance, adaptability, and effective cooperation with its alliance partners."
+  },
+  {
+    "year": "2025",
+    "event": "FNC District Mecklenburg County Event",
+    "name": "Autonomous Award",
+    "description": "This award recognizes exceptional autonomous performance and the engineering behind a team's ability to score and operate effectively without driver control. Slice was recognized for its autonomous capabilities, which contributed significantly to its competitive performance at the Mecklenburg County event."
+  },
+  {
+    "year": "2025",
+    "event": "FIRST North Carolina State Championship",
+    "name": "Imagery Award in honor of Jack Kamen",
+    "description": "This award recognizes excellence in a team's visual identity and imagery, including how effectively the team communicates its identity and presents itself through its robot, graphics, branding, and overall appearance. Slice was recognized for the cohesive visual presentation surrounding its team and robot at the North Carolina State Championship."
+  },
+  {
+    "year": "2026",
+    "event": "FNC District Wake County Event #1",
+    "name": "Quality Award",
+    "description": "This award recognizes a team whose robot demonstrates outstanding workmanship, reliability, and attention to detail. Slice was recognized for the quality of its robot construction and the engineering practices that produced a robust and dependable competition machine."
+  },
+  {
+    "year": "2026",
+    "event": "FNC District Wake County Event #2",
+    "name": "Creativity Award",
+    "description": "This award recognizes a team that demonstrates creative thinking and innovative engineering solutions in its robot design. Slice was recognized for the originality of its approach to the REBUILT game and for developing mechanisms and solutions that showed thoughtful, inventive engineering."
+  },
+  {
+    "year": "2026",
+    "event": "FIRST North Carolina State Championship",
+    "name": "Imagery Award in honor of Jack Kamen",
+    "description": "This award recognizes a team that demonstrates excellence in imagery and visual presentation, including the way its robot, branding, graphics, and overall team identity communicate a cohesive concept. Slice earned the award at the 2026 North Carolina State Championship for its strong and recognizable visual identity."
+  }
 ];
 ---
 
@@ -37,21 +129,22 @@ const awards = [
         <thead>
           <tr>
             <th>Season</th>
+            <th>Event</th>
             <th>Award</th>
+            <th>Award Description</th>
           </tr>
         </thead>
         <tbody>
-          {awards.map((award) => (
+          {[...awards].reverse().map((award) => (
             <tr>
               <td>{award.year}</td>
+              <td>{award.event}</td>
               <td>{award.name}</td>
+              <td>{award.description}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-    <p class="small">
-      PLACEHOLDER -- fill in the season/year for each award above.
-    </p>
   </section>
 </GalleryLayout>

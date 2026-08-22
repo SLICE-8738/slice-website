@@ -20,7 +20,7 @@ const {
 	height = "180px",
 	radius = "var(--radius-md)",
 	gap = "16px",
-	duration = "24s",
+	duration = "40s",
 	direction = "rtl",
 } = Astro.props;
 
@@ -41,11 +41,34 @@ const carouselStyle = `--carousel-width: ${width}; --carousel-height: ${height};
 
 <style>
 	.carousel {
+		position: relative;
 		width: 100%;
 		max-width: 100%;
 		min-width: 0;
 		margin: 24px auto;
 		overflow: hidden;
+	}
+
+	.carousel::before,
+	.carousel::after {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		z-index: 1;
+		width: 5%;
+		content: "";
+		pointer-events: none;
+		backdrop-filter: blur(1px);
+	}
+
+	.carousel::before {
+		left: 0;
+		background: linear-gradient(to right, var(--bg) 0%, color-mix(in srgb, var(--bg) 72%, transparent) 45%, transparent 100%);
+	}
+
+	.carousel::after {
+		right: 0;
+		background: linear-gradient(to left, var(--bg) 0%, color-mix(in srgb, var(--bg) 72%, transparent) 45%, transparent 100%);
 	}
 
 	.carousel-track {

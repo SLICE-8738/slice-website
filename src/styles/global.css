@@ -187,6 +187,7 @@ section > *:last-child {
   font-size: clamp(3rem, 7vw, 6rem);
   line-height: 1;
 }
+h1 { font-family: var(--display-font); font-size: clamp(3rem, 7vw, 6rem); line-height: 1; letter-spacing: 0.05em;font-weight: 100; margin: 10px 0 15px}
 h2 { font-family: var(--display-font); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.2; letter-spacing: 0.05em;font-weight: 100; margin: 10px 0 15px}
 h3 { font-family: var(--display-font); font-size: 2rem; line-height: 1; font-weight: 100;margin: 15px 0 15px}
 h4 { font-family: var(--display-font); font-size: 1.5rem; font-weight: 100;margin: 15px 0 15px}
@@ -285,6 +286,8 @@ strong { font-weight: 700; color: var(--accent); }
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  padding: 0;
+  margin: 0;
 }
 .tag {
   padding: 5px 10px;
@@ -293,6 +296,7 @@ strong { font-weight: 700; color: var(--accent); }
   color: var(--muted);
   font-size: .75rem;
   font-weight: 700;
+  margin: 0 2px;
 }
 .tag.accent {
   border-color: rgba(125,211,252,.3);
@@ -614,6 +618,9 @@ footer {
   .grid-4,
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+  .lead {
+    font-size: 1.05rem;
   }
   .nav-links {
     display: none;

@@ -1,23 +1,16 @@
 ---
-// join.astro
-// Recruitment page. Meeting-time details are real (from the old
-// "Who Are We?" page); the interest-area list and steps are
-// PLACEHOLDER structure common to FRC team recruiting pages -- fill
-// in with SLICE's actual process.
 import InfoLayout from "../layouts/InfoLayout.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
-// PLACEHOLDER -- confirm these match SLICE's real subteams/interests.
 const interestAreas = [
-  "Mechanical Design & Build",
+  "Mechanical & building",
   "Electrical & Wiring",
   "Programming",
   "CAD",
   "Business & Fundraising",
   "Outreach & Marketing",
-  "Robot Driving",
 ];
 ---
 
@@ -37,8 +30,49 @@ const interestAreas = [
   <section>
     <p class="eyebrow">Interest Areas</p>
     <h2 class="section-title">Where You Could Fit In</h2>
-    <div class="tag-row">
-      {interestAreas.map((area) => <span class="tag">{area}</span>)}
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Engineering</h3>
+        <p>
+          The engineering subteams are responsible for designing,
+          building, and programming the robot. We work collaboratively
+          utilizing CAD software, cnc machines, 3d printers, and WPIlib JAVA
+          to create a competitive robot each for each year's game.
+        </p>
+        <div class=".tag-row" style="margin-top: auto;">
+          <span class="tag accent">Mechanical</span>
+          <span class="tag accent">Electrical</span>
+          <span class="tag accent">Programming</span>
+          <span class="tag accent">CAD</span>
+        </div>
+      </div>
+      <div class="glass card" style="margin-top: auto;">
+        <h3>Business</h3>
+        <p>
+          The business subteams are responsible for fundraising,
+          marketing, and outreach. We work to ensure the team has 
+          the resources it needs to succeed, and to spread the word 
+          about SLICE and FIRST in our community.
+        </p>
+        <div class=".tag-row" style="margin-top: auto;">
+          <span class="tag accent">Fundraising</span>
+          <span class="tag accent">Marketing</span>
+          <span class="tag accent">Outreach</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Operations</h3>
+        <p>
+          The operations subteams are responsible for managing the
+          team, including strategy, build space organization & logistics, field assembly, and safety.
+          The strategy subteam works with engineering to determine the best way to play each year's game.
+        </p>
+        <div class=".tag-row">
+          <span class="tag accent">Build Space</span>
+          <span class="tag accent">Strategy</span>
+          <span class="tag accent">Safety</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -59,9 +93,8 @@ const interestAreas = [
       <p class="eyebrow">Ready to Join?</p>
       <h3>Get Started</h3>
       <p>
-        <!-- PLACEHOLDER: link a real sign-up form here -->
-        Reach out through our <a href={`${base}contact/`}>contact page</a> to
-        ask about joining, or to schedule a visit to a meeting.
+        Reach out through our <a href={`${base}contact/`} style="color: var(--accent);">contact page</a> to
+        ask about joining, or show up to any one of our meetings in room 1510 at Fuquay-Varina High School. We can't wait to meet you!
       </p>
       <a class="button primary" href={`${base}contact/`}>Contact Us -></a>
     </aside>

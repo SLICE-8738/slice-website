@@ -9,33 +9,33 @@ import "../styles/global.css";
 const programs = [
   {
     eyebrow: "FLL Mentoring",
-    title: "Ballentine Elementary FLL",
-    copy: "We mentor FIRST LEGO League teams at Ballentine Elementary School, guiding youth through STEM learning and an early introduction to competitive robotics.",
-  },
-  {
-    eyebrow: "STEM Day",
-    title: "Lincoln Heights Magnet Elementary",
-    copy: "Members built LEGO EV3 robots for a STEM Day at Lincoln Heights, with the goal of helping start a new FLL program at the school.",
+    title: "Fuquay-Varina Middle School FLL Team",
+    copy: "SLICE helped the Fuquay-Varina Middle School establish a FIRST LEGO League (FLL)team.  We helped them understand some of the rules that we, as an FRC team, follow.  As well as teach them more about the STEM world, like programming and engineering. The kids at the middle school asked questions freely so they could get a deeper understanding of what the team means and how to handle the team.  Shout out to the following Slice members that went to this incredible interactive event Julia Mikaelian, Mathew Morris, Rachel Stokes, Ally Russell, Julisa Mancia, Jacob, Kyne Starler, Therron, Jack Shindler, Ashton Poindexter",
   },
   {
     eyebrow: "FLL Mentoring",
-    title: "Fuquay-Varina Middle School",
-    copy: "We helped Fuquay-Varina Middle School establish a Lego League team, teaching programming and engineering basics.",
+    title: "Ballentine Elementary School FLL Team",
+    copy: "Slice will be mentoring FLL teams at Ballentine Elementary School(BES), a local school in the area surrounding Fuquay-Varina High School. BES’s FIRST® LEGO® League program guides youth through STEM learning and exploration at an early age. Students will understand the basics of STEM and apply their skills in an exciting competition while building habits of learning, confidence, and teamwork skills along the way. We are excited to be a resource for the teams to use as they GLOW throughout their seasons like their school mascot the firefly. We hope to see members of these teams join Slice in the future.",
+  },
+  {
+    eyebrow: "STEM Day",
+    title: "STEM Day at Fuquay-Varina Middle School",
+    copy: "Members of Slice built Lego EV3 robots for a STEM Day that will be held at Lincoln Heights Magnet Elementary School after AP Exams in May, we hope to start a new FLL program at Lincoln Heights after this event. We helped the Fuquay-Varina Middle School establish a Tech Challenge team.  We helped them understand some of the rules we as an FRC team follows. As well as teach them more about the STEM world like programming and engineering. The kids at the middle school asked questions freely so they can get a deeper understanding of what the team means and how to handle the team.",
   },
   {
     eyebrow: "Virtual Demo",
     title: "White Oak Elementary School",
-    copy: "SLICE members ran a virtual demo covering robot driving and the electrical, mechanical, coding, and business subteams for a class at White Oak Elementary.",
+    copy: "Members of Slice Rachel Stokes, Jack Schindler, Therron Mawyer, Kyne Starler, and Matthew Morris got on a GoogleMeet and demonstrated different apsects of robotics for members of a class at White Oak Elementary School early in the season. This included driving the robot, explaining different aspects of the electrical, mechanical, coding, business subteams, and the drive team. They sent us letters after our first competition at ECU thanking us for the demonstration and congratulating us on our performance. We are thankful for their support and look forward to potentially seeing them in robotics in the future!",
   },
   {
     eyebrow: "Community Service",
     title: "Miracle League",
-    copy: "SLICE members volunteered as buddies at Miracle League games -- a baseball league for children and adults with special needs -- assisting with hitting and running the bases.",
+    copy: "Members of Slice volunteered in two Miracle League(a baseball laeague for children and adults with special needs) games on 3/24/2022 acting as buddies to the players throughout their games, assisting in hitting, running the bases with them, warming up with the players, and assisting in the fielding",
   },
   {
-    eyebrow: "Annual Event",
-    title: "MANifest SteamFest",
-    copy: "An annual event hosted with MANifest Fuquay-Varina, celebrating Juneteenth and inspiring youth -- especially in the African-American community -- to pursue STEAM education and careers.",
+    eyebrow: "Community Event",
+    title: "South Lakes Elementary School 'Snow Day'",
+    copy: "We helped the school set up an event called Snow Day on Dec 3rd, 2022. This event was set up for the families and kids of the South Lake. We helped them set up a snow station. Thanks to the help of SLICE members Alexa Stokes, Kyne and Brady Starler, Brody Heline, Mathew Morris,  and Jack Schindler.",
   },
 ];
 ---
@@ -44,9 +44,10 @@ const programs = [
   title="Outreach"
   description="STEM outreach, community service, and events SLICE runs around Fuquay-Varina."
 >
-  <section class="grid grid-3">
+  <section class="grid grid-2">
     {programs.map((program) => (
-      <article class="card">
+      <article class="card leader-card">
+        <div class="image tall"><img src={`../images/outreach/${program.title.toLowerCase().replace(/ /g, "-")}.webp`} alt={program.title} /></div>
         <p class="eyebrow">{program.eyebrow}</p>
         <h3>{program.title}</h3>
         <p class="muted">{program.copy}</p>
