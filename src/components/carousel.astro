@@ -1,0 +1,115 @@
+---
+export interface CarouselImage {
+	src: string;
+	alt: string;
+}
+
+interface Props {
+	images: CarouselImage[];
+	width?: string;
+	height?: string;
+	radius?: string;
+	gap?: string;
+	duration?: string;
+    direction?: "ltr" | "rtl";
+}
+
+const {
+	images,
+	width = "280px",
+	height = "180px",
+	radius = "var(--radius-md)",
+	gap = "16px",
+	duration = "24s",
+	direction = "rtl",
+} = Astro.props;
+
+const carouselStyle = `--carousel-width: ${width}; --carousel-height: ${height}; --carousel-radius: ${radius}; --carousel-gap: ${gap}; --carousel-duration: ${duration};`;
+---
+
+{images.length > 0 && (
+	<div class="carousel" style={carouselStyle}>
+		<div class:list={["carousel-track", { "carousel-track-ltr": direction === "ltr" }]} tabindex="0" aria-label="Image carousel">
+			{[...images, ...images].map((image, index) => (
+				<div class="carousel-slide" aria-hidden={index >= images.length ? "true" : undefined}>
+					<img src={image.src} alt={index >= images.length ? "" : image.alt} loading="lazy" />
+				</div>
+			))}
+		</div>
+	</div>
+)}
+
+<style>
+	.carousel {
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		margin: 24px auto;
+		overflow: hidden;
+	}
+
+	.carousel-track {
+		display: flex;
+		width: max-content;
+		gap: var(--carousel-gap);
+		animation: carousel-scroll var(--carousel-duration) linear infinite;
+	}
+
+	.carousel-track-ltr {
+		animation-name: carousel-scroll-ltr;
+	}
+
+	.carousel-track:hover,
+	.carousel-track:focus-visible {
+		animation-play-state: paused;
+	}
+
+	.carousel-slide {
+		flex: 0 0 var(--carousel-slide-width, var(--carousel-width));
+		width: var(--carousel-slide-width, var(--carousel-width));
+		height: var(--carousel-slide-height, var(--carousel-height));
+		overflow: hidden;
+		border-radius: var(--carousel-radius);
+	}
+
+	.carousel-slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	@keyframes carousel-scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-50% - (var(--carousel-gap) / 2)));
+		}
+	}
+
+	@keyframes carousel-scroll-ltr {
+		from {
+			transform: translateX(calc(-50% - (var(--carousel-gap) / 2)));
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.carousel-track {
+			animation: none;
+		}
+	}
+
+	@media (max-width: 800px) {
+		.carousel {
+			margin: 16px auto;
+		}
+
+		.carousel-slide {
+			--carousel-slide-width: min(var(--carousel-width), 72vw);
+			--carousel-slide-height: min(var(--carousel-height), 48vw);
+		}
+	}
+</style>

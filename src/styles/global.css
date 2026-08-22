@@ -580,7 +580,7 @@ select:focus {
 }
 .leader-card .image.square {
   margin: 0 auto 14px;
-  width: 32px;
+  width: 96px;
 }
 .leadership-tier + .leadership-tier {
   margin-top: 40px;

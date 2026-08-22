@@ -3,13 +3,43 @@
 // Content pulled directly from the old site's /first page.
 import InfoLayout from "../layouts/InfoLayout.astro";
 import "../styles/global.css";
+
+import Carousel from "../components/carousel.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const kickoffImages = [
+  { src: `${base}images/team-media/kickoff-1.jpg`, alt: "SLICE members at kickoff" },
+  { src: `${base}images/team-media/kickoff-2.jpg`, alt: "SLICE members at kickoff" },
+  { src: `${base}images/team-media/kickoff-3.jpg`, alt: "SLICE members at kickoff" },
+  { src: `${base}images/team-media/kickoff-4.jpg`, alt: "SLICE members at kickoff" },
+  { src: `${base}images/team-media/kickoff-5.jpg`, alt: "SLICE members at kickoff" },
+];
+const buildImages = [
+  { src: `${base}images/team-media/build-1.jpg`, alt: "SLICE members building" },
+  { src: `${base}images/team-media/build-2.jpg`, alt: "SLICE members building" },
+  { src: `${base}images/team-media/build-3.jpg`, alt: "SLICE members building" },
+  { src: `${base}images/team-media/build-4.jpg`, alt: "SLICE members building" },
+  { src: `${base}images/team-media/build-5.jpg`, alt: "SLICE members building" },
+];
+const compImages = [
+  { src: `${base}images/team-media/comp-1.jpg`, alt: "SLICE members at competition" },
+  { src: `${base}images/team-media/comp-2.jpg`, alt: "SLICE members at competition" },
+  { src: `${base}images/team-media/comp-3.jpg`, alt: "SLICE members at competition" },
+  { src: `${base}images/team-media/comp-4.jpg`, alt: "SLICE members at competition" },
+  { src: `${base}images/team-media/comp-5.jpg`, alt: "SLICE members at competition" },
+  { src: `${base}images/team-media/comp-6.jpg`, alt: "SLICE members at competition" },
+];
 ---
 
 <InfoLayout
   title="What is FIRST?"
   description="FIRST is a global organization dedicated to the advancement of STEM and business education."
 >
-  <section>
+  <section class="grid grid-2">
+    <div>
     <p class="lead">
       FIRST&reg; is a global organization dedicated to the
       advancement of STEM and business education. It is their
@@ -17,7 +47,7 @@ import "../styles/global.css";
       technology leaders of the future through hands-on experience
       and competitive learning.
     </p>
-    <p>
+    <p class="lead">
       We compete in the FIRST&reg; Robotics Competition, which is
       for high school students across the world. In January each
       year, we are tasked with rules for a competitive robotics
@@ -27,6 +57,20 @@ import "../styles/global.css";
       district competitions, and if we perform well, we can move on
       to compete at the state competition.
     </p>
+    </div>
+    <div>
+      <iframe style="width: clamp(180px, 50vw, 600px); height: clamp(100px, 40vh, 450px);"
+        src="https://www.youtube.com/embed/Jd29kzjclV0"
+        title="About FIRST Robotics Competition (2021)"
+        allow="accelerometer;
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        gyroscope;
+        picture-in-picture;
+        web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+      </iframe>
+    </div>
   </section>
 
   <!-- =====================================================
@@ -38,11 +82,35 @@ import "../styles/global.css";
     <p class="eyebrow">The Season</p>
     <h2 class="section-title">How a Season Works</h2>
 
-    <div class="grid grid-3">
+    <div class="grid season-grid">
       <div class="card">
         <p class="eyebrow">January</p>
         <h3>Kickoff</h3>
         <p class="muted">The game rules for the season are revealed.</p>
+      </div>
+      <div>
+        <Carousel
+          images={kickoffImages}
+          width="clamp(220px, 30vw, 360px)"
+          height="240px"
+          radius="14px"
+          gap="20px"
+          duration="28s"
+          direction="rtl"
+        />
+      </div>
+    </div>
+        <div class="grid season-grid-2">
+      <div>
+        <Carousel
+          images={buildImages}
+          width="clamp(280px, 30vw, 360px)"
+          height="240px"
+          radius="14px"
+          gap="20px"
+          duration="28s"
+          direction="ltr"
+        />
       </div>
       <div class="card">
         <p class="eyebrow">Jan -- Mar</p>
@@ -51,6 +119,8 @@ import "../styles/global.css";
           Six weeks to design, build, wire, and program a robot as a team.
         </p>
       </div>
+    </div>
+        <div class="grid season-grid">
       <div class="card">
         <p class="eyebrow">Spring</p>
         <h3>Competition</h3>
@@ -59,6 +129,53 @@ import "../styles/global.css";
           and world championships.
         </p>
       </div>
+      <div>
+        <Carousel
+          images={compImages}
+          width="clamp(220px, 30vw, 360px)"
+          height="240px"
+          radius="14px"
+          gap="20px"
+          duration="28s"
+          direction="rtl"
+        />
+      </div>
     </div>
   </section>
 </InfoLayout>
+
+  <style>
+    .season-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .season-grid,
+      .season-grid-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .season-grid > *,
+      .season-grid-2 > * {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .season-grid-2 > .card {
+        order: -1;
+      }
+    }
+        .season-grid-2 {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .season-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
