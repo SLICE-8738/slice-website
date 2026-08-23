@@ -13,12 +13,12 @@ const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const sponsors = [
-  { tier: "PLACEHOLDER Tier", name: "Caterpillar" },
-  { tier: "PLACEHOLDER Tier", name: "Gene Haas Foundation" },
-  { tier: "PLACEHOLDER Tier", name: "TE Connectivity" },
-  { tier: "PLACEHOLDER Tier", name: "PLACEHOLDER Sponsor" },
-  { tier: "PLACEHOLDER Tier", name: "PLACEHOLDER Sponsor" },
-  { tier: "PLACEHOLDER Tier", name: "PLACEHOLDER Sponsor" },
+  { tier: "PLACEHOLDER Tier", name: "Waiting on 2027 Season Sponsors" },
+  { tier: "PLACEHOLDER Tier", name: "Waiting on 2027 Season Sponsors" },
+  { tier: "PLACEHOLDER Tier", name: "Waiting on 2027 Season Sponsors" },
+  { tier: "PLACEHOLDER Tier", name: "Waiting on 2027 Season Sponsors" },
+  { tier: "PLACEHOLDER Tier", name: "Waiting on 2027 Season Sponsors" },
+  { tier: "PLACEHOLDER Tier", name: "Waiting on 2027 Season Sponsors" },
 ];
 ---
 
@@ -46,12 +46,19 @@ const sponsors = [
 
   <section>
     <aside class="callout">
-      <p class="eyebrow">Become a Sponsor</p>
-      <h3>Support SLICE</h3>
-      <p>
-        Interested in sponsoring our team?
-        <a href={`${base}sponsor-us/`}>See how to sponsor us</a>.
-      </p>
+        <div>
+          <p class="eyebrow">Donate to SLICE</p>
+          <h3>Support Our Team</h3>
+          <p>
+            Every donation helps us build our robot, travel to competitions,
+            and run STEM outreach events in our community.
+          </p>
+        </div>
+        <div>
+          <a href={base + "sponsor-us/"} class="button primary" style="margin-top: 1rem;">
+            Sponsor Us
+          </a>
+        </div>
     </aside>
   </section>
 </MeetUsLayout>

@@ -9,9 +9,16 @@ import "../styles/global.css";
 // PLACEHOLDER roster -- replace with real mentors. Kept one row
 // seeded from the old site as an example of the shape.
 const mentors = [
-  { name: "PLACEHOLDER Name", role: "Programming Mentor, Relay Inc." },
-  { name: "PLACEHOLDER Name", role: "Lead Mentor" },
-  { name: "PLACEHOLDER Name", role: "Mechanical Mentor" },
+  { name: "Dana Starler", role: "Co-Lead Mentor" },
+  { name: "Matt Baker", role: "Co-Lead Mentor" },
+  { name: "Tiaan Kruger", role: "Integration and Logistics Mentor" },
+  { name: "Sam Weaver", role: "Programming Mentor" },
+  { name: "Dan Park", role: "General Engineering Mentor"},
+  { name: "Michael Mugnone", role: "General Engineering Mentor"},
+  { name: "April Kruger", role: "Business Mentor" },
+  { name: "Jayne Baker", role: "Business Mentor" },
+  { name: "Melissa Mugnone", role: "Finance Mentor" },
+  { name: "Jordan Deaton", role: "School Connections Mentor" },
 ];
 ---
 
@@ -23,10 +30,12 @@ const mentors = [
     <p class="lead">We love our mentors! Thank you for all you do!!</p>
   </section>
 
-  <section class="grid grid-3">
+  <section class="grid grid-2">
     {mentors.map((mentor) => (
       <div class="card">
-        <div class="image square">PHOTO</div>
+        <div class="image square">
+          <img src={`../images/people/${mentor.name.toLowerCase().replace(' ', '-')}.webp`} alt={mentor.name} />
+        </div>
         <h3>{mentor.name}</h3>
         <p class="muted">{mentor.role}</p>
       </div>

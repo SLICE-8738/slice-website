@@ -19,25 +19,32 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 // levels once the sponsorship packet numbers are available.
 const tiers = [
   {
-    name: "Title Sponsor",
-    amount: "PLACEHOLDER $",
+    name: "SLICE Sponsor",
+    amount: "$5000+",
     tierClass: "tier-title",
     badge: "Top Tier",
-    benefits: ["Logo on robot", "Logo on team shirts", "Website + social recognition", "Priority event invites"],
+    benefits: ["All Juice Sponsor benefits", "Robot Naming Rights", "Access to Robot for Demonstrations"],
   },
   {
-    name: "Gold Sponsor",
-    amount: "PLACEHOLDER $",
+    name: "Juice Sponsor",
+    amount: "$1000 - $4999",
     tierClass: "tier-gold",
     badge: null,
-    benefits: ["Logo on team shirts", "Website recognition"],
+    benefits: ["All Zest Sponsor benefits", "Robot Recognition"],
   },
   {
-    name: "Silver Sponsor",
-    amount: "PLACEHOLDER $",
+    name: "Zest Sponsor",
+    amount: "$500 - $999",
     tierClass: "tier-silver",
     badge: null,
-    benefits: ["Website recognition"],
+    benefits: ["All Peel Sponsor benefits", "Logo on team shirts", "Logo on team Banners"],
+  },
+  {
+    name: "Peel Sponsor",
+    amount: "$1 - $499",
+    tierClass: "tier-silver",
+    badge: null,
+    benefits: ["Website recognition", "Monthly Team Updates", "Thank You on Social Media"],
   },
 ];
 ---
@@ -46,16 +53,24 @@ const tiers = [
   title="Sponsor Us"
   description="Support SLICE Robotics and help fund our season."
 >
-  <section>
+  <section class="sponsor-intro">
     <p class="lead">
       SLICE is run by Fuquay Varina Robotics Boosters, Inc., a
       501(c)(3) nonprofit organization. Every dollar donated is
       critical to our team achieving success and making our robot as
       competitive as possible.
     </p>
+    <a
+      class="button sponsor-packet-button"
+      href="https://drive.google.com/file/d/1_liHfV0ZrUgCBDBG0YneHJmTm98lR4qJ/view"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Full Sponsorship Packet (PDF) ->
+    </a>
   </section>
 
-  <section class="grid grid-3">
+  <section class="grid grid-4">
     {tiers.map((tier) => (
       <div class={`card tier-card ${tier.tierClass}`}>
         {tier.badge && <span class="tier-badge">{tier.badge}</span>}
