@@ -1,23 +1,4 @@
 ---
-// contact.astro
-// The old site's contact page had very little scraped text beyond
-// the nonprofit boilerplate, so this page is mostly a placeholder
-// form + info card built on the existing .form styles from
-// global.css (see design.astro for the same pattern).
-//
-// BACKEND: this site deploys to GitHub Pages (see
-// .github/workflows/astro.yml), which is static-hosting-only --
-// there's no server to run a real POST handler on. The standard fix
-// for a static site is a client-side form backend service; this
-// wires the form up to Formspree (https://formspree.io) via fetch(),
-// which is free for low volume and needs zero server code.
-//
-// TO ACTUALLY MAKE THIS WORK, see PATCH_NOTES.md for setup steps.
-// Short version: create a free Formspree account, verify an inbox
-// (start with benpark20@icloud.com for testing), create a form, and
-// paste its endpoint into FORM_ENDPOINT below. When ready for the
-// real site, create a second Formspree form verified against the
-// team's business email and swap the endpoint again.
 import ActionsLayout from "../layouts/ActionsLayout.astro";
 import "../styles/global.css";
 ---
@@ -38,9 +19,8 @@ import "../styles/global.css";
           <p class="eyebrow">Organization</p>
           <h3>Fuquay Varina Robotics Boosters, Inc.</h3>
           <p class="muted">A 501(c)(3) nonprofit organization.</p>
-          <!-- PLACEHOLDER: add real address, email, phone here -->
           <p class="muted">
-            PLACEHOLDER -- Fuquay-Varina, North Carolina
+            Fuquay-Varina, North Carolina
           </p>
         </aside>
       </div>

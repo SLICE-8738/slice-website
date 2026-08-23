@@ -1,9 +1,6 @@
 ---
 // Header.astro
-// Site-wide navigation bar, structured to match the real sitemap
-// (see the Gloomaps export the team provided). Uses the .nav /
-// .nav-links classes from global.css for the outer bar, plus new
-// dropdown styles below for the submenus.
+// Site-wide navigation bar
 
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
@@ -41,9 +38,7 @@ const navItems = [
   },
   {
     label: "Our Team",
-    href: "/leadership", // no single "Our Team" page exists -- parent
-    // link points at Leadership as a reasonable landing spot. Swap
-    // this if a dedicated "Our Team" overview page gets built.
+    href: "/leadership",
     children: [
       { href: "/leadership", label: "Leadership" },
       { href: "/mentors", label: "Mentors" },
@@ -86,17 +81,28 @@ function isGroupActive(item: typeof navItems[number]) {
     <img src={`${base}images/logo.webp`} alt="SLICE Robotics Logo" class="nav-logo" />
   </a>
 
-  <!-- On small screens this is hidden by the existing
-       .nav-links { display: none } rule in global.css -- there's no
-       mobile menu/hamburger yet -->
-  <nav class="nav-links" aria-label="Main navigation">
+  <button class="menu-toggle" type="button" aria-controls="mobile-navigation" aria-expanded="false">
+    <span class="menu-toggle-label">Menu</span>
+    <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
+
+  <div class="nav-drawer-backdrop" data-menu-close></div>
+  <nav id="mobile-navigation" class="nav-links" aria-label="Main navigation">
+    <button class="menu-close" type="button" data-menu-close aria-label="Close navigation menu">
+      <span aria-hidden="true">&times;</span>
+    </button>
     {navItems.map((item) => (
       "children" in item && item.children ? (
-        <div class="nav-group">
-          <a href={sitePath(item.href!)} class={isGroupActive(item) ? "active" : ""}>
-            {item.label}
-            <span class="nav-caret" aria-hidden="true">&#9662;</span>
-          </a>
+        <div class={isGroupActive(item) ? "nav-group submenu-open" : "nav-group"} data-current={isGroupActive(item) ? "true" : undefined}>
+          <div class="nav-parent">
+            <a href={sitePath(item.href!)} class={isGroupActive(item) ? "active" : ""}>
+              {item.label}
+              <span class="nav-caret" aria-hidden="true">&#9656;</span>
+            </a>
+            <button class="nav-group-toggle" type="button" aria-expanded={isGroupActive(item) ? "true" : "false"} aria-label={`Toggle ${item.label} submenu`}>
+              <span class="nav-caret" aria-hidden="true">&#9656;</span>
+            </button>
+          </div>
           <div class="nav-dropdown">
             {item.children.map((child) => (
               <a href={sitePath(child.href)} class={isActive(child.href) ? "active" : ""}>
@@ -114,6 +120,60 @@ function isGroupActive(item: typeof navItems[number]) {
   </nav>
 </header>
 
+<script>
+  const initMobileNavigation = () => {
+    const header = document.querySelector<HTMLElement>('.nav');
+    const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+    const navigation = header?.querySelector<HTMLElement>('.nav-links');
+    if (!header || !toggle || !navigation || header.dataset.menuReady) return;
+
+    header.dataset.menuReady = 'true';
+    const closeMenu = () => {
+      header.classList.remove('menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      header.querySelectorAll<HTMLElement>('.submenu-open:not([data-current="true"])').forEach((group) => {
+        group.classList.remove('submenu-open');
+        group.querySelector<HTMLButtonElement>('.nav-group-toggle')?.setAttribute('aria-expanded', 'false');
+      });
+      document.documentElement.classList.remove('menu-is-open');
+      document.body.classList.remove('menu-is-open');
+    };
+    const openMenu = () => {
+      header.classList.add('menu-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.documentElement.classList.add('menu-is-open');
+      document.body.classList.add('menu-is-open');
+    };
+
+    toggle.addEventListener('click', () => {
+      header.classList.contains('menu-open') ? closeMenu() : openMenu();
+    });
+    header.querySelectorAll<HTMLElement>('[data-menu-close], .nav-links a').forEach((element) => {
+      element.addEventListener('click', closeMenu);
+    });
+    header.querySelectorAll<HTMLButtonElement>('.nav-group-toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const group = button.closest<HTMLElement>('.nav-group');
+        if (!group) return;
+        header.querySelectorAll<HTMLElement>('.submenu-open').forEach((openGroup) => {
+          if (openGroup !== group) {
+            openGroup.classList.remove('submenu-open');
+            openGroup.querySelector<HTMLButtonElement>('.nav-group-toggle')?.setAttribute('aria-expanded', 'false');
+          }
+        });
+        const isOpen = group.classList.toggle('submenu-open');
+        button.setAttribute('aria-expanded', String(isOpen));
+      });
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+  };
+
+  initMobileNavigation();
+  document.addEventListener('astro:page-load', initMobileNavigation);
+</script>
+
 <style>
   .logo-link {
     display: flex;
@@ -125,8 +185,14 @@ function isGroupActive(item: typeof navItems[number]) {
     width: auto;
     margin: 0;
   }
+  .menu-toggle,
+  .nav-drawer-backdrop,
+  .menu-close,
+  .nav-group-toggle {
+    display: none;
+  }
   .nav-links > a,
-  .nav-group > a {
+  .nav-parent > a {
     display: flex;
     align-self: stretch;
     align-items: center;
@@ -134,11 +200,11 @@ function isGroupActive(item: typeof navItems[number]) {
     border-radius: 0;
     transition: color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
   }
-  .nav-group > a {
+  .nav-parent > a {
     height: 100%;
   }
   .nav-links > a:hover,
-  .nav-group > a:hover {
+  .nav-parent > a:hover {
     color: var(--text);
     background: rgba(249, 153, 10, 0.14);
     box-shadow: 0 0 12px rgba(249, 153, 10, 0.28);
@@ -147,21 +213,28 @@ function isGroupActive(item: typeof navItems[number]) {
     color: var(--accent);
   }
 
-  /* ---------- DROPDOWNS ----------
-     Simple hover-to-reveal dropdowns. Desktop-only (matches the
-     existing desktop-only nav -- .nav-links is hidden entirely under
-     800px already), so no click/tap handling is needed here. */
   .nav-group {
     position: relative;
     display: flex;
     align-self: stretch;
     align-items: center;
   }
+  .nav-parent {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+  }
+  .nav-parent > a {
+    flex: 1;
+  }
   .nav-caret {
     display: inline-block;
     margin-left: 4px;
-    font-size: .6rem;
-    transform: translateY(-1px);
+    color: var(--accent);
+    font-size: 1rem;
+    line-height: 1;
+    transform: translateY(1px);
+    transition: transform 180ms ease;
   }
   .nav-dropdown {
     position: absolute;
@@ -192,5 +265,186 @@ function isGroupActive(item: typeof navItems[number]) {
   .nav-dropdown a.active {
     background: rgba(249, 153, 10, 0.5);
     color: var(--accent);
+  }
+
+  @media (max-width: 800px) {
+    .nav {
+      padding: 0 16px;
+    }
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 8px 0 8px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .menu-icon {
+      display: grid;
+      gap: 4px;
+      width: 24px;
+    }
+    .menu-icon span {
+      display: block;
+      height: 2px;
+      background: var(--accent);
+      transform-origin: center;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    .menu-open .menu-icon span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .menu-open .menu-icon span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-open .menu-icon span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    .nav-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      display: block;
+      visibility: hidden;
+      background: rgba(7, 5, 5, .46);
+      backdrop-filter: blur(10px) saturate(110%);
+      -webkit-backdrop-filter: blur(10px) saturate(110%);
+      opacity: 0;
+      transition: opacity 220ms ease, visibility 220ms ease;
+    }
+    .menu-open .nav-drawer-backdrop {
+      visibility: visible;
+      opacity: 1;
+    }
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      display: flex;
+      align-items: stretch;
+      flex-direction: column;
+      width: min(88vw, 360px);
+      max-width: 100vw;
+      height: 100dvh;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 24px 18px 32px;
+      background: rgba(27, 15, 5, .92);
+      background: #000000cc;
+      border: 0px solid rgba(249, 178, 72, .22);
+      box-shadow: -18px 0 48px rgba(0, 0, 0, .38);
+      backdrop-filter: blur(24px) saturate(135%);
+      -webkit-backdrop-filter: blur(24px) saturate(135%);
+      visibility: hidden;
+      transform: translateX(100%);
+      transition: transform 280ms cubic-bezier(.22, 1, .36, 1), visibility 280ms ease;
+    }
+    .menu-open .nav-links {
+      visibility: visible;
+      transform: translateX(0);
+    }
+    .menu-close {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      margin: 0 0 18px;
+      padding: 0;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .menu-close:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .nav-links > a,
+    .nav-parent > a {
+      min-height: 48px;
+      padding: 12px 10px;
+    }
+    .nav-group {
+      display: block;
+    }
+    .nav-parent {
+      min-height: 48px;
+    }
+    .nav-parent > a .nav-caret {
+      display: none;
+    }
+    .nav-group-toggle {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      flex: 0 0 44px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .nav-group-toggle:hover {
+      color: var(--accent);
+    }
+    .nav-group-toggle .nav-caret {
+      margin: 0;
+      font-size: 1.25rem;
+      transform: rotate(0deg);
+    }
+    .submenu-open .nav-group-toggle .nav-caret {
+      transform: rotate(90deg);
+    }
+    .nav-dropdown {
+      position: static;
+      display: none;
+      min-width: 0;
+      padding: 0 0 8px 14px;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+    .nav-group:hover .nav-dropdown,
+    .nav-group:focus-within .nav-dropdown {
+      display: none;
+    }
+    .nav-group.submenu-open .nav-dropdown {
+      display: flex;
+    }
+    .nav-dropdown a {
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    :global(html.menu-is-open),
+    :global(body.menu-is-open) {
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+    :global(body.menu-is-open > :not(.nav)) {
+      filter: blur(7px);
+      transition: filter 220ms ease;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links,
+    .nav-drawer-backdrop,
+    .menu-icon span {
+      transition: none;
+    }
   }
 </style>

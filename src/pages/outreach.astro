@@ -46,7 +46,7 @@ const programs = [
 >
   <section class="grid grid-2">
     {programs.map((program) => (
-      <article class="card leader-card">
+      <article class="card leader-card" style="min-height: 800px;">
         <div class="image tall"><img src={`../images/outreach/${program.title.toLowerCase().replace(/ /g, "-")}.webp`} alt={program.title} /></div>
         <p class="eyebrow">{program.eyebrow}</p>
         <h3>{program.title}</h3>
