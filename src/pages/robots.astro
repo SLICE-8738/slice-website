@@ -19,7 +19,6 @@ const robots = [
   { name: "Clementune", year: "2024", slug: "clementune" },
   { name: "S.S. Squeeze", year: "2025", slug: "ss-squeeze" },
   { name: "SLICEasaurus Rex", year: "2026", slug: "sliceasaurus-rex" },
-  { name: "Coming Soon", year: "2027", slug: "coming-soon" },
 ];
 ---
 
@@ -30,7 +29,7 @@ const robots = [
   <section class="grid grid-2">
     {robots.reverse().map((robot) => (
       <a class="card card-link" href={sitePath(`/robots/${robot.slug}`)}>
-        <div class="image card-image"><img src={`/images/robots/${robot.slug}.jpg`} alt={robot.name} /></div>
+        <div class="image card-image"><img src={`slice-website/../../images/robots/${robot.slug}.jpg`} alt={robot.name} style="height: 100%;" /></div>
         <p class="eyebrow">{robot.year}</p>
         <h2>{robot.name}</h2>
         <p class="muted">PLACEHOLDER description of {robot.name}.</p>
