@@ -13,12 +13,13 @@ const sitePath = (path: string) => {
   const cleanPath = path.replace(/^\/+|\/+$/g, "");
   return cleanPath ? `${base}${cleanPath}/` : base;
 };
+const robotImagePath = (slug: string) => `${base}images/robots/${slug}/${slug}-hero.jpg`;
 const robots = [
-  { name: "Tangerine", year: "2022", slug: "tangerine" },
-  { name: "C²", year: "2023", slug: "c2" },
-  { name: "Clementune", year: "2024", slug: "clementune" },
-  { name: "S.S. Squeeze", year: "2025", slug: "ss-squeeze" },
-  { name: "SLICEasaurus Rex", year: "2026", slug: "sliceasaurus-rex" },
+  { name: "Tangerine", year: "2022", slug: "tangerine", description: "For the 2022 season, team 8738 competed with our robot Tangerine. Tangerine featured an AM14U drivetrain, a 4-bar intake, a fixed-hood shooter, and a telescoping tube traversal climber." },
+  { name: "C²", year: "2023", slug: "c2", description: "For the 2023 season, team 8738 competed with our robot C². C² featured aan AM14U drivetrain, a 2-stage cascading elevator, and a combined pivoting end effector and intake." },
+  { name: "Clementune", year: "2024", slug: "clementune", description: "For the 2024 season, team 8738 competed with our robot Clementune. Clementune featured a mk4i drivetrain, an under the bumper intake, and a pivoting shooter which doubled as a climber." },
+  { name: "S.S. Squeeze", year: "2025", slug: "ss-squeeze", description: "For the 2025 season, team 8738 competed with our robot S.S. Squeeze. The S.S. Squeeze featured a TTB Thrifty Swerve drivetrain, a full width funnel intake, a 3-stage Belt-in-Tube Continuous elevator, and a pivoting end effector." },
+  { name: "SLICEasaurus Rex", year: "2026", slug: "sliceasaurus-rex", description: "For the 2026 season, team 8738 competed with our robot SLICEasaurus Rex. SLICEasaurus Rex featured a TTB Thrifty Swerve drivetrain, a Coaxial Linear Extending intake, a belt-floor style indexer, and a 4-ball-wide fixed hood drum shooter." },
 ];
 ---
 
@@ -29,10 +30,10 @@ const robots = [
   <section class="grid grid-2">
     {robots.reverse().map((robot) => (
       <a class="card card-link" href={sitePath(`/robots/${robot.slug}`)}>
-        <div class="image card-image"><img src={`slice-website/../../images/robots/${robot.slug}.jpg`} alt={robot.name} style="height: 100%;" /></div>
+        <div class="image card-image"><img src={robotImagePath(robot.slug)} alt={robot.name} style="height: 100%;" /></div>
         <p class="eyebrow">{robot.year}</p>
         <h2>{robot.name}</h2>
-        <p class="muted">PLACEHOLDER description of {robot.name}.</p>
+        <p class="muted">{robot.description}</p>
       </a>
     ))}
   </section>
