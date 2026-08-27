@@ -4,13 +4,14 @@ import Layout from "./Layout.astro";
 interface Props {
   title: string;
   description?: string;
+  pageClass?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, pageClass } = Astro.props;
 ---
 
 <Layout title={`${title} | SLICE Robotics`} description={description}>
-  <main class="page">
+  <main class:list={["page", pageClass]}>
     <header class="page-header">
       <p class="eyebrow">ACTIONS</p>
       <h1>{title}</h1>

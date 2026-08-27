@@ -69,8 +69,8 @@ const operationsLeads = [
   <section>
     <p class="eyebrow">Captains</p>
     <h2 class="section-title">Team Captains</h2>
-    <div class="grid grid-3">
-      {captains.map((leader) => (
+    <div class="grid grid-3 leadership-grid">
+      {captains.map((leader) => ( 
         <div class="card leader-card">
           <div class="image tall"><img src={`../images/people/${leader.name.toLowerCase().split(' ')[0]}.webp`} alt={leader.name} /></div>
           <h3>{leader.name}</h3>
@@ -87,7 +87,7 @@ const operationsLeads = [
 
     <div class="leadership-tier">
       <h3>Engineering Leads</h3>
-      <div class="grid grid-3">
+        <div class="grid grid-3 leadership-grid">
         {engineeringLeads.map((leader) => (
           <div class="card leader-card">
             <div class="image tall"><img src={`../images/people/${leader.name.toLowerCase().split(' ')[0]}.webp`} alt={leader.name} /></div>
@@ -100,9 +100,9 @@ const operationsLeads = [
 
     <div class="leadership-tier">
       <h3>Business Leads</h3>
-      <div class="grid grid-3">
+      <div class="grid grid-4 leadership-grid business-grid">
         {businessLeads.map((leader) => (
-          leader.name ? (
+            leader.name ? ( 
             <div class="card leader-card">
               <div class="image tall"><img src={`../images/people/${leader.name.toLowerCase().split(' ')[0]}.webp`} alt={leader.name} /></div>
               <h4>{leader.name}</h4>
@@ -121,7 +121,7 @@ const operationsLeads = [
 
     <div class="leadership-tier">
       <h3>Operations Leads</h3>
-      <div class="grid grid-3">
+        <div class="grid grid-3 leadership-grid">
         {operationsLeads.map((leader) => (
           <div class="card leader-card">
             <div class="image tall"><img src={`../images/people/${leader.name.toLowerCase().split(' ')[0]}.webp`} alt={leader.name} /></div>
