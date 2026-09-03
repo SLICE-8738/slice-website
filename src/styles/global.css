@@ -250,6 +250,7 @@ strong { font-weight: 700; color: var(--accent); }
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
   height: 100%;
   padding: 26px;
   border: 1px solid var(--border);
@@ -328,6 +329,12 @@ strong { font-weight: 700; color: var(--accent); }
   flex-wrap: wrap;
   gap: 12px;
   padding: 0;
+  margin: 0;
+}
+.interest-tags {
+  gap: 8px;
+}
+.interest-tags .tag {
   margin: 0;
 }
 .tag {
@@ -695,7 +702,8 @@ select:focus {
     aspect-ratio: fit-content;
   }
   .leader-card {
-    margin: auto 7vh;
+    width: 100%;
+    margin: 0;
   }
 }
 /* ---------- FOOTER ---------- */
