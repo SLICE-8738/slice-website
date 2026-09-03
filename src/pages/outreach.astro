@@ -4,6 +4,9 @@
 // "MANifest" pages, presented as a card grid of outreach programs.
 import GalleryLayout from "../layouts/GalleryLayout.astro";
 import "../styles/global.css";
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 // Each entry is one outreach program/event. Text is condensed from
 // the old site -- expand or trim as needed.
 const programs = [
@@ -47,7 +50,7 @@ const programs = [
   <section class="grid grid-2">
     {programs.map((program) => (
       <article class="card leader-card" style="min-height: 800px;">
-        <div class="image tall"><img src={`../images/outreach/${program.title.toLowerCase().replace(/ /g, "-")}.webp`} alt={program.title} /></div>
+        <div class="image tall"><img src={`${base}images/outreach/${program.title.toLowerCase().replace(/ /g, "-")}.webp`} alt={program.title} /></div>
         <p class="eyebrow">{program.eyebrow}</p>
         <h3>{program.title}</h3>
         <p class="muted">{program.copy}</p>

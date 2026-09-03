@@ -6,6 +6,9 @@
 // else here is a PLACEHOLDER roster to fill in.
 import MeetUsLayout from "../layouts/MeetUsLayout.astro";
 import "../styles/global.css";
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 // PLACEHOLDER roster -- replace with real mentors. Kept one row
 // seeded from the old site as an example of the shape.
 const mentors = [
@@ -34,7 +37,7 @@ const mentors = [
     {mentors.map((mentor) => (
       <div class="card">
         <div class="image square">
-          <img src={`../images/people/${mentor.name.toLowerCase().replace(' ', '-')}.webp`} alt={mentor.name} />
+          <img src={`${base}images/people/${mentor.name.toLowerCase().replace(' ', '-')}.webp`} alt={mentor.name} />
         </div>
         <h3>{mentor.name}</h3>
         <p class="muted">{mentor.role}</p>
