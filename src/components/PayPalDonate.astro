@@ -1,0 +1,74 @@
+---
+---
+<div class="paypal-donate">
+  <form class="paypal-donate-form" action="https://www.paypal.com/donate" method="post" target="_blank">
+    <input type="hidden" name="hosted_button_id" value="R9H5T7E4XZWJG" />
+    <button class="paypal-button" type="submit" aria-label="Donate with PayPal">
+      <span class="paypal-button-label">Donate -></span>
+    </button>
+    <img
+      class="paypal-pixel"
+      alt=""
+      src="https://www.paypal.com/en_US/i/scr/pixel.gif"
+      width="1"
+      height="1"
+    />
+  </form>
+</div>
+
+<style>
+  .paypal-donate,
+  .paypal-donate-form {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .paypal-donate-form {
+    min-height: 46px;
+    margin: 0;
+  }
+
+  .paypal-donate .paypal-button {
+    min-height: 46px;
+    height: 40px;
+    width: 128px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s ease;
+    box-shadow: none;
+    box-sizing: border-box;
+    vertical-align: middle;
+    object-fit: contain;
+    opacity: 1;
+    overflow: hidden;
+  }
+
+  .paypal-donate .paypal-button:hover {
+    transform: translateY(-2px);
+    border-color: #F9B24880;
+    box-shadow: 0 0 28px color-mix(in srgb, var(--accent-3) 30%, transparent);
+    background: var(--surface);
+  }
+
+  .paypal-donate .paypal-button-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .paypal-donate .paypal-pixel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+</style>

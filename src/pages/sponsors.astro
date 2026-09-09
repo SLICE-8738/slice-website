@@ -8,6 +8,7 @@
 // (from image filenames) are Caterpillar, the Gene Haas Foundation,
 // and TE Connectivity.
 import MeetUsLayout from "../layouts/MeetUsLayout.astro";
+import PayPalDonate from "../components/PayPalDonate.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
@@ -53,6 +54,7 @@ const sponsors = [
             Every donation helps us build our robot, travel to competitions,
             and run STEM outreach events in our community.
           </p>
+          <PayPalDonate />
         </div>
         <div>
           <a href={base + "sponsor-us/"} class="button primary" style="margin-top: 1rem;">

@@ -4,6 +4,7 @@
 // homepage has its own hero instead of the shared page-header block.
 import Layout from "../layouts/Layout.astro";
 import Countdown from "../components/Countdown.astro";
+import PayPalDonate from "../components/PayPalDonate.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
@@ -20,7 +21,6 @@ const quickLinks = [
   { href: "/join", eyebrow: "Get Involved", title: "Join SLICE", copy: "New members are always welcome -- no experience required.", cta: "Join the Team ->" },
 ];
 
-const DONATE_URL = "https://www.paypal.com/US/fundraiser/charity/4533912";
 const COUNTDOWN_TARGET = "2026-10-03T11:00:00.000Z"; // ISO 8601, e.g. "2027-01-09T12:00:00-05:00"
 ---
 <style>
@@ -86,7 +86,7 @@ const COUNTDOWN_TARGET = "2026-10-03T11:00:00.000Z"; // ISO 8601, e.g. "2027-01-
           <a class="button" href={sitePath("/about")}>Who We Are</a>
           <a class="button" href={sitePath("/robots")}>See Our Robots</a>
           <a class="button" href={sitePath("/join")}>Join the Team</a>
-          <a class="button primary" href={DONATE_URL} target="_blank" rel="noopener noreferrer">Donate -></a>
+          <PayPalDonate />
         </div>
       </div>
     </section>
@@ -148,7 +148,7 @@ const COUNTDOWN_TARGET = "2026-10-03T11:00:00.000Z"; // ISO 8601, e.g. "2027-01-
           straight toward parts, tools, and travel to competition.
         </p>
         <div class="button-row">
-          <a class="button primary" href={DONATE_URL} target="_blank" rel="noopener noreferrer">Donate -></a>
+          <PayPalDonate />
           <a class="button" href={sitePath("/sponsor-us")}>Become a Sponsor -></a>
         </div>
       </aside>
