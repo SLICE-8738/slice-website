@@ -665,17 +665,23 @@ select:focus {
 .leader-card {
   text-align: center;
   aspect-ratio: 4 / 5;
+  overflow: hidden;
 }
 .business-grid .leader-card {
   aspect-ratio: 3 / 5;
 }
 .leader-card .image.tall {
   width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-md);
 }
 .leader-card .image.tall img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
+  object-position: center;
   border-radius: inherit;
 }
 .leader-card .image.square {
