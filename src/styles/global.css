@@ -539,6 +539,17 @@ select:focus {
   width: 18px;
   height: 18px;
 }
+.social-links .tiktok-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.social-links .tiktok-link svg {
+  width: 15px;
+  height: 15px;
+  transform: translateY(1px) scale(0.92);
+  transform-origin: center;
+}
 /* ---------- CALENDAR EMBED ---------- */
 .calendar-embed {
   position: relative;

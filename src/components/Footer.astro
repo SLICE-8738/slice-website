@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
 const INSTAGRAM_URL = "https://www.instagram.com/slice_robotics/";
 const YOUTUBE_URL = "http://www.youtube.com/@FVHSLICE8738";
 const DONATE_URL = "https://www.paypal.com/US/fundraiser/charity/4533912";
-const TIKTOK_URL = "https://www.tiktok.com/@slice_robotics?_r=1&_t=ZP-99l1HBc7Zni"
+const TIKTOK_URL = "https://www.tiktok.com/@slice_robotics"
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
@@ -43,15 +43,15 @@ const sitePath = (path: string) => {
             <path d="M10.5 9.5l5 2.5-5 2.5v-5z" fill="currentColor" stroke="none" />
           </svg>
         </a>
-        <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" aria-label="SLICE Robotics on tiktok">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z" fill="currentColor" stroke="none" />
+        <a class="tiktok-link" href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" aria-label="SLICE Robotics on TikTok">
+          <svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M224 74a50.06 50.06 0 0 1-50-50 6 6 0 0 0-6-6h-40a6 6 0 0 0-6 6v82a22 22 0 1 1-31.43-19.89A6 6 0 0 0 94 130.69V88a6 6 0 0 0-7-5.91C52.2 88.28 26 120.05 26 156a74 74 0 0 0 148 0V112.93A101.28 101.28 0 0 0 224 126a6 6 0 0 0 6-6V80a6 6 0 0 0-6-6Zm-6 39.8a89.13 89.13 0 0 1-46.5-16.69A6 6 0 0 0 162 102v54a62 62 0 0 1-124 0c0-27.72 18.47-52.48 44-60.38v31.53A34 34 0 1 0 134 156V30h28.29A62.09 62.09 0 0 0 218 85.71Z" />
           </svg>
         </a>
         <a href={DONATE_URL} target="_blank" rel="noopener noreferrer" aria-label="Donate">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-             <path stroke="var(--muted)" stroke-linejoin="round" d="M6 1.5 3.5 18h4.02l0.984 -6.5h4.471a5 5 0 0 0 0 -10H6Z" stroke-width="1.5"></path>
-              <path stroke="var(--muted)" stroke-linejoin="round" d="m9.337 6 -2.5 16.5h4l1 -6.5h4.475a5 5 0 0 0 0 -10H9.337Z" stroke-width="1.5"></path>
+             <path stroke="currentColor" stroke-linejoin="round" d="M6 1.5 3.5 18h4.02l0.984 -6.5h4.471a5 5 0 0 0 0 -10H6Z" stroke-width="1.5"></path>
+              <path stroke="currentColor" stroke-linejoin="round" d="m9.337 6 -2.5 16.5h4l1 -6.5h4.475a5 5 0 0 0 0 -10H9.337Z" stroke-width="1.5"></path>
           </svg>
         </a>
       </div>
