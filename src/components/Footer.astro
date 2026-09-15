@@ -15,6 +15,7 @@ const year = new Date().getFullYear();
 const INSTAGRAM_URL = "https://www.instagram.com/slice_robotics/";
 const YOUTUBE_URL = "http://www.youtube.com/@FVHSLICE8738";
 const DONATE_URL = "https://www.paypal.com/US/fundraiser/charity/4533912";
+const TIKTOK_URL = "https://www.tiktok.com/@slice_robotics?_r=1&_t=ZP-99l1HBc7Zni"
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
@@ -40,6 +41,11 @@ const sitePath = (path: string) => {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <rect x="2.5" y="5.5" width="19" height="13" rx="4" />
             <path d="M10.5 9.5l5 2.5-5 2.5v-5z" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+        <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" aria-label="SLICE Robotics on tiktok">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z" fill="currentColor" stroke="none" />
           </svg>
         </a>
         <a href={DONATE_URL} target="_blank" rel="noopener noreferrer" aria-label="Donate">
