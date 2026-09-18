@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const sitePath = (path: string) => {
+  const cleanPath = path.replace(/^\/+|\/+$/g, "");
+  return cleanPath ? `${base}${cleanPath}/` : base;
+};
+---
+
+<Layout
+  title="404 · SLICE Robotics"
+  description="The page you requested could not be found."
+>
+  <main class="page">
+    <section class="not-found">
+      <div class="not-found-card">
+        <img
+          class="not-found-logo"
+          src={`${base}icon-512.png`}
+          alt="SLICE Robotics logo"
+        />
+
+        <h3>404 Error</h3>
+        <h1>Page not found</h1>
+        <p class="not-found-copy">
+          The page you were looking for might have moved, been removed, or never
+          existed. Let’s get you back to the SLICE Robotics website.
+        </p>
+
+        <div class="button-row">
+          <a class="button primary" href={sitePath("/")}>Back to Home</a>
+          <a class="button ghost" href={sitePath("/contact")}>Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    padding: 52px 0 80px;
+  }
+
+  .not-found {
+    display: grid;
+    place-items: center;
+  }
+
+  .not-found-card {
+    width: min(100%, 760px);
+    padding: clamp(2rem, 4vw, 4rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at top left, rgba(73, 219, 231, 0.12), transparent 35%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+      var(--surface);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+
+  .not-found-logo {
+    width: min(100%, 180px);
+    margin: 0 auto 1.5rem;
+    border-radius: 24px;
+    filter: drop-shadow(0 0 30px rgba(249, 153, 10, 0.18));
+  }
+
+  .not-found h1 {
+    margin: 0;
+    font-family: var(--display-font);
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+  }
+
+  .not-found-copy {
+    max-width: 560px;
+    margin: 1rem auto 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .button-row {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .button-row {
+      flex-direction: column;
+    }
+
+    .button-row .button {
+      width: 100%;
+    }
+  }
+</style>

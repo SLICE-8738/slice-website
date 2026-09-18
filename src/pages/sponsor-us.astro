@@ -11,6 +11,7 @@
 // middle, Silver is more understated -- see .tier-card styles in
 // global.css.
 import ActionsLayout from "../layouts/ActionsLayout.astro";
+import PayPalDonate from "../components/PayPalDonate.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
@@ -92,7 +93,8 @@ const tiers = [
         Reach out via our <a href={`${base}contact/`}>contact page</a> to
         discuss sponsorship, or to request our sponsorship packet.
       </p>
-      <a class="button primary" href={`${base}contact/`}>Contact Us -></a>
+      <a style="margin-right: 1rem;"class="button primary" href={`${base}contact/`}>Contact Us -></a>
+      <PayPalDonate />
     </aside>
   </section>
 </ActionsLayout>
