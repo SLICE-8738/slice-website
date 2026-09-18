@@ -47,14 +47,66 @@ const programs = [
   title="Outreach"
   description="STEM outreach, community service, and events SLICE runs around Fuquay-Varina."
 >
-  <section class="grid grid-2">
+  <section class="grid outreach-grid">
     {programs.map((program) => (
-      <article class="card leader-card" style="min-height: 800px;">
-        <div class="image tall"><img src={`${base}images/outreach/${program.title.toLowerCase().replace(/ /g, "-")}.webp`} alt={program.title} /></div>
+      <article class="card outreach-card">
+        <div class="image outreach-image"><img src={`${base}images/outreach/${program.title.toLowerCase().replace(/ /g, "-")}.webp`} alt={program.title} /></div>
         <p class="eyebrow">{program.eyebrow}</p>
         <h3>{program.title}</h3>
         <p class="muted">{program.copy}</p>
       </article>
     ))}
   </section>
+
+  <style>
+    .outreach-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .outreach-card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 0;
+      overflow: visible;
+      aspect-ratio: auto;
+    }
+
+    .outreach-card .image.outreach-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      min-height: 220px;
+      margin: 0 0 18px;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+
+    .outreach-card .image.outreach-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background: var(--surface-2);
+    }
+
+    @media (max-width: 800px) {
+      .outreach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .outreach-card {
+        overflow: visible;
+      }
+
+      .outreach-card .image.outreach-image {
+        aspect-ratio: 4 / 3;
+        min-height: 180px;
+      }
+    }
+  </style>
 </GalleryLayout>

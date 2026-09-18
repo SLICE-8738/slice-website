@@ -4,6 +4,7 @@
 // homepage has its own hero instead of the shared page-header block.
 import Layout from "../layouts/Layout.astro";
 import Countdown from "../components/Countdown.astro";
+import Carousel from "../components/carousel.astro";
 import PayPalDonate from "../components/PayPalDonate.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
@@ -19,6 +20,14 @@ const quickLinks = [
   { href: "/robots", eyebrow: "2026 Season", title: "Meet the Robot", copy: "See what we're building this season and how it works.", cta: "Explore Robots ->" },
   { href: "/outreach", eyebrow: "Outreach", title: "Community Impact", copy: "STEM outreach, demos, and events we run around Fuquay-Varina.", cta: "See Outreach ->" },
   { href: "/join", eyebrow: "Get Involved", title: "Join SLICE", copy: "New members are always welcome -- no experience required.", cta: "Join the Team ->" },
+];
+
+const robotCarouselImages = [
+  { src: `${base}images/robots/sliceasaurus-rex/sliceasaurus-rex-hero.jpg`, alt: "SLICEasaurus Rex", href: sitePath("/robots/sliceasaurus-rex") },
+  { src: `${base}images/robots/ss-squeeze/ss-squeeze-hero.jpg`, alt: "S.S. Squeeze", href: sitePath("/robots/ss-squeeze") },
+  { src: `${base}images/robots/clementune/clementune-hero.jpg`, alt: "Clementune", href: sitePath("/robots/clementune") },
+  { src: `${base}images/robots/c2/c2-hero.jpg`, alt: "C²", href: sitePath("/robots/c2") },
+  { src: `${base}images/robots/tangerine/tangerine-hero.jpg`, alt: "Tangerine", href: sitePath("/robots/tangerine") },
 ];
 
 const COUNTDOWN_TARGET = "2026-10-03T11:00:00.000Z"; // ISO 8601, e.g. "2027-01-09T12:00:00-05:00"
@@ -152,6 +161,21 @@ const COUNTDOWN_TARGET = "2026-10-03T11:00:00.000Z"; // ISO 8601, e.g. "2027-01-
           <a class="button" href={sitePath("/sponsor-us")}>Become a Sponsor -></a>
         </div>
       </aside>
+    </section>
+
+    <!-- =====================================================
+         ROBOT CAROUSEL
+         ===================================================== -->
+    <section>
+      <Carousel
+        images={robotCarouselImages}
+        width="clamp(240px, 28vw, 340px)"
+        height="220px"
+        radius="16px"
+        gap="18px"
+        duration="42s"
+        direction="rtl"
+      />
     </section>
     <!-- =====================================================
          COUNTDOWN
