@@ -5,6 +5,17 @@ import "../../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+const robotSlug = "c2";
+const heroBase = `${base}images/robots/${robotSlug}/hero`;
+const galleryImages = [
+  `${base}images/robots/${robotSlug}/photos/photo-1.svg`,
+  `${base}images/robots/${robotSlug}/photos/photo-2.svg`,
+  `${base}images/robots/${robotSlug}/photos/photo-3.svg`,
+  `${base}images/robots/${robotSlug}/photos/photo-4.svg`,
+  `${base}images/robots/${robotSlug}/photos/photo-5.svg`,
+  `${base}images/robots/${robotSlug}/photos/photo-6.svg`,
+];
+const cadLink = `${base}images/robots/${robotSlug}/cad/`;
 ---
 
 <GalleryLayout
@@ -14,18 +25,16 @@ const base = import.meta.env.BASE_URL.endsWith("/")
   <article class="robot-page">
     <p class="eyebrow">2023 ROBOT</p>
 
-    <!-- Hero robot image -->
     <div class="image" style="aspect-ratio: 16 / 9;">
-      <img src={`${base}images/robots/c2/c2-hero.jpg`} alt="C² robot" style="height: 100%;" />
+      <img src={`${heroBase}/${robotSlug}-hero.jpg`} alt="C² robot" style="height: 100%;" />
     </div>
 
-    <!-- Game overview -->
     <section>
       <p class="eyebrow">Game Overview</p>
       <div class="grid grid-2">
         <div>
           <h2 class="section-title">The 2023 Game</h2>
-          <img src={`${base}images/robots/c2/2023-logo.webp`} alt="Charged Up logo" style="width: 40%;" />
+          <img src={`${heroBase}/2023-logo.webp`} alt="Charged Up logo" style="width: 40%;" />
           <p>
             Charged Up is the game for the 2023 FIRST Robotics Competition.
             The game is themed around two alliances of three teams each who
@@ -39,38 +48,47 @@ const base = import.meta.env.BASE_URL.endsWith("/")
       </div>
     </section>
 
-    <!-- Engineering sections -->
     <section>
-      <p class="eyebrow">Engineering</p>
-      <h2 class="section-title">How It Works</h2>
-      <div class="grid grid-3">
+      <p class="eyebrow">Stats</p>
+      <h2 class="section-title">Quick Facts</h2>
+      <div class="grid grid-4">
         <div class="stat">
           <div class="stat-number">--</div>
-          <div class="stat-label">Drivetrain</div>
+          <div class="stat-label">Weight</div>
         </div>
         <div class="stat">
           <div class="stat-number">--</div>
-          <div class="stat-label">Mechanisms</div>
+          <div class="stat-label">Dimensions</div>
         </div>
         <div class="stat">
           <div class="stat-number">--</div>
-          <div class="stat-label">Software</div>
+          <div class="stat-label">Base Height</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">--</div>
+          <div class="stat-label">Max Height</div>
         </div>
       </div>
     </section>
 
-    <!-- Photos / CAD / specifications -->
     <section>
       <p class="eyebrow">Gallery</p>
       <h2 class="section-title">Photos &amp; CAD</h2>
-      <div class="grid grid-3">
-        <div class="image">PHOTO</div>
-        <div class="image">PHOTO</div>
-        <div class="image">CAD RENDER</div>
+      <div class="robot-gallery">
+        {galleryImages.map((image) => (
+          <figure class="robot-gallery-item">
+            <div class="image"><img src={image} alt="C² gallery image" /></div>
+          </figure>
+        ))}
+        <figure class="robot-gallery-item cad-card">
+          <div class="cad-card-inner">
+            <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.svg`} alt="C² CAD render" /></div>
+            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+          </div>
+        </figure>
       </div>
     </section>
 
-    <!-- Competition results -->
     <section>
       <p class="eyebrow">Results</p>
       <h2 class="section-title">Competition Results</h2>

@@ -5,27 +5,36 @@ import "../../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+const robotSlug = "ss-squeeze";
+const heroBase = `${base}images/robots/${robotSlug}/hero`;
+const galleryImages = [
+  `${base}images/robots/${robotSlug}/photos/photo-1.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-2.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-3.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-4.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-5.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-6.png`,
+];
+const cadLink = `https://cad.onshape.com/documents/864299640cb5159b886687be/w/1219e3e28cc91eda84fc75bc/e/4bf66722df44d8335b38e287?renderMode=0&uiState=6aaee68e28baf3785b1e61ee`;
 ---
 
 <GalleryLayout
   title="S.S. Squeeze"
-  description="PLACEHOLDER one-line description of S.S. Squeeze, SLICE's 2025 competition robot."
+  description="For the 2025 season, team 8738 competed with our robot S.S. Squeeze. S.S. Squeeze featured a TTB Swerve drivetrain, a full width funnel, a Belt-in-Tube continuous elevator, and a pivoting end effector."
 >
   <article class="robot-page">
     <p class="eyebrow">2025 ROBOT</p>
 
-    <!-- Hero robot image -->
     <div class="image" style="aspect-ratio: 16 / 9;">
-      <img src={`${base}images/robots/ss-squeeze/ss-squeeze-hero.jpg`} alt="S.S. Squeeze robot" style="height: 100%;" />
+      <img src={`${heroBase}/${robotSlug}-hero.jpg`} alt="S.S. Squeeze robot" style="height: 100%;" />
     </div>
 
-    <!-- Game overview -->
     <section>
       <p class="eyebrow">Game Overview</p>
       <div class="grid grid-2">
         <div>
           <h2 class="section-title">The 2025 Game</h2>
-          <img src={`${base}images/robots/ss-squeeze/2025-logo.png`} alt="Reefscape logo" style="width: 40%;" />
+          <img src={`${heroBase}/2025-logo.png`} alt="Reefscape logo" style="width: 40%;" />
           <p>
             Reefscape is the game for the 2025 FIRST Robotics Competition.
             Two alliances of three robots each work to score PVC pipes (called Coral)
@@ -38,38 +47,29 @@ const base = import.meta.env.BASE_URL.endsWith("/")
       </div>
     </section>
 
-    <!-- Engineering sections -->
     <section>
-      <p class="eyebrow">Engineering</p>
-      <h2 class="section-title">How It Works</h2>
-      <div class="grid grid-3">
+      <p class="eyebrow">Stats</p>
+      <h2 class="section-title">Quick Facts</h2>
+      <div class="grid grid-4">
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Drivetrain</div>
+          <div class="stat-number">115&thinsp;lbs</div>
+          <div class="stat-label">Weight</div>
         </div>
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Mechanisms</div>
+          <div class="stat-number">30&Prime;&times;30&Prime;</div>
+          <div class="stat-label">Dimensions</div>
         </div>
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Software</div>
+          <div class="stat-number">3&prime;&thinsp;5.5&Prime;</div>
+          <div class="stat-label">Base Height</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">8&prime;&thinsp;1&Prime;</div>
+          <div class="stat-label">Max Height</div>
         </div>
       </div>
     </section>
 
-    <!-- Photos / CAD / specifications -->
-    <section>
-      <p class="eyebrow">Gallery</p>
-      <h2 class="section-title">Photos &amp; CAD</h2>
-      <div class="grid grid-3">
-        <div class="image">PHOTO</div>
-        <div class="image">PHOTO</div>
-        <div class="image">CAD RENDER</div>
-      </div>
-    </section>
-
-    <!-- Competition results -->
     <section>
       <p class="eyebrow">Results</p>
       <h2 class="section-title">Competition Results</h2>
@@ -85,21 +85,47 @@ const base = import.meta.env.BASE_URL.endsWith("/")
           <tbody>
             <tr>
               <td>FNC District Wake County Event</td>
-              <td></td>
+              <td><strong>1/32</strong></td>
               <td>Industrial Design Award</td>
             </tr>
             <tr>
               <td>FNC District Mecklenburg County Event</td>
-              <td></td>
-              <td>District Event Winner, Autonomous Award</td>
+              <td>2/28</td>
+              <td><strong>District Event Winner</strong>, Autonomous Award</td>
             </tr>
             <tr>
               <td>FIRST North Carolina State Championship</td>
-              <td></td>
+              <td>16/40</td>
               <td>Imagery Award in honor of Jack Kamen</td>
+            </tr>
+            <tr>
+              <td>FIRST Robotics Competition World Championship</td>
+              <td>26/75</td>
+              <td>N/A</td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Gallery</p>
+      <h2 class="section-title">Photos &amp; CAD</h2>
+      <div class="robot-gallery">
+        {galleryImages.map((image) => (
+          <figure class="robot-gallery-item">
+            <div class="image"><img src={image} alt="S.S. Squeeze gallery image" /></div>
+          </figure>
+        ))}
+        <figure class="robot-gallery-item cad-card">
+          <div class="cad-card-inner">
+            <div class="cad-card-visuals">
+              <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="S.S. Squeeze isometric CAD render" /></div>
+              <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-2.png`} alt="S.S. Squeeze dynamic CAD render" /></div>
+            </div>
+            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+          </div>
+        </figure>
       </div>
     </section>
   </article>

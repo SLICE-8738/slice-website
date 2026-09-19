@@ -1,0 +1,16 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#172033"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <g opacity="0.9">
+    <path d="M200 660 L520 270 L860 260 L980 520 L650 700 Z" fill="#f59e0b" opacity="0.2"/>
+    <path d="M330 700 L580 350 L760 410 L620 710 Z" fill="#22d3ee" opacity="0.2"/>
+  </g>
+  <rect x="110" y="100" width="980" height="700" rx="24" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.22)"/>
+  <text x="600" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="68" fill="#F9FAFB" font-weight="700">'@ + $slug + @' CAD ' + $i + @'</text>
+  <text x="600" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#cbd5e1">Render placeholder</text>
+</svg>

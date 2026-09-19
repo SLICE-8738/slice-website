@@ -5,6 +5,17 @@ import "../../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+const robotSlug = "sliceasaurus-rex";
+const heroBase = `${base}images/robots/${robotSlug}/hero`;
+const galleryImages = [
+  `${base}images/robots/${robotSlug}/photos/photo-1.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-2.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-3.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-4.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-5.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-6.png`,
+];
+const cadLink = "https://cad.onshape.com/documents/36240ea9b2c24898a924df7f/w/39480fdfca8c33353f371845/e/268d21c43bf94891f40bb27f?renderMode=0&uiState=6aaefea428baf3785b1fad03";
 ---
 
 <GalleryLayout
@@ -14,18 +25,16 @@ const base = import.meta.env.BASE_URL.endsWith("/")
   <article class="robot-page">
     <p class="eyebrow">2026 ROBOT</p>
 
-    <!-- Hero robot image -->
     <div class="image" style="aspect-ratio: 16 / 9;">
-      <img src={`${base}images/robots/sliceasaurus-rex/sliceasaurus-rex-hero.jpg`} alt="SLICEasaurus Rex robot" style="height: 100%;" />
+      <img src={`${heroBase}/${robotSlug}-hero.jpg`} alt="SLICEasaurus Rex robot" style="height: 100%;" />
     </div>
 
-    <!-- Game overview -->
     <section>
       <p class="eyebrow">Game Overview</p>
       <div class="grid grid-2">
         <div>
           <h2 class="section-title">The 2026 Game</h2>
-          <img src={`${base}images/robots/sliceasaurus-rex/2026-logo.png`} alt="Rebuilt logo" style="width: 40%;" />
+          <img src={`${heroBase}/2026-logo.png`} alt="Rebuilt logo" style="width: 40%;" />
           <p>
             Rebuilt is the game for the 2026 FIRST Robotics Competition.
             Two alliances of three robots each work to score foam balls (called Fuel)
@@ -38,33 +47,46 @@ const base = import.meta.env.BASE_URL.endsWith("/")
       </div>
     </section>
 
-    <!-- Engineering sections -->
     <section>
-      <p class="eyebrow">Engineering</p>
-      <h2 class="section-title">How It Works</h2>
+      <p class="eyebrow">Stats</p>
+      <h2 class="section-title">Quick Facts</h2>
       <div class="grid grid-3">
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Drivetrain</div>
+          <div class="stat-number">113&thinsp;lbs</div>
+          <div class="stat-label">Weight</div>
         </div>
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Mechanisms</div>
+          <div class="stat-number">27.5&Prime;&times;27.5&Prime;</div>
+          <div class="stat-label">Dimensions</div>
         </div>
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Software</div>
+          <div class="stat-number">1&prime;&thinsp;10&Prime;</div>
+          <div class="stat-label">Base Height</div>
         </div>
       </div>
     </section>
 
-    <!-- Photos / CAD / specifications -->
     <section>
       <p class="eyebrow">Gallery</p>
       <h2 class="section-title">Photos &amp; CAD</h2>
+      <div class="robot-gallery">
+        {galleryImages.map((image) => (
+          <figure class="robot-gallery-item">
+            <div class="image"><img src={image} alt="SLICEasaurus Rex gallery image" /></div>
+          </figure>
+        ))}
+        <figure class="robot-gallery-item cad-card">
+          <div class="cad-card-inner">
+            <div class="cad-card-visuals">
+              <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="SLICEasaurus Rex isometric CAD render" /></div>
+              <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-2.png`} alt="SLICEasaurus Rex dynamic CAD render" /></div>
+            </div>
+            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+          </div>
+        </figure>
+      </div>
     </section>
 
-    <!-- Competition results -->
     <section>
       <p class="eyebrow">Results</p>
       <h2 class="section-title">Competition Results</h2>
@@ -80,17 +102,17 @@ const base = import.meta.env.BASE_URL.endsWith("/")
           <tbody>
             <tr>
               <td>FNC District Wake County Event #1</td>
-              <td></td>
+              <td>13/29</td>
               <td>Quality Award</td>
             </tr>
             <tr>
               <td>FNC District Wake County Event #2</td>
-              <td></td>
+              <td>12/29</td>
               <td>Creativity Award</td>
             </tr>
             <tr>
               <td>FIRST North Carolina State Championship</td>
-              <td></td>
+              <td>19/52</td>
               <td>Imagery Award in honor of Jack Kamen</td>
             </tr>
           </tbody>

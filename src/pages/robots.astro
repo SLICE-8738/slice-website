@@ -13,7 +13,7 @@ const sitePath = (path: string) => {
   const cleanPath = path.replace(/^\/+|\/+$/g, "");
   return cleanPath ? `${base}${cleanPath}/` : base;
 };
-const robotImagePath = (slug: string) => `${base}images/robots/${slug}/${slug}-hero.jpg`;
+const robotImagePath = (slug: string) => `${base}images/robots/${slug}/hero/${slug}-hero.jpg`;
 const robots = [
   { name: "Tangerine", year: "2022", slug: "tangerine", description: "For the 2022 season, team 8738 competed with our robot Tangerine. Tangerine featured an AM14U drivetrain, a 4-bar intake, a fixed-hood shooter, and a telescoping tube traversal climber." },
   { name: "C²", year: "2023", slug: "c2", description: "For the 2023 season, team 8738 competed with our robot C². C² featured aan AM14U drivetrain, a 2-stage cascading elevator, and a combined pivoting end effector and intake." },

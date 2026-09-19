@@ -5,6 +5,17 @@ import "../../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+const robotSlug = "clementune";
+const heroBase = `${base}images/robots/${robotSlug}/hero`;
+const galleryImages = [
+  `${base}images/robots/${robotSlug}/photos/photo-1.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-2.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-3.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-4.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-5.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-6.png`,
+];
+const cadLink = "https://cad.onshape.com/documents/3156b23edfd8eee45c1d78d8/v/8dbc7780f883bf67dc99dc2d/e/a7040bbb2e9b531924f7b9e8?renderMode=0&uiState=6aaefb385214918a4fad7697";
 ---
 
 <GalleryLayout
@@ -14,18 +25,16 @@ const base = import.meta.env.BASE_URL.endsWith("/")
   <article class="robot-page">
     <p class="eyebrow">2024 ROBOT</p>
 
-    <!-- Hero robot image -->
     <div class="image" style="aspect-ratio: 16 / 9;">
-      <img src={`${base}images/robots/clementune/clementune-hero.jpg`} alt="Clementune robot" style="height: 100%;" />
+      <img src={`${heroBase}/${robotSlug}-hero.jpg`} alt="Clementune robot" style="height: 100%;" />
     </div>
 
-    <!-- Game overview -->
     <section>
       <p class="eyebrow">Game Overview</p>
       <div class="grid grid-2">
         <div>
           <h2 class="section-title">The 2024 Game</h2>
-          <img src={`${base}images/robots/clementune/2024-logo.png`} alt="Crescendo logo" style="width: 40%;" />
+          <img src={`${heroBase}/2024-logo.png`} alt="Crescendo logo" style="width: 40%;" />
           <p>
             Crescendo is the game for the 2024 FIRST Robotics Competition.
             The game is themed around music and involves two alliances consisting of three teams each
@@ -39,38 +48,46 @@ const base = import.meta.env.BASE_URL.endsWith("/")
       </div>
     </section>
 
-    <!-- Engineering sections -->
     <section>
-      <p class="eyebrow">Engineering</p>
-      <h2 class="section-title">How It Works</h2>
+      <p class="eyebrow">Stats</p>
+      <h2 class="section-title">Quick Facts</h2>
       <div class="grid grid-3">
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Drivetrain</div>
+          <div class="stat-number">117&thinsp;lbs</div>
+          <div class="stat-label">Weight</div>
         </div>
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Mechanisms</div>
+          <div class="stat-number">29.5&Prime;&times;30&Prime;</div>
+          <div class="stat-label">Dimensions</div>
         </div>
         <div class="stat">
-          <div class="stat-number">--</div>
-          <div class="stat-label">Software</div>
+          <div class="stat-number">2&prime;&thinsp;2&Prime;</div>
+          <div class="stat-label">Base Height</div>
         </div>
       </div>
     </section>
 
-    <!-- Photos / CAD / specifications -->
     <section>
       <p class="eyebrow">Gallery</p>
       <h2 class="section-title">Photos &amp; CAD</h2>
-      <div class="grid grid-3">
-        <div class="image">PHOTO</div>
-        <div class="image">PHOTO</div>
-        <div class="image">CAD RENDER</div>
+      <div class="robot-gallery">
+        {galleryImages.map((image) => (
+          <figure class="robot-gallery-item">
+            <div class="image"><img src={image} alt="Clementune gallery image" /></div>
+          </figure>
+        ))}
+        <figure class="robot-gallery-item cad-card">
+          <div class="cad-card-inner">
+            <div class="cad-card-visuals">
+              <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="Clementune isometric CAD render" /></div>
+              <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-2.png`} alt="Clementune dynamic CAD render" /></div>
+            </div>
+            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+          </div>
+        </figure>
       </div>
     </section>
 
-    <!-- Competition results -->
     <section>
       <p class="eyebrow">Results</p>
       <h2 class="section-title">Competition Results</h2>
@@ -86,18 +103,23 @@ const base = import.meta.env.BASE_URL.endsWith("/")
           <tbody>
             <tr>
               <td>FNC District UNC Pembroke Event</td>
-              <td></td>
+              <td>13/30</td>
               <td>Industrial Design Award</td>
             </tr>
             <tr>
               <td>FNC District Wake County Event</td>
-              <td></td>
+              <td>4/35</td>
               <td>Creativity Award, District Event Finalist</td>
             </tr>
             <tr>
               <td>FIRST North Carolina District State Championship</td>
-              <td></td>
+              <td>20/40</td>
               <td>District Championship Finalist</td>
+            </tr>
+            <tr>
+              <td>FIRST Robotics Competition World Championship</td>
+              <td>49/74</td>
+              <td>N/A</td>
             </tr>
           </tbody>
         </table>
