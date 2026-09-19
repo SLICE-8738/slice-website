@@ -8,12 +8,12 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 const robotSlug = "c2";
 const heroBase = `${base}images/robots/${robotSlug}/hero`;
 const galleryImages = [
-  `${base}images/robots/${robotSlug}/photos/photo-1.svg`,
-  `${base}images/robots/${robotSlug}/photos/photo-2.svg`,
-  `${base}images/robots/${robotSlug}/photos/photo-3.svg`,
-  `${base}images/robots/${robotSlug}/photos/photo-4.svg`,
-  `${base}images/robots/${robotSlug}/photos/photo-5.svg`,
-  `${base}images/robots/${robotSlug}/photos/photo-6.svg`,
+  `${base}images/robots/${robotSlug}/photos/photo-1.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-2.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-3.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-4.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-5.png`,
+  `${base}images/robots/${robotSlug}/photos/photo-6.png`,
 ];
 const cadLink = `${base}images/robots/${robotSlug}/cad/`;
 ---
@@ -82,7 +82,7 @@ const cadLink = `${base}images/robots/${robotSlug}/cad/`;
         ))}
         <figure class="robot-gallery-item cad-card">
           <div class="cad-card-inner">
-            <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.svg`} alt="C² CAD render" /></div>
+            <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="C² CAD render" /></div>
             <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
           </div>
         </figure>
