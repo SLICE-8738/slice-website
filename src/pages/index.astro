@@ -17,7 +17,7 @@ const sitePath = (path: string) => {
 // Quick-links shown below the hero. Update hrefs/labels as the real
 // site structure firms up.
 const quickLinks = [
-  { href: "/robots", eyebrow: "2026 Season", title: "Meet the Robot", copy: "See what we're building this season and how it works.", cta: "Explore Robots ->" },
+  { href: "/robots", eyebrow: "2027 Season", title: "Meet the Robot", copy: "See what we're building this season and how it works.", cta: "Explore Robots ->" },
   { href: "/outreach", eyebrow: "Outreach", title: "Community Impact", copy: "STEM outreach, demos, and events we run around Fuquay-Varina.", cta: "See Outreach ->" },
   { href: "/join", eyebrow: "Get Involved", title: "Join SLICE", copy: "New members are always welcome -- no experience required.", cta: "Join the Team ->" },
 ];
@@ -30,7 +30,7 @@ const robotCarouselImages = [
   { src: `${base}images/robots/tangerine/hero/tangerine-hero.jpg`, alt: "Tangerine", href: sitePath("/robots/tangerine") },
 ];
 
-const COUNTDOWN_TARGET = "2026-10-17T11:00:00.000Z"; // ISO 8601, e.g. "2027-01-09T12:00:00-05:00"
+const COUNTDOWN_TARGET = "2027-01-09T17:00:00.000Z"; // ISO 8601, e.g. "2027-01-09T12:00:00-05:00"
 ---
 <style>
   html, body {
@@ -181,7 +181,7 @@ const COUNTDOWN_TARGET = "2026-10-17T11:00:00.000Z"; // ISO 8601, e.g. "2027-01-
          COUNTDOWN
          ===================================================== -->
     <section>
-      <Countdown label="Countdown to Thor & Doyenne" targetDate={COUNTDOWN_TARGET} doneMessage="Its Here! 🍊" />
+      <Countdown label="Countdown to Kickoff!" targetDate={COUNTDOWN_TARGET} doneMessage="Its Here! 🍊" />
     </section>
   </main>
 </Layout>
