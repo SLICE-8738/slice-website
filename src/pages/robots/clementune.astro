@@ -16,11 +16,12 @@ const galleryImages = [
   `${base}images/robots/${robotSlug}/photos/photo-6.png`,
 ];
 const cadLink = "https://cad.onshape.com/documents/3156b23edfd8eee45c1d78d8/v/8dbc7780f883bf67dc99dc2d/e/a7040bbb2e9b531924f7b9e8?renderMode=0&uiState=6aaefb385214918a4fad7697";
+const githubLink = "https://github.com/SLICE-8738/2024_Main_Season";
 ---
 
 <GalleryLayout
   title="Clementune"
-  description="PLACEHOLDER one-line description of Clementune, SLICE's 2024 competition robot."
+  description="For the 2024 season, SLICE competed with Clementune, a Mk4i swerve-drive robot with an under-bumper intake and a pivoting shooter that doubled as a climber."
 >
   <article class="robot-page">
     <p class="eyebrow">2024 ROBOT</p>
@@ -46,6 +47,16 @@ const cadLink = "https://cad.onshape.com/documents/3156b23edfd8eee45c1d78d8/v/8d
         </div>
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/9keeDyFxzY4" title="FIRST Robotics Competition game animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Technical Overview</p>
+      <h2 class="section-title">Robot Design</h2>
+      <p>
+        Clementune was built on a Mk4i swerve drivetrain. An under-bumper intake
+        collected game pieces, while a pivoting shooter handled scoring and
+        transformed into the robot's climbing mechanism.
+      </p>
     </section>
 
     <section>
@@ -82,7 +93,10 @@ const cadLink = "https://cad.onshape.com/documents/3156b23edfd8eee45c1d78d8/v/8d
               <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="Clementune isometric CAD render" /></div>
               <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-2.png`} alt="Clementune dynamic CAD render" /></div>
             </div>
-            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+            <div class="button-row">
+              <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+              <a class="button primary" href={githubLink} target="_blank" rel="noopener noreferrer">View Robot Code on GitHub</a>
+            </div>
           </div>
         </figure>
       </div>

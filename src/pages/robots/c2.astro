@@ -16,11 +16,12 @@ const galleryImages = [
   `${base}images/robots/${robotSlug}/photos/photo-6.png`,
 ];
 const cadLink = `${base}images/robots/${robotSlug}/cad/`;
+const githubLink = "https://github.com/SLICE-8738";
 ---
 
 <GalleryLayout
   title="C²"
-  description="PLACEHOLDER one-line description of C², SLICE's 2023 competition robot."
+  description="For the 2023 season, SLICE competed with C², an AM14U-based robot with a two-stage cascading elevator and a combined pivoting intake and end effector."
 >
   <article class="robot-page">
     <p class="eyebrow">2023 ROBOT</p>
@@ -46,6 +47,16 @@ const cadLink = `${base}images/robots/${robotSlug}/cad/`;
         </div>
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0zpflsYc4PA" title="2026 FIRST Robotics Competition REBUILT Presented by Haas Game Animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Technical Overview</p>
+      <h2 class="section-title">Robot Design</h2>
+      <p>
+        C² used an AM14U drivetrain and a two-stage cascading elevator to lift
+        game pieces. Its pivoting end effector also served as the intake, combining
+        pickup and scoring functions in one mechanism.
+      </p>
     </section>
 
     <section>
@@ -83,7 +94,10 @@ const cadLink = `${base}images/robots/${robotSlug}/cad/`;
         <figure class="robot-gallery-item cad-card">
           <div class="cad-card-inner">
             <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="C² CAD render" /></div>
-            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+            <div class="button-row">
+              <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+              <a class="button primary" href={githubLink} target="_blank" rel="noopener noreferrer">Browse SLICE on GitHub</a>
+            </div>
           </div>
         </figure>
       </div>

@@ -16,11 +16,12 @@ const galleryImages = [
   `${base}images/robots/${robotSlug}/photos/photo-6.png`,
 ];
 const cadLink = "https://cad.onshape.com/documents/36240ea9b2c24898a924df7f/w/39480fdfca8c33353f371845/e/268d21c43bf94891f40bb27f?renderMode=0&uiState=6aaefea428baf3785b1fad03";
+const githubLink = "https://github.com/SLICE-8738/2026_New_Main_Season";
 ---
 
 <GalleryLayout
   title="SLICEasaurus Rex"
-  description="PLACEHOLDER one-line description of SLICEasaurus Rex, SLICE's 2026 competition robot."
+  description="For the 2026 season, SLICE competed with SLICEasaurus Rex, a Thrifty Swerve robot with a coaxial extending intake, belt-floor indexer, and four-ball-wide drum shooter."
 >
   <article class="robot-page">
     <p class="eyebrow">2026 ROBOT</p>
@@ -45,6 +46,29 @@ const cadLink = "https://cad.onshape.com/documents/36240ea9b2c24898a924df7f/w/39
         </div>
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_fybREErgyM" title="FIRST Robotics Competition game animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Technical Overview</p>
+      <h2 class="section-title">Robot Design</h2>
+      <p>
+        Sliceasaurus Rex went through two major iterations during the build season,
+         with members rebuilding the robot from scratch during the weeks between Wake #2 
+         and States to improve performance.
+         </p>
+        <p>The first design was a two-wide "snowblower" archeytpe, 
+         where intaking and shooter were perpendicular to each other. 
+         This in theory allows the robot to sweep within the zone to intake the entire width 
+         of the field while the shooter is facing towards the hub. 
+         This Archetype was later deemed "the poor man's turret" as turreted 
+         shooters were more common and achieved the same effect better at the cost of slight complexity boost.
+      </p>
+      <p>
+        The second iteration was what the team showed at States, a four-wide "drum" shooter and in-line intake.
+        During the season, it was apparent that two archetypes would dominate as the level of play progressed, something not seen in previous years. These were 
+        the "drum" and "dye rotor" shooters. The team decided to go with the drum shooter as it was more reliable and easier to build in the time crunch.
+        The simplicity of this archetype was the only reason the team was as successful as they were in rebuilding from scratch, and they pulled off the largest rebuild in FNC history.
+      </p>
     </section>
 
     <section>
@@ -81,7 +105,10 @@ const cadLink = "https://cad.onshape.com/documents/36240ea9b2c24898a924df7f/w/39
               <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="SLICEasaurus Rex isometric CAD render" /></div>
               <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-2.png`} alt="SLICEasaurus Rex dynamic CAD render" /></div>
             </div>
-            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+            <div class="button-row">
+              <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+              <a class="button primary" href={githubLink} target="_blank" rel="noopener noreferrer">View Robot Code on GitHub</a>
+            </div>
           </div>
         </figure>
       </div>

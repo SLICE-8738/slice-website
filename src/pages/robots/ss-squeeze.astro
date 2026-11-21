@@ -16,6 +16,7 @@ const galleryImages = [
   `${base}images/robots/${robotSlug}/photos/photo-6.png`,
 ];
 const cadLink = `https://cad.onshape.com/documents/864299640cb5159b886687be/w/1219e3e28cc91eda84fc75bc/e/4bf66722df44d8335b38e287?renderMode=0&uiState=6aaee68e28baf3785b1e61ee`;
+const githubLink = "https://github.com/SLICE-8738/2025_Main_Season";
 ---
 
 <GalleryLayout
@@ -45,6 +46,16 @@ const cadLink = `https://cad.onshape.com/documents/864299640cb5159b886687be/w/12
         </div>
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YWbxcjlY9JY" title="FIRST Robotics Competition game animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Technical Overview</p>
+      <h2 class="section-title">Robot Design</h2>
+      <p>
+        S.S. Squeeze used a TTB Thrifty Swerve drivetrain, a full-width funnel
+        intake, and a three-stage Belt-in-Tube continuous elevator. A pivoting
+        end effector completed the scoring mechanism.
+      </p>
     </section>
 
     <section>
@@ -123,7 +134,10 @@ const cadLink = `https://cad.onshape.com/documents/864299640cb5159b886687be/w/12
               <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="S.S. Squeeze isometric CAD render" /></div>
               <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-2.png`} alt="S.S. Squeeze dynamic CAD render" /></div>
             </div>
-            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+            <div class="button-row">
+              <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+              <a class="button primary" href={githubLink} target="_blank" rel="noopener noreferrer">View Robot Code on GitHub</a>
+            </div>
           </div>
         </figure>
       </div>

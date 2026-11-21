@@ -16,6 +16,7 @@ const galleryImages = [
   `${base}images/robots/${robotSlug}/photos/photo-6.png`,
 ];
 const cadLink = `${base}images/robots/${robotSlug}/cad/`;
+const githubLink = "https://github.com/SLICE-8738/RapidReactOffseasonCodeRelease";
 ---
 
 <GalleryLayout
@@ -49,6 +50,16 @@ const cadLink = `${base}images/robots/${robotSlug}/cad/`;
     </section>
 
     <section>
+      <p class="eyebrow">Technical Overview</p>
+      <h2 class="section-title">Robot Design</h2>
+      <p>
+        Tangerine paired an AM14U drivetrain with a four-bar intake and a fixed-hood
+        shooter for Rapid React. A telescoping tube climber enabled the robot to
+        traverse the hangar during the endgame.
+      </p>
+    </section>
+
+    <section>
       <p class="eyebrow">Stats</p>
       <h2 class="section-title">Quick Facts</h2>
       <div class="grid grid-3">
@@ -79,7 +90,10 @@ const cadLink = `${base}images/robots/${robotSlug}/cad/`;
         <figure class="robot-gallery-item cad-card">
           <div class="cad-card-inner">
             <div class="image"><img src={`${base}images/robots/${robotSlug}/cad/cad-1.png`} alt="Tangerine CAD render" /></div>
-            <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+            <div class="button-row">
+              <a class="button primary" href={cadLink} target="_blank" rel="noopener noreferrer">View CAD Files</a>
+              <a class="button primary" href={githubLink} target="_blank" rel="noopener noreferrer">View Robot Code on GitHub</a>
+            </div>
           </div>
         </figure>
       </div>
