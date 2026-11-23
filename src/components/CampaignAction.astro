@@ -10,9 +10,13 @@ const { action } = Astro.props;
 ---
 
 {action.type === "paypal" ? (
-  <PayPalDonate />
+  <span class="campaign-action">
+    <PayPalDonate />
+  </span>
 ) : action.type === "link" ? (
-  <a class="campaign-action-link" href={action.href}>{action.label}</a>
+  <span class="campaign-action">
+    <a class="campaign-action-link" href={action.href}>{action.label}</a>
+  </span>
 ) : null}
 
 <style>
@@ -32,6 +36,19 @@ const { action } = Astro.props;
     transition: filter 160ms ease, transform 160ms ease;
   }
 
+  .campaign-action {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  :global(.campaign-banner .paypal-donate .paypal-button) {
+    width: auto;
+    min-width: 0;
+    height: auto;
+    min-height: 38px;
+    padding: 6px 12px;
+  }
+
   .campaign-action-link:hover {
     filter: brightness(1.2);
     transform: translateY(-1px);
@@ -40,6 +57,23 @@ const { action } = Astro.props;
   @media (prefers-reduced-motion: reduce) {
     .campaign-action-link {
       transition: none;
+    }
+  }
+
+  @media (max-width: 700px) {
+    :global(.campaign-banner .campaign-action-link) {
+      min-height: 34px;
+      padding: 5px 9px;
+      font-size: .75rem;
+    }
+
+    :global(.campaign-banner .paypal-donate .paypal-button) {
+      min-height: 34px;
+      padding: 5px 9px;
+    }
+
+    :global(.campaign-banner .paypal-button-label) {
+      font-size: .75rem;
     }
   }
 </style>

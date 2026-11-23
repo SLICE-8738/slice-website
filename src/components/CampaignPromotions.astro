@@ -426,12 +426,18 @@ import CampaignAction from "./CampaignAction.astro";
 
   @media (max-width: 700px) {
     .campaign-banner {
-      flex-wrap: wrap;
-      gap: 8px 12px;
-      padding: 10px 54px 10px 14px;
+      flex-wrap: nowrap;
+      gap: 8px;
+      padding: 8px 50px 8px 10px;
     }
     .campaign-banner-copy {
-      flex-basis: 100%;
+      flex: 1 1 0;
+      height: 1.5em;
+      font-size: clamp(.78rem, 3vw, 1rem);
+    }
+    .campaign-banner-item {
+      gap: 6px;
+      padding-right: 2rem;
     }
     .campaign-banner .campaign-close {
       right: 8px;
@@ -450,15 +456,13 @@ import CampaignAction from "./CampaignAction.astro";
       transform: none;
     }
     .campaign-banner-copy {
-      height: auto;
+      height: 1.5em;
     }
     .campaign-banner-item {
-      flex: 1 1 100%;
+      flex: none;
       min-width: 0;
-      flex-wrap: wrap;
-      justify-content: center;
       padding-right: 0;
-      white-space: normal;
+      white-space: nowrap;
     }
   }
 </style>
