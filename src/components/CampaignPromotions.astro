@@ -1,0 +1,384 @@
+---
+import { campaigns } from "../config/campaigns";
+---
+
+{campaigns.banner.enabled && (
+  <script
+    is:inline
+    data-dismissal-key={`slice-campaign-banner:${campaigns.banner.id}`}
+  >
+    try {
+      const dismissalKey = document.currentScript && document.currentScript.getAttribute("data-dismissal-key");
+      if (dismissalKey && window.sessionStorage.getItem(dismissalKey) === "dismissed") {
+        document.documentElement.classList.add("campaign-banner-dismissed");
+      }
+    } catch (error) {
+      console.warn("Campaign banner dismissal could not be read for this browser session.", error);
+    }
+  </script>
+)}
+
+{campaigns.banner.enabled && (
+  <aside
+    class="campaign-banner"
+    role="region"
+    aria-label="Site announcement"
+    data-campaign-banner
+    data-dismissal-key={`slice-campaign-banner:${campaigns.banner.id}`}
+  >
+    <div class="campaign-banner-copy">
+      <strong>{campaigns.banner.heading}</strong>
+      <span>{campaigns.banner.message}</span>
+    </div>
+    <a class="campaign-banner-link" href={campaigns.banner.href}>{campaigns.banner.linkText}</a>
+    <button class="campaign-close" type="button" data-banner-close aria-label="Dismiss announcement">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </aside>
+)}
+
+{campaigns.popup.enabled && (
+  <div
+    class="campaign-popup"
+    hidden
+    aria-hidden="true"
+    data-campaign-popup
+    data-delay-ms={campaigns.popup.delayMs}
+    data-dismissal-days={campaigns.popup.dismissalDays}
+    data-dismissal-key={`slice-campaign-popup:${campaigns.popup.id}`}
+  >
+    <button class="campaign-popup-backdrop" type="button" data-popup-close aria-label="Dismiss promotion"></button>
+    <section
+      class="campaign-popup-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="campaign-popup-heading"
+      tabindex="-1"
+    >
+      <button class="campaign-close campaign-popup-close" type="button" data-popup-close aria-label="Close promotion">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p class="campaign-popup-eyebrow">{campaigns.popup.eyebrow}</p>
+      <h2 id="campaign-popup-heading">{campaigns.popup.heading}</h2>
+      <p class="campaign-popup-message">{campaigns.popup.message}</p>
+      <a class="campaign-popup-link" href={campaigns.popup.href}>{campaigns.popup.linkText}</a>
+    </section>
+  </div>
+)}
+
+<script>
+  const initCampaignPromotions = () => {
+    const banner = document.querySelector<HTMLElement>("[data-campaign-banner]");
+    if (banner && !banner.dataset.campaignReady) {
+      banner.dataset.campaignReady = "true";
+      const dismissalKey = banner.dataset.dismissalKey;
+      const closeButton = banner.querySelector<HTMLButtonElement>("[data-banner-close]");
+
+      if (!dismissalKey || !closeButton) {
+        console.error("Campaign banner is missing its dismissal key or close button.");
+      } else {
+        try {
+          banner.hidden = window.sessionStorage.getItem(dismissalKey) === "dismissed";
+        } catch (error) {
+          console.warn("Campaign banner dismissal could not be saved for this browser session.", error);
+        }
+
+        closeButton.addEventListener("click", () => {
+          banner.hidden = true;
+          document.documentElement.classList.add("campaign-banner-dismissed");
+          try {
+            window.sessionStorage.setItem(dismissalKey, "dismissed");
+          } catch (error) {
+            console.warn("Campaign banner dismissal could not be saved for this browser session.", error);
+          }
+        });
+      }
+    }
+
+    const popup = document.querySelector<HTMLElement>("[data-campaign-popup]");
+    if (!popup || popup.dataset.campaignReady) return;
+
+    popup.dataset.campaignReady = "true";
+    const dismissalKey = popup.dataset.dismissalKey;
+    const closeButtons = popup.querySelectorAll<HTMLButtonElement>("[data-popup-close]");
+    const dialog = popup.querySelector<HTMLElement>('[role="dialog"]');
+    const closeButton = popup.querySelector<HTMLButtonElement>(".campaign-popup-close");
+    const delayMs = Number(popup.dataset.delayMs);
+    const dismissalDays = Number(popup.dataset.dismissalDays);
+
+    if (
+      !dismissalKey ||
+      closeButtons.length === 0 ||
+      !dialog ||
+      !closeButton ||
+      !Number.isFinite(delayMs) ||
+      delayMs < 0 ||
+      !Number.isFinite(dismissalDays) ||
+      dismissalDays < 0
+    ) {
+      console.error("Campaign popup configuration is incomplete or invalid.");
+      return;
+    }
+
+    const dismissalDurationMs = dismissalDays * 24 * 60 * 60 * 1000;
+    let fallbackDismissalUntil = 0;
+    let previousFocus: HTMLElement | null = null;
+
+    const readDismissalUntil = () => {
+      try {
+        const storedValue = window.localStorage.getItem(dismissalKey);
+        const dismissalUntil = storedValue ? Number(storedValue) : 0;
+        return Number.isFinite(dismissalUntil) ? dismissalUntil : 0;
+      } catch (error) {
+        console.warn("Campaign popup dismissal could not be read from browser storage.", error);
+        return fallbackDismissalUntil;
+      }
+    };
+
+    const saveDismissal = () => {
+      fallbackDismissalUntil = Date.now() + dismissalDurationMs;
+      try {
+        window.localStorage.setItem(dismissalKey, String(fallbackDismissalUntil));
+      } catch (error) {
+        console.warn("Campaign popup dismissal could not be saved in browser storage.", error);
+      }
+    };
+
+    const closePopup = () => {
+      popup.hidden = true;
+      popup.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("campaign-popup-open");
+      document.removeEventListener("keydown", handleDialogKeydown);
+      previousFocus?.focus();
+      previousFocus = null;
+      saveDismissal();
+    };
+
+    const handleDialogKeydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closePopup();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const focusableElements = Array.from(
+        dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+      );
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        dialog.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    closeButtons.forEach((button) => button.addEventListener("click", closePopup));
+
+    if (readDismissalUntil() > Date.now()) return;
+
+    window.setTimeout(() => {
+      if (readDismissalUntil() > Date.now()) return;
+      previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      popup.hidden = false;
+      popup.setAttribute("aria-hidden", "false");
+      document.body.classList.add("campaign-popup-open");
+      saveDismissal();
+      closeButton.focus();
+      document.addEventListener("keydown", handleDialogKeydown);
+    }, delayMs);
+  };
+
+  initCampaignPromotions();
+  document.addEventListener("astro:page-load", initCampaignPromotions);
+</script>
+
+<style>
+  .campaign-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 10px 60px 10px 24px;
+    background: linear-gradient(100deg, #F9990A 0%, #F9B248 52%, #49DBE7 100%);
+    border-bottom: 1px solid rgba(7, 5, 5, .2);
+    box-shadow: 0 4px 20px rgba(249, 153, 10, .26);
+    color: #16100A;
+    text-align: center;
+  }
+  .campaign-banner[hidden] {
+    display: none;
+  }
+  :global(html.campaign-banner-dismissed) .campaign-banner {
+    display: none;
+  }
+  .campaign-banner-copy {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 10px;
+    align-items: baseline;
+  }
+  .campaign-banner-copy strong {
+    color: #16100A;
+  }
+  .campaign-banner-copy span {
+    font-size: .92rem;
+  }
+  .campaign-banner-link,
+  .campaign-popup-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 6px 16px;
+    border-radius: var(--radius-button);
+    font-size: .9rem;
+    font-weight: 800;
+    white-space: nowrap;
+    transition: filter 160ms ease, transform 160ms ease;
+  }
+  .campaign-banner-link {
+    background: #070505;
+    color: #FFFFFF;
+  }
+  .campaign-popup-link {
+    background: var(--accent);
+    color: #061018;
+  }
+  .campaign-banner-link:hover,
+  .campaign-popup-link:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+  .campaign-close {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .campaign-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .campaign-banner > .campaign-close:hover {
+    border-color: #070505;
+    color: #070505;
+  }
+  .campaign-banner > .campaign-close {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+  }
+  .campaign-popup[hidden] {
+    display: none;
+  }
+  .campaign-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+  }
+  .campaign-popup-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgba(0, 0, 0, .76);
+    backdrop-filter: blur(7px);
+    cursor: pointer;
+  }
+  .campaign-popup-card {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 520px);
+    padding: clamp(28px, 7vw, 48px);
+    border: 1px solid rgba(249, 178, 72, .42);
+    border-radius: var(--radius-card);
+    background:
+      radial-gradient(ellipse at top right, rgba(249, 153, 10, .17), transparent 58%),
+      var(--surface);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  .campaign-popup-card:focus {
+    outline: none;
+  }
+  .campaign-popup-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+  }
+  .campaign-popup-eyebrow {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .campaign-popup-card h2 {
+    margin: 0 0 14px;
+    padding: 0 12px;
+  }
+  .campaign-popup-message {
+    margin: 0 auto 24px;
+    color: var(--muted);
+  }
+  :global(body.campaign-popup-open) {
+    overflow: hidden;
+  }
+
+  @media (max-width: 700px) {
+    .campaign-banner {
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      padding: 10px 54px 10px 14px;
+    }
+    .campaign-banner-copy {
+      flex-direction: column;
+      gap: 0;
+      align-items: center;
+    }
+    .campaign-banner-copy span {
+      font-size: .82rem;
+      line-height: 1.35;
+    }
+    .campaign-banner .campaign-close {
+      right: 8px;
+    }
+    .campaign-popup-card h2 {
+      font-size: clamp(2.5rem, 11vw, 3.5rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .campaign-banner-link,
+    .campaign-popup-link {
+      transition: none;
+    }
+  }
+</style>

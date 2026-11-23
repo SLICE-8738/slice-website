@@ -4,6 +4,8 @@
 // path, so on the deployed site (base: "/slice-website/") every
 // card 404'd. Using the same sitePath() helper the rest of the
 // site uses fixes that -- this is what "make the cards work" meant.
+// Edit the robots list for gallery-card details; each slug must match
+// a detail page and a folder in public/images/robots/.
 import GalleryLayout from "../layouts/GalleryLayout.astro";
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.endsWith("/")

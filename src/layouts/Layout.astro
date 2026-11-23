@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CampaignPromotions from "../components/CampaignPromotions.astro";
 
 interface Props {
   title?: string;
@@ -34,10 +35,25 @@ const base = import.meta.env.BASE_URL.endsWith("/")
   </head>
 
   <body>
-    <Header />
+    <div class="site-chrome">
+      <CampaignPromotions />
+      <Header />
+    </div>
 
     <slot />
 
     <Footer />
   </body>
 </html>
+
+<style>
+  .site-chrome {
+    position: sticky;
+    top: 0;
+    z-index: 15;
+  }
+  .site-chrome :global(.nav) {
+    position: relative;
+    top: auto;
+  }
+</style>

@@ -1,43 +1,24 @@
-# Astro Starter Kit: Minimal
+# SLICE Robotics Website
+
+This is the Astro website for SLICE Robotics (FRC Team 8738). The pages live in `src/pages/`, reusable site components are in `src/components/`, and images are in `public/images/`.
+
+## Updating the website
+
+See [`contributions.md`](./contributions.md) for a beginner-friendly guide to finding and editing every page, updating images and shared site information, previewing changes, and checking the build.
+
+## Run locally
+
+The project requires Node.js 22.12.0 or newer. From the project folder:
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open the local address shown in the terminal, usually `http://localhost:4321`. To check the production build, run:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The production site is built and deployed to GitHub Pages by the workflow in `.github/workflows/astro.yml` when changes reach `main`.
