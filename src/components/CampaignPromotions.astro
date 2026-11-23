@@ -1,5 +1,6 @@
 ---
 import { campaigns } from "../config/campaigns";
+import CampaignAction from "./CampaignAction.astro";
 ---
 
 {campaigns.banner.enabled && (
@@ -27,10 +28,16 @@ import { campaigns } from "../config/campaigns";
     data-dismissal-key={`slice-campaign-banner:${campaigns.banner.id}`}
   >
     <div class="campaign-banner-copy">
-      <strong>{campaigns.banner.heading}</strong>
-      <span>{campaigns.banner.message}</span>
+      <div class="campaign-banner-track">
+        <div class="campaign-banner-item">
+          <strong>{campaigns.banner.heading}</strong>
+          <span>{campaigns.banner.message}</span>
+        </div>
+      </div>
     </div>
-    <a class="campaign-banner-link" href={campaigns.banner.href}>{campaigns.banner.linkText}</a>
+    {campaigns.banner.button.type !== "none" && (
+      <CampaignAction action={campaigns.banner.button} />
+    )}
     <button class="campaign-close" type="button" data-banner-close aria-label="Dismiss announcement">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -61,16 +68,64 @@ import { campaigns } from "../config/campaigns";
       <p class="campaign-popup-eyebrow">{campaigns.popup.eyebrow}</p>
       <h2 id="campaign-popup-heading">{campaigns.popup.heading}</h2>
       <p class="campaign-popup-message">{campaigns.popup.message}</p>
-      <a class="campaign-popup-link" href={campaigns.popup.href}>{campaigns.popup.linkText}</a>
+      {campaigns.popup.buttons.some((action) => action.type !== "none") && (
+        <div class="campaign-popup-actions">
+          {campaigns.popup.buttons.map((action) =>
+            action.type !== "none" ? <CampaignAction action={action} /> : null
+          )}
+        </div>
+      )}
     </section>
   </div>
 )}
 
 <script>
+  const initBannerMarquee = (banner: HTMLElement) => {
+    const viewport = banner.querySelector<HTMLElement>(".campaign-banner-copy");
+    const track = banner.querySelector<HTMLElement>(".campaign-banner-track");
+    const sourceItem = track?.querySelector<HTMLElement>(".campaign-banner-item");
+    if (!viewport || !track || !sourceItem || track.dataset.marqueeInitialized) return;
+
+    track.dataset.marqueeInitialized = "true";
+    const updateMarquee = () => {
+      const itemWidth = sourceItem.getBoundingClientRect().width;
+      const viewportWidth = viewport.clientWidth;
+      if (itemWidth <= 0 || viewportWidth <= 0) return;
+
+      const itemCount = Math.ceil(viewportWidth / itemWidth) + 1;
+      const copies: HTMLElement[] = [];
+      for (let index = 1; index < itemCount; index++) {
+        const clone = sourceItem.cloneNode(true);
+        if (!(clone instanceof HTMLElement)) {
+          console.error("Campaign marquee could not clone its text item.");
+          return;
+        }
+        clone.setAttribute("aria-hidden", "true");
+        copies.push(clone);
+      }
+
+      track.replaceChildren(sourceItem, ...copies);
+      track.style.setProperty("--campaign-marquee-distance", `${-itemWidth}px`);
+      track.dataset.marqueeReady = "true";
+    };
+
+    if (typeof ResizeObserver !== "undefined") {
+      const observer = new ResizeObserver(updateMarquee);
+      observer.observe(viewport);
+      observer.observe(sourceItem);
+    } else {
+      window.addEventListener("resize", updateMarquee);
+    }
+
+    updateMarquee();
+    window.addEventListener("load", updateMarquee, { once: true });
+  };
+
   const initCampaignPromotions = () => {
     const banner = document.querySelector<HTMLElement>("[data-campaign-banner]");
     if (banner && !banner.dataset.campaignReady) {
       banner.dataset.campaignReady = "true";
+      initBannerMarquee(banner);
       const dismissalKey = banner.dataset.dismissalKey;
       const closeButton = banner.querySelector<HTMLButtonElement>("[data-banner-close]");
 
@@ -121,16 +176,21 @@ import { campaigns } from "../config/campaigns";
     }
 
     const dismissalDurationMs = dismissalDays * 24 * 60 * 60 * 1000;
+    const cookieName = `slice-campaign-popup-${encodeURIComponent(dismissalKey)}`;
     let fallbackDismissalUntil = 0;
     let previousFocus: HTMLElement | null = null;
 
     const readDismissalUntil = () => {
       try {
-        const storedValue = window.localStorage.getItem(dismissalKey);
-        const dismissalUntil = storedValue ? Number(storedValue) : 0;
-        return Number.isFinite(dismissalUntil) ? dismissalUntil : 0;
+        const cookie = document.cookie
+          .split(";")
+          .map((value) => value.trim())
+          .find((value) => value.startsWith(`${cookieName}=`));
+        if (!cookie) return fallbackDismissalUntil;
+        const dismissalUntil = Number(cookie.slice(cookieName.length + 1));
+        return Number.isFinite(dismissalUntil) ? dismissalUntil : fallbackDismissalUntil;
       } catch (error) {
-        console.warn("Campaign popup dismissal could not be read from browser storage.", error);
+        console.warn("Campaign popup dismissal could not be read from browser cookies.", error);
         return fallbackDismissalUntil;
       }
     };
@@ -138,9 +198,10 @@ import { campaigns } from "../config/campaigns";
     const saveDismissal = () => {
       fallbackDismissalUntil = Date.now() + dismissalDurationMs;
       try {
-        window.localStorage.setItem(dismissalKey, String(fallbackDismissalUntil));
+        const maxAgeSeconds = Math.ceil(dismissalDurationMs / 1000);
+        document.cookie = `${cookieName}=${fallbackDismissalUntil}; Max-Age=${maxAgeSeconds}; Path=/; SameSite=Lax`;
       } catch (error) {
-        console.warn("Campaign popup dismissal could not be saved in browser storage.", error);
+        console.warn("Campaign popup dismissal could not be saved in browser cookies.", error);
       }
     };
 
@@ -222,43 +283,54 @@ import { campaigns } from "../config/campaigns";
     display: none;
   }
   .campaign-banner-copy {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 1.7em;
+    overflow: hidden;
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    line-height: 1.25;
+  }
+  .campaign-banner-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px 10px;
+    width: max-content;
+    transform: translateY(-50%);
+    animation: campaign-banner-scroll 32s linear infinite paused;
+  }
+  .campaign-banner-track[data-marquee-ready="true"] {
+    animation-play-state: running;
+  }
+  .campaign-banner-item {
+    display: flex;
+    flex: none;
     align-items: baseline;
+    gap: 10px;
+    padding-right: 3rem;
+    white-space: nowrap;
+  }
+  .campaign-banner:hover .campaign-banner-track,
+  .campaign-banner:focus-within .campaign-banner-track {
+    animation-play-state: paused;
   }
   .campaign-banner-copy strong {
     color: #16100A;
   }
   .campaign-banner-copy span {
-    font-size: .92rem;
+    font-size: inherit;
   }
-  .campaign-banner-link,
-  .campaign-popup-link {
-    display: inline-flex;
-    align-items: center;
+  @keyframes campaign-banner-scroll {
+    to {
+      transform: translate(var(--campaign-marquee-distance), -50%);
+    }
+  }
+  .campaign-popup-actions {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    min-height: 38px;
-    padding: 6px 16px;
-    border-radius: var(--radius-button);
-    font-size: .9rem;
-    font-weight: 800;
-    white-space: nowrap;
-    transition: filter 160ms ease, transform 160ms ease;
-  }
-  .campaign-banner-link {
-    background: #070505;
-    color: #FFFFFF;
-  }
-  .campaign-popup-link {
-    background: var(--accent);
-    color: #061018;
-  }
-  .campaign-banner-link:hover,
-  .campaign-popup-link:hover {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
+    gap: 12px;
   }
   .campaign-close {
     display: grid;
@@ -359,13 +431,7 @@ import { campaigns } from "../config/campaigns";
       padding: 10px 54px 10px 14px;
     }
     .campaign-banner-copy {
-      flex-direction: column;
-      gap: 0;
-      align-items: center;
-    }
-    .campaign-banner-copy span {
-      font-size: .82rem;
-      line-height: 1.35;
+      flex-basis: 100%;
     }
     .campaign-banner .campaign-close {
       right: 8px;
@@ -376,9 +442,23 @@ import { campaigns } from "../config/campaigns";
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .campaign-banner-link,
-    .campaign-popup-link {
-      transition: none;
+    .campaign-banner-track {
+      position: static;
+      width: 100%;
+      justify-content: center;
+      animation: none;
+      transform: none;
+    }
+    .campaign-banner-copy {
+      height: auto;
+    }
+    .campaign-banner-item {
+      flex: 1 1 100%;
+      min-width: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-right: 0;
+      white-space: normal;
     }
   }
 </style>

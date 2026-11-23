@@ -1,0 +1,45 @@
+---
+import type { CampaignButton } from "../config/campaigns";
+import PayPalDonate from "./PayPalDonate.astro";
+
+interface Props {
+  action: CampaignButton;
+}
+
+const { action } = Astro.props;
+---
+
+{action.type === "paypal" ? (
+  <PayPalDonate />
+) : action.type === "link" ? (
+  <a class="campaign-action-link" href={action.href}>{action.label}</a>
+) : null}
+
+<style>
+  .campaign-action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 6px 16px;
+    border: 1px solid #070505;
+    border-radius: var(--radius-button);
+    background: #070505;
+    color: #FFFFFF;
+    font-size: .9rem;
+    font-weight: 800;
+    white-space: nowrap;
+    transition: filter 160ms ease, transform 160ms ease;
+  }
+
+  .campaign-action-link:hover {
+    filter: brightness(1.2);
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .campaign-action-link {
+      transition: none;
+    }
+  }
+</style>
