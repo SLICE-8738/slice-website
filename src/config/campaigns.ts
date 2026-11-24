@@ -38,7 +38,7 @@ export const campaigns: CampaignSettings = {
     enabled: true,
     id: "fatcat-ice-cream-december-9",
     heading: "Support SLICE Robotics",
-    message: "Come out to Fat Cat Ice Cream on December 9th anytime between 1:00 PM and 9:00 PM to support the team and enjoy some ice cream! Watch the ice cream eating context at 7:00 PM!",
+    message: "Come out to Fat Cat Ice Cream on December 9th anytime between 1:00 PM and 9:00 PM to support the team and enjoy some ice cream! Watch the ice cream eating contest at 7:00 PM!",
     button: { type: "link", label: "Learn More", href: "https://fatcathomemadeicecream.com/" },
   },
   popup: {
@@ -46,7 +46,7 @@ export const campaigns: CampaignSettings = {
     id: "fatcat-ice-cream-december-9-popup-1",
     eyebrow: "Support the team",
     heading: "Fat Cat Ice Cream Fundraiser!",
-    message: "Come out to Fat Cat Ice Cream on December 9th anytime between 1:00 PM and 9:00 PM to support the team and enjoy some ice cream! Watch the ice cream eating context at 7:00 PM!",
+    message: "Come out to Fat Cat Ice Cream on December 9th anytime between 1:00 PM and 9:00 PM to support the team and enjoy some ice cream! Watch the ice cream eating contest at 7:00 PM!",
     buttons: [{ type: "paypal" }, { type: "link", label: "Learn More", href: "https://fatcathomemadeicecream.com/" }],
     // Delay before opening, in milliseconds.
     delayMs: 15_000,
